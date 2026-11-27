@@ -1,62 +1,67 @@
 \section{Introduction}\label{sec:intro}
 
-Artificial intelligence (AI) is often presented as a tool for climate adaptation. Machine-learning
-models now support early warning of floods, droughts and heatwaves, crop-yield forecasting,
-pest detection and the targeting of social protection after disasters
-\citep{rolnick2022,lealfilho2022,reichstein2025}. In the same period, three less comfortable facts
-have become harder to ignore. First, the capabilities needed to build and use AI are concentrated
-in a small number of high-income economies and, within countries, among better-off groups; roughly
-40 per cent of global employment is exposed to AI, with very different consequences across workers
-and economies \citep{cazzaniga2024,korinek2021}. Second, the communities most exposed to climate
-hazards are those with the least access to data, connectivity and technical skills, so the benefits
-of AI-based adaptation may bypass them \citep{larosa2024,hallegatte2017}. Third, AI is
-itself resource-intensive: global data-centre electricity consumption is projected to more than
-double by 2030 \citep{iea2025,devries2023}, and higher income inequality appears to weaken the
-carbon-abatement effect of AI \citep{dong2024}.
+Artificial intelligence (AI) is increasingly presented as a tool for climate adaptation. Machine
+learning now supports early warning of floods, droughts and heatwaves, crop-yield forecasting,
+pest detection and the targeting of relief after disasters
+\citep{rolnick2022,lealfilho2022,reichstein2025}. Development agencies, multilateral banks and
+governments are beginning to fund ``AI for climate resilience'' programmes in low- and
+middle-income countries. Every such programme faces the same allocation problem: capacity cannot
+be built everywhere at once, so \emph{where should it be built first?}
 
-These observations point to a single question that the existing literature treats in separate
-pieces: \emph{who gains climate resilience from AI, who bears its costs, and under what
-conditions does the gain reach vulnerable populations?} Studies of AI and climate adaptation are
-mostly technical or conceptual \citep{cowls2023,lealfilho2022}; studies of AI and the environment
-mostly focus on carbon emissions in a single country, often China \citep{liu2022,chen2022,dong2024};
-and studies of AI and inequality mostly concern labour markets in advanced economies
-\citep{acemoglu2018,acemoglu2020,felten2021}. Cross-country evidence that links national AI
-capability to measured climate vulnerability, and that asks whether the link depends on how
-unequal and how digitally connected a society is, is largely missing.
+The answer depends on whose resilience counts. Climate damages fall disproportionately on poor
+countries and on poor households within them \citep{hallegatte2017,diffenbaugh2019}, whereas the
+capabilities needed to develop and use AI are concentrated in rich countries and better-off groups
+\citep{cazzaniga2024,korinek2021}. If AI-enabled adaptation protects mainly the incomes of
+households that are already well connected and well off, a programme that maximises total
+resilience may leave the most vulnerable no better protected \citep{larosa2024}. AI capability
+also has a physical cost: data-centre electricity use is projected to more than double by 2030
+\citep{iea2025,devries2023}, and the carbon-abatement benefits of AI appear weaker where income is
+more unequal \citep{dong2024}. The special issue asks who benefits from AI-driven climate solutions,
+who bears their costs, and under what conditions AI promotes inclusive climate-resilient
+development. These are questions about distribution and about targeting, and the standard
+toolkit of the empirical literature, which estimates an average effect and adds an interaction
+term with a single inequality measure, is poorly suited to answer them.
 
-This paper provides that evidence. We assemble a panel of \NCountries{} countries observed between
-2001 and 2023, combining (i) a bibliometric measure of national AI capability built from the
-OpenAlex index of scholarly works \citep{priem2022}; (ii) the Notre Dame Global Adaptation
-Initiative (ND-GAIN) indices of climate vulnerability and adaptation readiness
-\citep{chen2015ndgain}, including their food, water, health, ecosystem, habitat and infrastructure
-components; (iii) income inequality and internet access from the World Development Indicators; and
-(iv) per-capita electricity use, renewable electricity shares and carbon dioxide emissions. We
-complement the panel with the IMF AI Preparedness Index for a 2023 cross-section.
+This paper develops and applies a method designed for the targeting question. We call it
+\emph{equity-weighted doubly robust policy learning} (EW-DRPL). It has three parts. First, it uses
+year-to-year temperature shocks, which are plausibly exogenous once country-specific trends are
+removed \citep{dell2012,burke2015}, to measure how sensitive the income growth of each decile of a
+country's distribution is to climate shocks. Second, it estimates how this sensitivity differs
+between countries with and without climate-AI capability through orthogonalised, cross-fitted,
+doubly robust scores \citep{robinson1988,chernozhukov2018}. These scores let machine-learning
+methods absorb the strong confounding between AI capability and development without biasing the
+estimated resilience effect. Third, it aggregates decile-level resilience effects with
+Atkinson-type welfare weights \citep{atkinson1970} and learns an interpretable allocation rule, a
+shallow decision tree, that maximises equity-weighted welfare under a budget constraint
+\citep{kitagawa2018,athey2021}. Varying the inequality-aversion parameter shows how the
+recommended allocation changes as a planner cares more about the poorest. The difference between
+the rules yields two quantities that speak directly to the special issue: the \emph{equity gain} of
+targeting for the poor, and the \emph{equity price} in aggregate resilience of doing so.
 
-Our empirical strategy proceeds in four steps. Two-way fixed-effects regressions relate changes in
-AI capability within a country to changes in its climate vulnerability and readiness, net of income,
-urbanisation, openness and population, and of global shocks. Interaction models and a
-\citet{hansen1999} panel threshold model test whether the association depends on income inequality
-and internet access. A shift-share instrument, which combines each country's early specialisation
-in AI research with leave-one-out global growth of AI research
-\citep{goldsmith2020,borusyak2022}, addresses reverse causality and common trends. Finally, we
-estimate the energy and emissions side of the ledger, asking whether AI capability is associated
-with higher per-capita electricity use and emissions and whether a cleaner power mix offsets it.
+We apply EW-DRPL to a new global dataset. National climate-AI capability is measured from the
+OpenAlex index of scholarly works \citep{priem2022} as research output at the intersection of AI or
+machine learning with climate change, together with a measure of \emph{knowledge sovereignty}: the
+share of a country's climate-AI research carried out by domestic institutions alone. Decile-level
+income and consumption growth come from \DataSpells{} comparable household-survey spells in the
+World Bank's Poverty and Inequality Platform, temperature shocks from ERA5 reanalysis, and
+covariates from the World Development Indicators and the ND-GAIN index \citep{chen2015ndgain}.
+A Monte Carlo study shows how the estimator behaves at the sample sizes typical of cross-country
+work.
 
 \FindingsIntro{}
 
-The paper makes three contributions to the social economics of technology and climate. First, it
-moves the AI--climate debate from technical potential to measured outcomes across a broad set of
-countries in which emerging and developing economies are the majority. Second, it treats inclusion
-as a condition for, and not only an outcome of, AI-enabled adaptation: inequality and the digital
-divide enter the model as moderators of the resilience dividend, in line with arguments that AI can
-help climate-vulnerable communities only if it is accessible to them \citep{larosa2024}. Third, it
-places the benefit and the cost of AI in one framework, extending the single-country evidence of
-\citet{dong2024} on inequality and AI-driven abatement to a global panel and to adaptation outcomes.
+The paper contributes to three literatures. For the economics of AI and climate change, it moves
+from technical potential and single-country carbon studies \citep{liu2022,chen2022,dong2024} to
+measured, distribution-specific resilience across a sample dominated by emerging and developing
+economies. For climate econometrics, it extends the analysis of heterogeneous climate damages
+\citep{burke2015,kalkuhl2020} from the country to the income decile and asks what capability
+changes the damages. For the econometrics of treatment choice, it extends equality-minded policy
+learning \citep{kitagawa2021,athey2021} to a setting in which the ``treatment'' moderates the effect
+of an exogenous shock rather than being randomly assigned itself. It provides an orthogonal score
+and a regret bound for that case, together with an implementation in open-source code.
 
-The remainder of the paper is organised as follows. Section~\ref{sec:lit} reviews the literature
-and states the hypotheses. Section~\ref{sec:data} describes the data and
-Section~\ref{sec:method} the empirical strategy. Section~\ref{sec:results} reports the results and
-Section~\ref{sec:robust} the robustness checks. Section~\ref{sec:discussion} discusses the
-implications for policy in emerging and developing economies, and Section~\ref{sec:conclusion}
-concludes.
+Section~\ref{sec:lit} reviews the related literature. Section~\ref{sec:method} presents the method,
+Section~\ref{sec:mc} the Monte Carlo evidence and Section~\ref{sec:data} the data.
+Section~\ref{sec:results} reports the empirical results and Section~\ref{sec:discussion} discusses
+the implications for policy in emerging and developing economies.
+Section~\ref{sec:conclusion} concludes.

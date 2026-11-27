@@ -1,83 +1,74 @@
-\section{Literature and hypotheses}\label{sec:lit}
+\section{Related literature}\label{sec:lit}
 
-\subsection{AI as an input to climate adaptation}
+\subsection{AI as an input to climate adaptation, and its costs}
 
 Adaptation is an information problem as much as an investment problem. Households, firms and
-governments must anticipate hazards, identify who is exposed, and allocate scarce resources before
-and after shocks. Machine learning lowers the cost of several of these tasks: it improves
-short-range forecasts and early warnings of compound events \citep{reichstein2025}, extracts crop,
-land-use and settlement information from satellite imagery, and supports the targeting of relief
+governments must anticipate hazards, identify who is exposed and allocate scarce resources before
+and after shocks. Machine learning lowers the cost of these tasks. It improves forecasts and early
+warnings of compound events \citep{reichstein2025}, extracts crop, land-use and settlement
+information from satellite imagery, and supports the targeting of relief
 \citep{rolnick2022,hilbert2016}. Reviews of AI for the Sustainable Development Goals identify climate
-action and food security among the goals for which AI is most often an enabler
-\citep{vinuesa2020}, and reviews of AI for adaptation document applications in agriculture, water
-management, health and infrastructure \citep{lealfilho2022}.
+action and food security among the goals AI most often enables \citep{vinuesa2020}, and reviews of
+AI for adaptation document applications in agriculture, water, health and infrastructure
+\citep{lealfilho2022}.
 
-National AI capability matters for these benefits because adaptation tools must be built, adapted
-to local conditions and maintained. Imported models trained on data from other regions perform
-poorly in data-scarce settings, and the public agencies that run early-warning systems, extension
-services and disaster-risk finance need domestic analytical skills to use them
-\citep{cowls2023,larosa2024}. A country with a larger AI research base is therefore more likely to
-produce locally relevant tools and to absorb external ones. Because AI is a general-purpose
-technology whose benefits arrive with a lag and depend on complementary investments
-\citep{brynjolfsson2021}, we expect any association with vulnerability to be gradual and to
-operate partly through readiness: the economic, governance and social conditions that allow
-investment in adaptation to be used effectively. This gives our first hypothesis.
+Domestic capability matters for these benefits. Models trained on data from other regions perform
+poorly in data-scarce settings, and the agencies that run early-warning, extension and
+disaster-risk-finance systems need local analytical skills to adapt, validate and maintain them
+\citep{cowls2023,larosa2024}. AI is a general-purpose technology whose returns depend on
+complementary investments and arrive with delay \citep{brynjolfsson2021}. A country's research
+base in climate-relevant AI is therefore a plausible, if imperfect, indicator of its capacity to
+turn AI into adaptation, and whether that research is led domestically or by foreign partners is a
+plausible indicator of whether it addresses local priorities.
 
-\begin{quote}
-\textbf{H1.} Higher national AI capability is associated with lower climate vulnerability and higher
-adaptation readiness.
-\end{quote}
+The costs are also documented. Training and running large models uses electricity and water
+\citep{strubell2019,devries2023}. Data-centre demand is projected to rise steeply \citep{iea2025},
+after a decade in which efficiency gains held it roughly flat \citep{masanet2020}. At the economy
+level, digitalisation has ambiguous effects on energy demand \citep{lange2020}. Studies of Chinese
+industries and cities find that AI lowers carbon intensity \citep{liu2022,chen2022}, cross-country
+work finds mixed effects \citep{wang2024}, and \citet{dong2024} show that income inequality weakens
+AI's abatement benefits. The system-level effect depends on what AI is used for \citep{kaack2022}.
 
-\subsection{Inequality, the digital divide and who benefits}
+\subsection{Who bears climate damages}
 
-Climate impacts fall disproportionately on the poor, both across and within countries. Warming has
-widened the gap between rich and poor countries \citep{diffenbaugh2019}, disasters kill more people
-where incomes are low and institutions weak \citep{kahn2005}, and their macroeconomic costs are larger
-in poorer economies \citep{noy2009}. Poor households are more exposed, lose a larger share of their
-assets when hit, and receive less support to recover \citep{hallegatte2017}.
+Climate econometrics uses within-country variation in temperature to estimate damages. Hot years
+reduce growth in poor countries \citep{dell2012}, the global response of output to temperature is
+non-linear \citep{burke2015}, and damages vary across regions with climate and income
+\citep{kalkuhl2020,hsiang2016}. Warming has widened the gap between rich and poor countries
+\citep{diffenbaugh2019}, disasters kill more people where incomes are low and institutions weak
+\citep{kahn2005}, and their macroeconomic costs are larger in poorer economies \citep{noy2009}.
+Within countries, poor households are more exposed, lose a larger share of their assets and recover
+more slowly \citep{hallegatte2017}. Little of this work asks which capabilities reduce damages, and
+almost none of it measures damages below the country level for a global sample.
 
-There are two reasons to expect inequality to weaken the link between AI capability and
-resilience. The first concerns access. The value of an AI-based warning or advisory service depends
-on whether vulnerable households can receive and act on it, which requires connectivity, devices,
-literacy and trust \citep{worldbank2016,hilbert2016}. Where these are unevenly distributed, the
-benefits of AI accrue to those who were already less vulnerable \citep{larosa2024}. The second
-concerns direction. In unequal societies, AI investment is more likely to be directed to uses that
-generate private returns for capital owners, such as automation and finance, than to public goods
-such as early warning or extension services \citep{acemoglu2018,korinek2021}. \citet{dong2024} show
-for China that income inequality reduces the carbon-abatement benefit of AI; the same mechanism may
-apply to adaptation. Conversely, broad internet access should strengthen the link by widening the
-set of people who can use AI-enabled services.
+The literature on AI and inequality suggests why AI capability might protect some groups more than
+others. Automation and AI raise returns to capital and to skills that are unevenly held
+\citep{acemoglu2018,acemoglu2020,felten2021}. About 40 per cent of jobs worldwide are exposed to AI,
+with complementarity concentrated among high-income workers \citep{cazzaniga2024}, and AI may widen
+the gap between advanced and developing economies \citep{korinek2021}. The value of AI-based
+warnings and advice depends on connectivity, literacy and trust \citep{worldbank2016}. Where these
+are unequally distributed, the benefits of AI-enabled adaptation may accrue to those who were
+already less vulnerable \citep{larosa2024}.
 
-\begin{quote}
-\textbf{H2a.} The association between AI capability and climate resilience is weaker in countries with
-higher income inequality, and may vanish beyond an inequality threshold.
+\subsection{From heterogeneous effects to equity-minded targeting}
 
-\textbf{H2b.} The association between AI capability and climate resilience is stronger in countries with
-broader internet access.
-\end{quote}
+The empirical studies cited above mostly estimate an average effect and test for heterogeneity with
+an interaction term, for example between AI and the Gini coefficient \citep{dong2024}. That approach
+imposes the dimension of heterogeneity in advance and cannot tell whether AI matters or merely
+proxies for income or institutions. It also answers a different question from the one a planner
+faces. Recent econometric work offers better tools. Cross-fitted, Neyman-orthogonal scores allow
+flexible machine-learning estimation of nuisance functions without biasing low-dimensional targets
+\citep{robinson1988,chernozhukov2018}. Causal forests and their generalisations estimate
+conditional effects \citep{wager2018,athey2019}, and generic machine-learning inference provides
+valid statements about which groups benefit most \citep{chernozhukov2025}.
 
-\subsection{The environmental cost of AI capability}
-
-AI also has a physical footprint. Training and running large models consume electricity and water
-\citep{strubell2019,devries2023}, and data-centre electricity demand is projected to rise steeply
-\citep{iea2025}, even though efficiency gains held data-centre energy use roughly flat during the
-2010s \citep{masanet2020}. At the economy level, digitalisation has ambiguous effects on energy demand:
-efficiency gains can be outweighed by rebound effects and by growth in the ICT sector itself
-\citep{lange2020}. Studies of Chinese industries and cities tend to find that AI lowers carbon
-intensity \citep{liu2022,chen2022}, whereas cross-country work finds more mixed effects
-\citep{wang2024}, and the system-level effects of AI on emissions depend on what AI is used for
-\citep{kaack2022}. Whether greater AI capability raises electricity use and emissions is therefore
-an empirical question, and the answer should depend on the carbon intensity of the power system that
-supplies the additional demand.
-
-\begin{quote}
-\textbf{H3a.} Higher national AI capability is associated with higher per-capita electricity use.
-
-\textbf{H3b.} The association between AI capability and per-capita CO$_2$ emissions is weaker in
-countries with a higher renewable share in electricity generation.
-\end{quote}
-
-Taken together, the hypotheses describe a distributional ledger: H1 and H2 concern who gains
-resilience from AI, H3 who bears its environmental cost. Because both depend on the institutions
-and resources of emerging and developing economies, we test every hypothesis separately for that
-group.
+Treatment-choice methods go one step further and estimate the rule itself. Building on
+\citet{manski2004}, empirical welfare maximisation \citep{kitagawa2018} and doubly robust policy
+learning \citep{athey2021} choose an assignment rule from a constrained class with guaranteed
+regret. \citet{kitagawa2021} extend the approach to rank-dependent social welfare functions that
+weight outcomes by their position in the distribution. These methods are designed for a treatment
+whose effect on an outcome is identified directly. In our setting the ``treatment'', climate-AI
+capability, is not randomly assigned. What is identified is how it changes the effect of a
+different, exogenous variable, the temperature shock, and the welfare-relevant outcome is observed
+separately for each income decile. EW-DRPL adapts orthogonal scores and equity-weighted policy
+learning to this moderated, decile-level structure.
