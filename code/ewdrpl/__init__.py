@@ -202,40 +202,36 @@ class EWDRPL:
         return self.country_cov_[list(features)].to_numpy(), list(features)
 
     def learn_policy(self, eps, k=0.3, which="dr", weighted=False, depth=2, features=None) -> TreePolicy:
-        """Exact depth-2 tree maximising sum_i pi_i B_i(eps) under mean(pi) <= k."""
+        """Exact depth-2 tree maximising sum_i pi_i B_i(eps) under mean(pi) <= k.
+
+        B_i already carries the population scale n_i when weighted=True, so no extra weights
+        are passed to the search (passing them would count n_i twice)."""
         Z, names = self._Z(features)
-        _, scale = self._weights(weighted)
         B = self.benefit(eps, which, weighted).to_numpy()
-        return search_tree(Z, B, k, depth=depth, weights=scale if weighted else None,
-                           feature_names=names)
+        return search_tree(Z, B, k, depth=depth, feature_names=names)
 
     def evaluate(self, eps, k=0.3, which="dr", weighted=False, depth=2, features=None,
                  n_boot=500, boot_seed=0) -> dict:
         """Policy value on the sample, cross-fitted held-out value, and country-cluster bootstrap."""
         Z, names = self._Z(features)
-        _, scale = self._weights(weighted)
-        wobj = scale if weighted else None
-        B = self.benefit(eps, which, weighted).to_numpy()
-        tree = search_tree(Z, B, k, depth=depth, weights=wobj, feature_names=names)
+        B = self.benefit(eps, which, weighted).to_numpy()  # carries n_i when weighted
+        tree = search_tree(Z, B, k, depth=depth, feature_names=names)
         pi = tree.predict(Z)
-        pi_cf, v_cf, _ = crossfit_policy(Z, B, k, self.fold_, depth=depth, weights=wobj)
-        contrib = (np.ones(len(B)) if wobj is None else wobj) * pi * B
+        pi_cf, v_cf, _ = crossfit_policy(Z, B, k, self.fold_, depth=depth)
+        contrib = pi * B
         boot = cluster_bootstrap(contrib, self.countries_, n_boot=n_boot, seed=boot_seed)
-        return {"policy": tree, "pi": pi, "value": policy_value(pi, B, wobj),
+        return {"policy": tree, "pi": pi, "value": policy_value(pi, B),
                 "crossfit_pi": pi_cf, "crossfit_value": v_cf, "boot": boot, "B": B}
 
     def compare(self, eps, k=0.3, which="dr", weighted=False, depth=2, n_boot=500, boot_seed=0) -> dict:
         """Equity price and gain of the eps-policy relative to the utilitarian (eps=0) policy."""
-        w, scale = self._weights(weighted)
-        wobj = scale if weighted else None
         Z, _ = self._Z()
-        B0 = self.benefit(0.0, which, weighted).to_numpy()
+        B0 = self.benefit(0.0, which, weighted).to_numpy()  # carries n_i when weighted
         Be = self.benefit(eps, which, weighted).to_numpy()
-        pi0 = search_tree(Z, B0, k, depth=depth, weights=wobj).predict(Z).astype(float)
-        pie = search_tree(Z, Be, k, depth=depth, weights=wobj).predict(Z).astype(float)
-        w_ = np.ones(len(B0)) if wobj is None else wobj
-        c_price = w_ * (pi0 - pie) * B0  # unit contributions to V0(pi0) - V0(pie)
-        c_gain = w_ * (pie - pi0) * Be   # unit contributions to Ve(pie) - Ve(pi0)
+        pi0 = search_tree(Z, B0, k, depth=depth).predict(Z).astype(float)
+        pie = search_tree(Z, Be, k, depth=depth).predict(Z).astype(float)
+        c_price = (pi0 - pie) * B0  # unit contributions to V0(pi0) - V0(pie)
+        c_gain = (pie - pi0) * Be   # unit contributions to Ve(pie) - Ve(pi0)
         cp = cluster_bootstrap(c_price, self.countries_, n_boot=n_boot, seed=boot_seed)
         cg = cluster_bootstrap(c_gain, self.countries_, n_boot=n_boot, seed=boot_seed + 1)
         return {

@@ -232,7 +232,7 @@ def latex_tables(summ, n_reps):
 
     lines = []
     lines.append("% Monte Carlo summary for EW-DRPL. Requires \\usepackage{booktabs}.")
-    lines.append("% Cells: mean (MC standard error) over %d replications." % n_reps)
+    lines.append(f"% Cells: mean (MC standard error) over {n_reps} replications.")
     lines.append("\\begin{tabular}{lcccccc}")
     lines.append("\\toprule")
     lines.append(" & \\multicolumn{3}{c}{$N=150$} & \\multicolumn{3}{c}{$N=500$} \\\\")
