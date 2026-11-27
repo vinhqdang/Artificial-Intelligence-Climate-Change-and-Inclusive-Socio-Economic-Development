@@ -207,7 +207,7 @@ def build_country_year(wb):
 
     # OpenAlex counts (iso2 -> iso3)
     iso2_to_3 = dict(zip(wb.iso2, wb.iso3))
-    cnt = pd.read_csv(RAW / "openalex_v2_counts.csv")
+    cnt = pd.read_csv(RAW / "openalex_v2_counts.csv", keep_default_na=False, na_values=[""])  # keep ISO2 "NA" (Namibia)
     cnt["iso3"] = cnt["iso2"].map(iso2_to_3)
     cnt = cnt.dropna(subset=["iso3"])
     for src, dst in [("all_pubs", "all_works"), ("ai_pubs", "ai_works"), ("climai_pubs", "climai_works")]:
@@ -226,7 +226,7 @@ def build_country_year(wb):
     panel["ln_ai_pc_lag"] = np.log1p(panel.groupby("iso3")["ai_pc"].shift(1))
 
     # Knowledge sovereignty: domestic-only share of climate-AI works, by period
-    dom = pd.read_csv(RAW / "openalex_v2_domestic.csv")
+    dom = pd.read_csv(RAW / "openalex_v2_domestic.csv", keep_default_na=False, na_values=[""])
     dom["iso3"] = dom["iso2"].map(iso2_to_3)
     dom = dom.dropna(subset=["iso3"])
     period_of_year = {y: p for p, a, b in PERIODS for y in range(a, b + 1)}
