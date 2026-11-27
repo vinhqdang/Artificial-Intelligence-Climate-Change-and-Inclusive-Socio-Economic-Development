@@ -179,7 +179,7 @@ def _fit_one(spl, X, outcome, seed, reg, clf, e_clip):
         covariates=X, income="y_d1", exposure="s_bar")
 
 
-def fit_seeds(spl, X, outcome="Yw", reg=None, clf=None, e_clip=(0.05, 0.95), n_jobs=4):
+def fit_seeds(spl, X, outcome="Yw", reg=None, clf=None, e_clip=(0.1, 0.9), n_jobs=4):
     return Parallel(n_jobs=n_jobs)(
         delayed(_fit_one)(spl, X, outcome, s, reg, clf, e_clip) for s in FOLD_SEEDS)
 
@@ -218,10 +218,11 @@ def incidence(agg):
         m1, s1 = cluster_mean_se(agg["G"]["psi"][t1, j], g[t1])
         m0, s0 = cluster_mean_se(agg["G"]["psi"][~t1, j], g[~t1])
         rows.append({"decile": int(d), "gamma": m, "se": se, "ci_lo": m - 1.96 * se,
-                     "ci_hi": m + 1.96 * se, "psi_T1": m1, "se_psi_T1": s1, "psi_T0": m0, "se_psi_T0": s0})
+                     "ci_hi": m + 1.96 * se, "median": float(np.median(G[:, j])), "psi_T1": m1,
+                     "se_psi_T1": s1, "psi_T0": m0, "se_psi_T0": s0})
     ma, sa = cluster_mean_se(G.mean(axis=1), g)
     rows.append({"decile": "average", "gamma": ma, "se": sa, "ci_lo": ma - 1.96 * sa,
-                 "ci_hi": ma + 1.96 * sa, "psi_T1": np.nan, "se_psi_T1": np.nan,
+                 "ci_hi": ma + 1.96 * sa, "median": float(np.median(G.mean(axis=1))), "psi_T1": np.nan, "se_psi_T1": np.nan,
                  "psi_T0": np.nan, "se_psi_T0": np.nan})
     info = {"n_spells": len(G), "n_countries": len(np.unique(g)), "n_T1": int(t1.sum()),
             "n_T0": int((~t1).sum()), "seed_ate_min": min(agg["seed_ate"]),
@@ -406,7 +407,7 @@ def jacc(a: set, b: set) -> float:
     return len(a & b) / len(a | b) if (a | b) else np.nan
 
 
-def run_variant(spl, X, outcome="Yw", reg=None, clf=None, e_clip=(0.05, 0.95)):
+def run_variant(spl, X, outcome="Yw", reg=None, clf=None, e_clip=(0.1, 0.9)):
     ests = fit_seeds(spl, X, outcome=outcome, reg=reg, clf=clf, e_clip=e_clip)
     agg = aggregate(ests, spl)
     tab, info = incidence(agg)
@@ -684,13 +685,13 @@ def main() -> None:
     log("sensitivity", f"(a) raw psi score: average Gamma {m_raw:.3f} (SE {s_raw:.3f}); eps=1 treated {len(tset)}; "
                        f"overlap {len(tset & main_treated)}/{len(main_treated)}")
     specs = [
-        ("(b) propensity clipped to [0.1, 0.9]", spl, X, "Yw", None, None, (0.1, 0.9)),
-        ("(c) T at 60th percentile", decile_sample(sp, "T_stock60", winsor=True), X, "Yw", None, None, (0.05, 0.95)),
+        ("(b) propensity trimming [0.05, 0.95]", spl, X, "Yw", None, None, (0.05, 0.95)),
+        ("(c) T at 60th percentile", decile_sample(sp, "T_stock60", winsor=True), X, "Yw", None, None, (0.1, 0.9)),
         ("(d) random forest nuisances", spl, X, "Yw",
          RandomForestRegressor(n_estimators=300, min_samples_leaf=5, max_features=0.5, random_state=0, n_jobs=1),
-         RandomForestClassifier(n_estimators=300, min_samples_leaf=5, random_state=0, n_jobs=1), (0.05, 0.95)),
-        ("(e) EMDE-only sample", spl[spl.emde == 1].copy(), X, "Yw", None, None, (0.05, 0.95)),
-        ("(f) unwinsorised Y", spl, X, "Y", None, None, (0.05, 0.95)),
+         RandomForestClassifier(n_estimators=300, min_samples_leaf=5, random_state=0, n_jobs=1), (0.1, 0.9)),
+        ("(e) EMDE-only sample", spl[spl.emde == 1].copy(), X, "Yw", None, None, (0.1, 0.9)),
+        ("(f) unwinsorised Y", spl, X, "Y", None, None, (0.1, 0.9)),
     ]
     for lab, sdf, Xv, outc, reg_, clf_, eclip in specs:
         vv = run_variant(sdf, Xv, outcome=outc, reg=reg_, clf=clf_, e_clip=eclip)
@@ -707,7 +708,7 @@ def main() -> None:
                 caption="Sensitivity of the decile layer: average Gamma over deciles and overlap of the eps = 1 treated set with the main rule.",
                 label="tab:sensitivity",
                 notes="Overlap = share of the main eps=1 treated countries also treated under the variant (full-sample depth-2 tree, k = 0.3). "
-                      "Jaccard = |A and B| / |A or B|. Variant (a) reuses the main fit. Variant (b) clips rather than drops propensities.",
+                      "Jaccard = |A and B| / |A or B|. Variant (a) reuses the main fit. Propensities are clipped (not dropped) in variants (b)-(f) and the main fit.",
                 align="lrrrrrr")
     RES["sens"] = sens
     log("sensitivity", f"block time {time.time() - t:.0f}s")
@@ -720,6 +721,10 @@ def main() -> None:
     e_raw = crossfit_propensity(Xmat, Tv, fold_spell, default_classifier(), clip=(1e-6, 1 - 1e-6))
     e_cl = agg["e_hat"]
     trim05 = float(np.mean((e_raw < 0.05) | (e_raw > 0.95)))
+    vh = np.asarray(ests[0].scores_.drop_duplicates("unit").v_hat, float)
+    log("diagnostics", f"v_hat (conditional variance of S): 1st pct {np.quantile(vh, 0.01):.4f}, median {np.median(vh):.4f}; "
+                       f"share of spells with v_hat < 0.02: {np.mean(vh < 0.02):.3f}; max DR score |Gamma| over spells and deciles "
+                       f"{np.max(np.abs(agg['G']['dr'])):.1f}")
     trim01 = float(np.mean((e_raw < 0.10) | (e_raw > 0.90)))
     fig, ax = plt.subplots(figsize=(4.2, 2.9))
     bins = np.linspace(0, 1, 26)
@@ -763,9 +768,36 @@ def main() -> None:
     log("diagnostics", "max |SMD| before weighting: " + f"{max(abs(float(r['SMD before weighting'])) for r in bal):.3f}"
         + "; after IPW: " + f"{max(abs(float(r['SMD after IPW'])) for r in bal):.3f}")
 
+    fig_policy_values(OUT / "policy_values.csv")
     write_summary()
     log("runtime", f"total runtime {time.time() - T0:.0f}s")
     print(f"Outputs written to {OUT}")
+
+
+def fig_policy_values(csv_path: Path) -> None:
+    """Method x eps figure with 95% country-cluster bootstrap CIs, read from policy_values.csv."""
+    import re
+    d = pd.read_csv(csv_path)
+    nums = d["value [95% CI]"].map(lambda t: [float(x) for x in re.findall(r"-?\d+\.\d+", t)])
+    d["est"] = [v[0] for v in nums]
+    d["lo"] = [v[1] for v in nums]
+    d["hi"] = [v[2] for v in nums]
+    methods = list(dict.fromkeys(d["method"]))
+    ypos = {m: i for i, m in enumerate(methods)}
+    fig, axes = plt.subplots(1, len(EPS), figsize=(7.4, 3.4), sharey=True)
+    for ax, e in zip(axes, EPS):
+        sub = d[np.isclose(d["eps"].astype(float), e)]
+        y = sub["method"].map(ypos).to_numpy()
+        ax.errorbar(sub["est"], y, xerr=[sub["est"] - sub["lo"], sub["hi"] - sub["est"]], fmt="o",
+                    color=BLACK, ms=4, capsize=2, lw=1)
+        ax.axvline(0, color=LIGHT, lw=0.8)
+        ax.set_title(rf"$\varepsilon$ = {e:g}")
+        ax.set_xlabel("welfare value")
+    axes[0].set_yticks(list(ypos.values()))
+    axes[0].set_yticklabels(methods)
+    axes[0].invert_yaxis()
+    fig.tight_layout()
+    save_fig(fig, OUT / "fig_policy_values")
 
 
 def write_summary() -> None:
@@ -781,4 +813,8 @@ def write_summary() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if os.environ.get("APP_FIG_ONLY") == "1":   # redraw the policy figure from policy_values.csv
+        fig_style()
+        fig_policy_values(OUT / "policy_values.csv")
+    else:
+        main()

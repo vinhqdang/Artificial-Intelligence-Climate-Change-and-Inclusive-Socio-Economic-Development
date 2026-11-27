@@ -1,0 +1,8 @@
+,elec on K-stock,CO2 on K-stock,elec on AI pc,CO2 on AI pc
+treatment coefficient,-0.017 (0.109),0.041 (0.106),0.053 (0.062),0.026 (0.061)
+p-value,0.873,0.697,0.389,0.671
+BLP slope on std. renewable share,0.103 (0.113),0.100 (0.101),-0.007 (0.060),0.031 (0.054)
+"orthogonal score, low renewable share",-0.148 (0.162),-0.032 (0.171),0.031 (0.085),-0.010 (0.103)
+"difference, high minus low renewable share",0.261 (0.200),0.146 (0.202),0.044 (0.099),0.072 (0.116)
+country-years,3170,3170,3170,3170
+countries,148,148,148,148

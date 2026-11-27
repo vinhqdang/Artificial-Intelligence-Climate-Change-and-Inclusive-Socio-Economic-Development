@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Cost module: DML partially linear estimates of electricity and CO2 per capita on climate-AI capability.}
+\label{tab:cost}
+\begin{tabular}{lcccc}
+\toprule
+ & elec on K-stock & CO2 on K-stock & elec on AI pc & CO2 on AI pc \\
+\midrule
+treatment coefficient & -0.017 (0.109) & 0.041 (0.106) & 0.053 (0.062) & 0.026 (0.061) \\
+p-value & 0.873 & 0.697 & 0.389 & 0.671 \\
+BLP slope on std. renewable share & 0.103 (0.113) & 0.100 (0.101) & -0.007 (0.060) & 0.031 (0.054) \\
+orthogonal score, low renewable share & -0.148 (0.162) & -0.032 (0.171) & 0.031 (0.085) & -0.010 (0.103) \\
+difference, high minus low renewable share & 0.261 (0.200) & 0.146 (0.202) & 0.044 (0.099) & 0.072 (0.116) \\
+country-years & 3170 & 3170 & 3170 & 3170 \\
+countries & 148 & 148 & 148 & 148 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize Columns: outcome on treatment (K-stock = ln(1 + k\_pc lagged); AI pc = ln(1 + ai\_pc lagged)). Cross-fitted gradient boosting, 5 country folds (seed 42), Mundlak country means of all controls. SE clustered by country. Renewable share split at its median.
+\end{table}

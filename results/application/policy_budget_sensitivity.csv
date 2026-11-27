@@ -1,0 +1,9 @@
+k,eps,treated,rule (full sample),held-out value
+0.2,0.0,24,"root [sov_z <= 0.3038]; left [agri_share <= 20.75]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",-0.0789
+0.2,0.5,24,"root [sov_z <= 0.3038]; left [agri_share <= 20.75]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",0.0263
+0.2,1.0,24,"root [sov_z <= 0.3038]; left [agri_share <= 20.75]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",1.3974
+0.2,2.0,24,"root [sov_z <= 0.3038]; left [agri_share <= 20.75]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",2.8605
+0.5,0.0,56,"root [base_temp <= 24.87]; left [base_temp <= 14.42]; right [agri_share <= 24.59]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.3880
+0.5,0.5,56,"root [base_temp <= 24.87]; left [base_temp <= 14.42]; right [agri_share <= 24.59]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.1359
+0.5,1.0,32,"root [agri_share <= 20.75]; left [gini <= 27.82]; right [sov_z <= 0.3038]; treated leaves (LL, LR, RL, RR) = (True, False, True, False)",0.5291
+0.5,2.0,24,"root [sov_z <= 0.3038]; left [agri_share <= 20.75]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",2.6931

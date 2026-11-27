@@ -65,7 +65,7 @@ def plugin_score(m1, m0) -> np.ndarray:
 
 
 def compute_scores(X, S, T, Y, folds, groups, *, regressor=None, classifier=None,
-                   shock_regressor=None, variance_regressor=None, e_clip=(0.05, 0.95),
+                   shock_regressor=None, variance_regressor=None, e_clip=(0.1, 0.9),
                    v_floor=1e-3, v_floor_frac=0.05, seed=42, orthogonal=True) -> dict:
     """Cross-fitted nuisances and all per-decile scores.
 

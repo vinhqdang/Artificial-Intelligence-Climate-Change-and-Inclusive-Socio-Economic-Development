@@ -6,7 +6,7 @@ Nuisances (all cross-fitted out-of-fold):
     s_hat(X,T) = E[S | X, T]
     v_hat(X,T) = E[(S - s_hat)^2 | X, T]      floored at max(1e-3, 0.05 Var(S))
     ell_d(X,T) = E[Y_d | X, T]
-    e_hat(X)   = P(T = 1 | X)                  clipped to [0.05, 0.95]
+    e_hat(X)   = P(T = 1 | X)                  clipped to [0.1, 0.9]
 
 v_hat is fitted, inside each outer training set, on squared residuals obtained from an inner
 two-fold cross-fit of s_hat, so that the held-out fold never enters the v_hat training target.
@@ -69,7 +69,7 @@ def crossfit_regression(F, y, folds, model, train_mask=None) -> np.ndarray:
     return out
 
 
-def crossfit_propensity(F, t, folds, model, clip=(0.05, 0.95)) -> np.ndarray:
+def crossfit_propensity(F, t, folds, model, clip=(0.1, 0.9)) -> np.ndarray:
     """Out-of-fold P(t = 1 | F), clipped to ``clip``."""
     F = np.asarray(F)
     t = np.asarray(t).astype(int)

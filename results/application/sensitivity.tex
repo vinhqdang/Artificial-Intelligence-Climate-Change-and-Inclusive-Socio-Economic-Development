@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Sensitivity of the decile layer: average Gamma over deciles and overlap of the eps = 1 treated set with the main rule.}
+\label{tab:sensitivity}
+\begin{tabular}{lrrrrrr}
+\toprule
+variant & spells & countries & avg Gamma (SE) & eps=1 treated & overlap with main & Jaccard \\
+\midrule
+main & 1332 & 123 & 0.551 (1.914) & 32 & 1.000 & 1.000 \\
+(a) raw psi score (non-orthogonal) & 1332 & 123 & 1.195 (1.621) & 26 & 0.594 & 0.487 \\
+(b) propensity trimming [0.05, 0.95] & 1332 & 123 & 0.523 (2.508) & 32 & 1.000 & 1.000 \\
+(c) T at 60th percentile & 1332 & 123 & 1.011 (1.739) & 34 & 0.719 & 0.535 \\
+(d) random forest nuisances & 1332 & 123 & 1.089 (0.803) & 24 & 0.750 & 0.750 \\
+(e) EMDE-only sample & 626 & 83 & -43.474 (34.337) & 21 & 0.250 & 0.178 \\
+(f) unwinsorised Y & 1332 & 123 & 1.776 (1.889) & 32 & 1.000 & 1.000 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize Overlap = share of the main eps=1 treated countries also treated under the variant (full-sample depth-2 tree, k = 0.3). Jaccard = |A and B| / |A or B|. Variant (a) reuses the main fit. Propensities are clipped (not dropped) in variants (b)-(f) and the main fit.
+\end{table}

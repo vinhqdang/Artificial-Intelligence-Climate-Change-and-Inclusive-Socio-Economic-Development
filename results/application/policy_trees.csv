@@ -1,0 +1,5 @@
+eps,"rule (full sample, depth 2)",treated,held-out value
+0.0,"root [base_temp <= 22.26]; left [base_temp <= 14.42]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",27,-0.1023
+0.5,"root [ln_gdppc <= 8.894]; left [agri_share <= 20.75]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",34,-0.2101
+1.0,"root [agri_share <= 20.75]; left [gini <= 27.82]; right [sov_z <= 0.3038]; treated leaves (LL, LR, RL, RR) = (True, False, True, False)",32,-0.0498
+2.0,"root [sov_z <= 0.3038]; left [agri_share <= 20.75]; right [gini <= 27.82]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",24,3.0068

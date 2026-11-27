@@ -1,0 +1,15 @@
+outcome,term,coef,se,p
+gdppc_growth,const,0.953,0.694,0.169
+gdppc_growth,ln_gdppc,3.250,1.831,0.076
+gdppc_growth,gini,1.773,0.910,0.051
+gdppc_growth,internet,-1.395,1.356,0.304
+gdppc_growth,agri_share,2.961,1.399,0.034
+gdppc_growth,base_temp,-0.859,0.836,0.304
+gdppc_growth,sov_z,0.646,1.212,0.594
+agri_growth,const,1.487,1.535,0.333
+agri_growth,ln_gdppc,12.271,5.741,0.033
+agri_growth,gini,-0.476,2.203,0.829
+agri_growth,internet,-0.663,1.974,0.737
+agri_growth,agri_share,9.981,4.995,0.046
+agri_growth,base_temp,1.384,1.551,0.372
+agri_growth,sov_z,-2.822,2.308,0.222

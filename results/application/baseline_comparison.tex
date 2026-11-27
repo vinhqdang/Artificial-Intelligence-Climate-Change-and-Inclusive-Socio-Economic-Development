@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Classical baseline: TWFE interaction models (country-year) and the pooled decile analogue.}
+\label{tab:baseline}
+\begin{tabular}{lcccc}
+\toprule
+term & TWFE gdppc\_growth & TWFE agri\_growth & Decile pooled (income growth) \\
+\midrule
+shock S & 0.018 (0.255) & -0.387 (0.919) & -0.001 (0.655) \\
+shock x T & -0.016 (0.293) & 0.039 (1.075) & 0.885 (0.783) \\
+T (main effect) & 0.090 (0.272) & -0.489 (0.401) & 0.429 (0.645) \\
+N & 2702 & 2652 & 13320 \\
+countries & 135 & 134 & 123 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize TWFE: country and year fixed effects; controls ln GDP pc, Gini, internet, agriculture share, urban share, ln population, readiness, ln AI pc (lag). Decile pooled: decile fixed effects and the decile-layer X (region dummies included). T main effect included in both. SE clustered by country. Outcome scales differ (annual growth in \% vs. decile income growth in \% per year).
+\end{table}

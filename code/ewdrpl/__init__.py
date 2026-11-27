@@ -41,14 +41,14 @@ class EWDRPL:
     seed : fold seed (default 42).
     regressor, classifier : sklearn estimators for outcome and propensity nuisances.
     shock_regressor, variance_regressor : estimators for s_hat and v_hat (default: regressor).
-    e_clip : propensity clipping interval (default (0.05, 0.95)).
+    e_clip : propensity clipping interval (default (0.1, 0.9), following the Crump et al. trimming rule; see the Monte Carlo diagnostics).
     v_floor, v_floor_frac : v_hat floor = max(v_floor, v_floor_frac * Var(S)).
     orthogonal : if True (default) the AIPW score uses the orthogonalised psi*; if False the
         raw Robinson psi. Both are always stored (gamma_dr and gamma_raw).
     """
 
     def __init__(self, K=5, seed=42, regressor=None, classifier=None, shock_regressor=None,
-                 variance_regressor=None, e_clip=(0.05, 0.95), v_floor=1e-3, v_floor_frac=0.05,
+                 variance_regressor=None, e_clip=(0.1, 0.9), v_floor=1e-3, v_floor_frac=0.05,
                  orthogonal=True):
         self.K = K
         self.seed = seed
