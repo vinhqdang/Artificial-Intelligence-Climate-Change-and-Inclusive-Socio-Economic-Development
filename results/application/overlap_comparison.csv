@@ -1,0 +1,3 @@
+treatment,share T=1,"share e outside [0.1,0.9]","share e outside [0.05,0.95]",mean e | T=1,mean e | T=0
+T_res,0.516,0.536,0.369,0.787,0.218
+T_stock,0.663,0.671,0.546,0.861,0.309

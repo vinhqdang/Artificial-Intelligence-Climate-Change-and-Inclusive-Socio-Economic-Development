@@ -1,0 +1,14 @@
+\begin{table}[htbp]
+\centering
+\caption{Propensity overlap: income-adjusted residual treatment T\_res (main) vs median-threshold T\_stock.}
+\label{tab:overlap}
+\begin{tabular}{lrrrrr}
+\toprule
+treatment & share T=1 & share e outside [0.1,0.9] & share e outside [0.05,0.95] & mean e | T=1 & mean e | T=0 \\
+\midrule
+T\_res & 0.516 & 0.536 & 0.369 & 0.787 & 0.218 \\
+T\_stock & 0.663 & 0.671 & 0.546 & 0.861 & 0.309 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize Cross-fitted logistic-free gradient-boosting propensity on the decile-layer X (seed-42 country folds), unclipped.
+\end{table}
