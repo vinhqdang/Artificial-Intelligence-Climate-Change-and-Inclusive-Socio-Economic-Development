@@ -1,0 +1,54 @@
+\section{Data}\label{sec:data}
+
+All data are public, and the code that downloads and assembles them is available in the
+replication package. The country-year panel covers the 159 countries with a population of at
+least one million in 2010, from 1998 to 2023. Table~\ref{tab:desc} reports descriptive statistics
+for the estimation sample.
+
+\paragraph{Decile income growth.} Distributional outcomes come from the World Bank's Poverty and
+Inequality Platform (PIP), which reports the mean of the welfare aggregate and the share of each
+decile for every household survey in its database. We take national surveys, keep one welfare
+concept per country (income or consumption, whichever has more surveys), and form \emph{spells}
+from consecutive surveys of the same country that PIP flags as comparable and that are at most ten
+years apart. For each spell and decile, the outcome $Y_{idj}$ is the annualised log growth of the
+decile's mean welfare, in per cent, where the decile mean equals the survey mean times ten times
+the decile share in purchasing-power-parity dollars per day. This yields 1,723 spells in 130
+countries. The estimation sample, which requires every covariate to be observed at the start of the
+spell and capability to be measured (from 2001), contains \NSpells{} spells in \NCountriesSp{}
+countries. Outcomes are winsorised at the 1st and 99th percentiles within each decile.
+
+\paragraph{Temperature shocks.} Annual mean surface temperature for each country is the average of
+the monthly series from the ERA5 reanalysis of the Copernicus Climate Change Service, as
+aggregated to countries by Our World in Data. Following the climate-econometrics literature
+\citep{dell2012,burke2015}, the shock $S_{it}$ is the deviation of annual temperature from a
+country-specific linear trend estimated over 1980--2023. Its standard deviation across country-years
+is 0.40$^{\circ}$C. For a spell, $S_{ij}$ is the mean of the annual shocks over the years the spell
+covers, and $\bar s_i$, the typical shock size used in the welfare aggregation, is the standard
+deviation of the country's shocks over 2000--2023. The baseline climate is the mean temperature of
+1980--2000.
+
+\paragraph{Climate-AI capability and knowledge sovereignty.} We query the OpenAlex index of
+scholarly works \citep{priem2022} for every country and year, counting works with at least one
+author affiliated in the country. AI works are those tagged with the ``artificial intelligence'' or
+``machine learning'' concepts. \emph{Climate-AI} works are AI works also tagged with ``climate
+change''. Because capability accumulates, we construct a knowledge stock
+$K_{it}=\sum_{\tau\le t}(1-\delta)^{t-\tau}C_{i\tau}$ from annual climate-AI output $C_{i\tau}$ since
+1998, with depreciation $\delta=0.15$, and express it per million population. A country has
+climate-AI capability ($T_{it}=1$) if its lagged stock per capita is above the cross-country median
+of that year. A spell takes the value of $T$ at its start year. \emph{Knowledge sovereignty} is the
+share of a country's climate-AI works in which every author is affiliated in that country, computed
+over 1998--2007, 2008--2015 and 2016--2023. It is set to a separate value when a country has fewer
+than five climate-AI works in the period. General AI output per million population enters the
+covariates, so the capability indicator captures specialisation in climate-relevant AI rather than
+AI research in general. Bibliometric output measures research capacity, not deployment. We discuss
+what this implies for interpretation in Section~\ref{sec:discussion}.
+
+\paragraph{Covariates.} From the World Development Indicators we take GDP per capita at
+purchasing-power parity (log), the Gini index (interpolated linearly within country between
+surveys, without extrapolation), the share of the population using the internet, the agricultural
+share of value added, the urban population share and population (log). Adaptation readiness, which
+summarises economic, governance and social conditions for adaptation investment, comes from the
+ND-GAIN index \citep{chen2015ndgain}. For the cost analysis we use per-capita electricity
+consumption, per-capita CO$_2$ emissions and the renewable share of electricity generation from Our
+World in Data. Countries are classified as emerging and developing economies (EMDEs) if the World
+Bank does not classify them as high income.
