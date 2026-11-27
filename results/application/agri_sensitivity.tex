@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\centering
+\caption{Sensitivity of the agricultural application: ATE of rho and overlap of the eps = 1 treated set with the main rule.}
+\label{tab:agri_sensitivity}
+\begin{tabular}{lrrrrr}
+\toprule
+variant & spells & countries & ATE (SE) & eps=1 treated & Jaccard vs main \\
+\midrule
+main (T\_res, hotm, dly, bottom exposure) & 3338 & 145 & 0.258 (1.069) & 22 & 1.000 \\
+(a) raw psi score & 3338 & 145 & 0.129 (1.139) & 29 & 0.645 \\
+(b) propensity trimming [0.05, 0.95] & 3338 & 126 & 0.507 (1.172) & 22 & 1.000 \\
+(c) annual shock instead of hotm & 3338 & 126 & -6.060 (2.050) & 7 & 0.208 \\
+(d) random forest nuisances & 3338 & 126 & 0.376 (0.748) & 22 & 1.000 \\
+(e) EMDE-only sample & 2250 & 86 & 0.314 (1.282) & 13 & 0.591 \\
+(f) T\_stock instead of T\_res & 3338 & 126 & 1.791 (1.625) & 35 & 0.239 \\
+(g) agricultural VA growth outcome & 3304 & 125 & 0.467 (0.550) & 26 & 0.000 \\
+(h) uniform exposure e\_id = a\_i (policy only) & -- & 126 & -- & 22 & 1.000 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize Jaccard = |A and B| / |A or B| with the main eps=1 treated set (k = 0.3). Median-over-seeds ATE; 20 seeds per row. Variant (h) reports the policy only.
+\end{table}

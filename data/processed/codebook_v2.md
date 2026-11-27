@@ -148,3 +148,24 @@ Cache: OpenAlex responses are in `data/raw/openalex_v2/` (JSON). Count tables: `
 22. **Precipitation.** precip_shock is a mm deviation (not a percent) from the trend. It is included for the robustness variant only and is not used in the main variables.
 23. **Not built.** Robustness variants (absolute shock, precipitation added to S) are not constructed as separate variables. ln_elec_pc and ln_co2pc are in the country-year file for the cost module but are not in the spell file. Region dummies are left to the analysis step; `region` is provided as a string.
 24. **Codebook counts** were taken from the script output and checked with separate queries after the build.
+
+## 6. Update v2.1: Namibia fix, current counts, agricultural panel
+
+**Namibia fix (source).** `code/11_build_v2.py` read `openalex_v2_counts.csv` and `openalex_v2_domestic.csv` with pandas default NA parsing, so the ISO2 code "NA" (Namibia) became missing and Namibia lost all OpenAlex columns. Both reads now use `keep_default_na=False, na_values=[""]`. Namibia keeps iso2 = "NA" (text) and has OpenAlex values in all years (1998-2023). Other countries' values are unchanged except `T_climai`, which changed in 9 rows because Namibia now enters the cross-country median. The workaround previously used in the application script is removed. The rebuild was run with `python code/11_build_v2.py`.
+
+**Current counts (after the rebuild).**
+- Country-year rows: 4,134 (159 countries x 26 years, 1998-2023).
+- `T_climai` available in 3,657 country-years (share = 1: 0.445).
+- Survey spells: 1,723 (130 countries). Spells with `T_climai_y0`: 1,345. Main complete-case sample (`complete_main = 1`): 1,285 spells, 124 countries (the earlier count of 1,283 spells / 123 countries predates the Namibia fix). Namibia contributes two spells (NAM_2003_2009, NAM_2009_2015).
+
+**Agricultural panel** `data/processed/agri_panel.csv` (built by `code/12_build_agri.py`; treatment logic shared with the application through `code/treatment_v2.py`).
+- Rows: 3,816 country-years (159 countries, 2000-2023). `dly` non-missing in 3,679 rows.
+- `dly` = 100 x (ln cereal yield_t - ln cereal yield_{t-1}), WDI AG.YLD.CREL.KG, consecutive years only. 18 country-years with |dly| >= 100 are set to missing as data errors.
+- `hotm` = maximum monthly mean temperature in year t (12 months required; OWID monthly series) minus a country linear trend fitted on 1980-2023. `hotm_sd_i` = SD of `hotm` over 2000-2023 (157 countries). `tmax` is the annual maximum of monthly means. `shock`, `shock_sd_i`, `precip_shock`, `base_temp` are as in the country-year file.
+- Treatment at t-1: `T_res` (income-adjusted capability, main), `T_stock` (median threshold, sensitivity), `r_inc` (income residual; r = ln(1 + k_pc_{t-1}) minus its cubic-in-ln-GDP-pc prediction with year fixed effects, pooled; R2 = 0.557, residual SD = 0.447). `T_res_t` is the contemporaneous value.
+- Controls: `ln_gdppc`, `gini` (25.7% missing; dropped from the regression X and kept in Z through its country mean), `internet`, `agri_share`, `urban`, `ln_pop`, `readiness`, `ln_ai_pc_lag`, `ln_kpc_lag`, `sovereignty` and `sov_z` (missing = -0.1), `ln_fert` (WDI AG.CON.FERT.ZS, log kg/ha; 2.7% missing), `emde`, `region`.
+- Agricultural employment `agri_empl` (WDI SL.AGR.EMPL.ZS, %; 0.7% missing). Equity exposure uses a_i = mean(agri_empl)/100.
+- Decile mean incomes `y_dec1`...`y_dec10` (PPP $/day) from the country's latest PIP survey (`pip_latest_year`); available for 130 countries. Population: `pop` (annual) and `pop_2023`.
+- Outcome for sensitivity: `agri_growth_v` (WDI NV.AGR.TOTL.KD.ZG); `gdppc_growth`; `cereal_yield` (kg/ha, WDI).
+- Missing shares (2000-2023 panel): dly 3.6%, hotm 1.3%, T_res 4.1%, gini 25.7%, ln_fert 2.7%, agri_empl 0.7%, precip_shock 1.3%.
+- Note: the WDI, OWID monthly temperature and OpenAlex inputs were fetched or read as in the earlier build; `data/raw/wdi/` now contains AG.YLD.CREL.KG, SL.AGR.EMPL.ZS and AG.CON.FERT.ZS (1997-2023).

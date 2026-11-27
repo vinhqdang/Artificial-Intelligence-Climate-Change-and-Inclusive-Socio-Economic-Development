@@ -1,0 +1,8 @@
+term,dly (cereal yield growth),agri VA growth
+hotm,-3.388 (0.804),-1.722 (0.378)
+hotm x T_res,0.245 (1.000),0.848 (0.455)
+T_res (main effect),0.871 (0.575),0.633 (0.359)
+ln GDP pc,5.077 (2.256),4.363 (1.603)
+internet,-0.000 (0.022),-0.005 (0.018)
+N,3338,3304
+countries,145,146

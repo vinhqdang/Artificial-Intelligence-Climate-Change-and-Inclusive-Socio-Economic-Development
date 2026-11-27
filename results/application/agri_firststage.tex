@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{First stage: TWFE regression of the cereal-yield growth dly on the hottest-month anomaly hotm (country and year fixed effects, country-clustered SE).}
+\label{tab:agri_firststage}
+\begin{tabular}{lrrrr}
+\toprule
+sample & beta (dly on hotm) & p & N & countries \\
+\midrule
+all countries & -3.572 (0.530) & 0.000 & 3679 & 155 \\
+EMDE only & -2.684 (0.759) & 0.000 & 2538 & 107 \\
+base\_temp >= 20 & -0.336 (0.908) & 0.711 & 1971 & 83 \\
+annual shock (all countries, comparison) & -0.612 (1.006) & 0.543 & 3679 & 155 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize dly = 100 times the log change in cereal yield (kg/ha, WDI). Observations with |dly| >= 100 dropped. Hotm = hottest-month mean temperature minus its 1980-2023 linear trend.
+\end{table}
