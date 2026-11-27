@@ -1,0 +1,17 @@
+design,method,evaluation,gain,lower,upper,selected,changed
+Country folds,Exposure baseline,DR 0.10,0.00000000,0.00000000,0.00000000,37,0
+Country folds,Exposure baseline,DR 0.05,0.00000000,0.00000000,0.00000000,37,0
+Country folds,Robust swaps,DR 0.10,0.45541571,-0.12248027,1.21931701,37,21
+Country folds,Robust swaps,DR 0.05,0.43221835,-0.14739438,1.18704801,37,21
+Country folds,Pooled mean,DR 0.10,0.05448945,-0.73528721,0.91634510,37,27
+Country folds,Pooled mean,DR 0.05,0.07448152,-0.68375473,0.92854082,37,27
+Country folds,Ellipsoidal,DR 0.10,-0.27103010,-0.75430072,-0.00872586,37,7
+Country folds,Ellipsoidal,DR 0.05,-0.25645230,-0.71168834,-0.00865210,37,7
+Region folds,Exposure baseline,DR 0.10,0.00000000,0.00000000,0.00000000,37,0
+Region folds,Exposure baseline,DR 0.05,0.00000000,0.00000000,0.00000000,37,0
+Region folds,Robust swaps,DR 0.10,0.06459566,-0.18417702,0.40294017,37,14
+Region folds,Robust swaps,DR 0.05,0.06663679,-0.17521334,0.39945076,37,14
+Region folds,Pooled mean,DR 0.10,-0.04836750,-1.01943628,1.13571064,37,25
+Region folds,Pooled mean,DR 0.05,-0.02556587,-1.20867417,1.46578946,37,25
+Region folds,Ellipsoidal,DR 0.10,0.00000000,0.00000000,0.00000000,37,0
+Region folds,Ellipsoidal,DR 0.05,0.00000000,0.00000000,0.00000000,37,0

@@ -12,18 +12,18 @@
 \usepackage{float}
 \usepackage[authoryear,round]{natbib}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{doi}
 
 \newtheorem{assumption}{Assumption}
-\newtheorem{proposition}{Proposition}
 
 \input{numbers}
 
-\graphicspath{{../results/application/}{../results/montecarlo/}{../results/application/appendix_decile/}}
+\graphicspath{{figures/}{../results/application/}{../results/montecarlo/}{../results/application/appendix_decile/}}
 
 \onehalfspacing
 
-\title{Targeting climate-AI capacity for inclusive resilience: equity-weighted policy learning and
-cross-country evidence}
+\title{Robust portfolios for agricultural heat adaptation\\
+Evidence on climate-AI research capacity}
 \newif\ifanonymous
 \IfFileExists{anonymous.flag}{\anonymoustrue}{\anonymousfalse}
 \ifanonymous
@@ -42,15 +42,20 @@ cross-country evidence}
 
 \input{sections/introduction}
 \input{sections/literature}
-\input{sections/method}
-\input{sections/montecarlo}
 \input{sections/data}
+\section{Methods}
+\input{sections/method}
+\input{sections/robust_allocation}
+\input{sections/ellipsoidal_allocation}
+\input{sections/exchange_grid}
 \input{sections/results}
+\input{sections/montecarlo}
+\input{sections/portfolio_results}
 \input{sections/discussion}
 \input{sections/conclusion}
 \input{sections/declarations}
 
-\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
 \bibliography{references}
 
 \clearpage

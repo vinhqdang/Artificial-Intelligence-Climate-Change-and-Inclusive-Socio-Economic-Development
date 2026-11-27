@@ -1,0 +1,13 @@
+fold,eligible,budget,robust_feature,robust_threshold,preferred_side,swap_cap_fraction,robust_swaps,design,region
+0,26,7,base_temp,13.7924,low,1.0,7,Country folds,
+1,25,8,agri_share,21.037254166666663,low,0.5,4,Country folds,
+2,25,7,sov,-0.1,low,1.0,4,Country folds,
+3,25,8,internet,19.789938875,high,0.5,3,Country folds,
+4,25,7,sov,0.285714,low,0.5,3,Country folds,
+0,13,3,agri_share,16.646611666666665,low,0.5,1,Region folds,East Asia & Pacific
+1,44,14,sov,0.28174600000000005,low,1.0,8,Region folds,Europe & Central Asia
+2,18,5,base_temp,21.82732,high,0.25,1,Region folds,Latin America & Caribbean
+3,10,3,gini,39.27857142857143,low,0.5,1,Region folds,"Middle East, North Africa, Afghanistan & Pakistan"
+4,2,1,internet,16.431569404166662,high,1.0,0,Region folds,North America
+5,4,1,base_temp,19.4469,low,1.0,1,Region folds,South Asia
+6,35,10,internet,16.559823041666665,high,0.25,2,Region folds,Sub-Saharan Africa

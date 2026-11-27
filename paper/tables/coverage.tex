@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\caption{Share of agricultural heat exposure covered at a budget of 37 countries}
+\label{tab:coverage}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+ & & \multicolumn{3}{c}{Share of sample exposure (\%)}\\
+\cmidrule(lr){3-5}
+Rule & EMDEs & $\epsilon=0$ & $\epsilon=1$ & $\epsilon=1$\\
+ & selected & & Bottom-first & Uniform\\
+\midrule
+Research-first          &  5 &  3.3 &  1.5 &  0.9 \\
+Poorest-first           & 37 & 58.8 & 72.8 & 77.6 \\
+Most-agricultural-first & 37 & 63.3 & 78.4 & 83.1 \\
+Random (expected)       & 25.3 & 29.4 & 29.4 & 29.4 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}\footnotesize\smallskip
+\emph{Notes.} The sample contains 126 countries, including 86 emerging and developing
+economies. The rules rank countries by the country mean of log one
+plus lagged climate-AI stock per million people, the country mean of lagged log GDP per capita,
+or average agricultural employment share. Columns report
+Equation~\eqref{eq:coverage}. At $\epsilon=0$, exposure is proportional to 2023 population
+times agricultural employment share times the standard deviation of hottest-month
+temperature anomalies. At $\epsilon=1$, the exposure assigned to each income decile
+is weighted by the inverse of mean decile income. Bottom-first assigns agricultural
+exposure to poorer deciles first; uniform allocates the same exposure fraction to
+each decile. The shares use a common slope improvement and can be reproduced with
+\texttt{code/31\_application\_agri.py --exposure-shares 0.3}.
+\end{minipage}
+\end{table}

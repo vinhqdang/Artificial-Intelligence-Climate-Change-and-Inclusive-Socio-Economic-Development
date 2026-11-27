@@ -24,6 +24,7 @@ import os
 import sys
 import time
 from pathlib import Path
+from tempfile import gettempdir
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -46,10 +47,8 @@ from application_utils import BLACK, DARK, LIGHT, MID, fig_style, fmt, fmt_se, s
 
 PROC = ROOT / "data" / "processed"
 SMOKE = os.environ.get("APP_SMOKE") == "1"
-OUT = (Path("/tmp/claude-0/-home-user-Artificial-Intelligence-Climate-Change-and-Inclusive-Socio-Economic-Development/"
-            "fedb9d6e-2447-5a7d-8860-2639400da4da/scratchpad/app_agri_smoke") if SMOKE
-       else ROOT / "results" / "application")
-OUT.mkdir(parents=True, exist_ok=True)
+OUT = (Path(gettempdir()) / "climate-adaptation-smoke" / "agriculture"
+       if SMOKE else ROOT / "results" / "application")
 
 SEED = 42
 FOLD_SEEDS = [42, 43] if SMOKE else list(range(42, 62))
@@ -213,29 +212,28 @@ def twfe(d: pd.DataFrame, y: str, regs: list[str], fe: str = "both"):
 
 
 # ============================================================ country table and welfare
-def country_table(agg, p: pd.DataFrame, sbar_col="hotm_sd_i") -> dict:
-    m = agg["meta"].copy()
-    m["Gam"] = agg["G"]["dr"]
-    m["rho"] = agg["G"]["rho"]
-    g = m.groupby("iso3")
-    c = pd.DataFrame({"Gam": g["Gam"].mean(), "rho": g["rho"].mean(), "ln_gdppc": g["ln_gdppc_l1"].mean(),
+def policy_country_frame(frame: pd.DataFrame, p: pd.DataFrame, sbar_col="hotm_sd_i") -> pd.DataFrame:
+    """Assemble the observed inputs to country allocation rules."""
+    g = frame.groupby("iso3")
+    c = pd.DataFrame({"ln_gdppc": g["ln_gdppc_l1"].mean(),
                       "gini": g["gini_f"].mean(), "internet": g["internet_l1"].mean(),
                       "agri_share": g["agri_share_l1"].mean(), "base_temp": g["base_temp"].mean(),
                       "ln_kpc_lag": g["ln_kpc_lag"].mean()})
-    pp = p.set_index("iso3")
-    c["agri"] = p.groupby("iso3")["agri_empl"].mean() / 100
-    c["s_bar"] = p.groupby("iso3")[sbar_col].first()
-    c["pop"] = pp.groupby(level=0)["pop_2023"].first()
-    c["emde"] = pp.groupby(level=0)["emde"].first()
-    c["name"] = pp.groupby(level=0)["country"].first()
-    c["region"] = pp.groupby(level=0)["region"].first()
+    pg = p.groupby("iso3")
+    c["agri"] = pg["agri_empl"].mean() / 100
+    c["s_bar"] = pg[sbar_col].first()
+    c = c.join(pg[["pop_2023", "emde", "country", "region", *DEC]].first()
+               .rename(columns={"pop_2023": "pop", "country": "name"}))
     sovl = p.dropna(subset=["sovereignty"]).groupby("iso3")["sovereignty"].last()
     c["sov"] = sovl.reindex(c.index).fillna(-0.1)
-    for dcol in DEC:
-        c[dcol] = pp.groupby(level=0)[dcol].first()
     c["has_inc"] = c[DEC].notna().all(axis=1)
-    keep = c["has_inc"] & c[["Gam", "rho", "gini", "agri", "s_bar", "pop", "ln_kpc_lag", "ln_gdppc", "base_temp"]].notna().all(axis=1)
-    c = c[keep]
+    return c.dropna(subset=[*DEC, "gini", "agri", "s_bar", "pop", "ln_kpc_lag", "ln_gdppc", "base_temp"])
+
+
+def country_table(agg, p: pd.DataFrame, sbar_col="hotm_sd_i") -> dict:
+    m = agg["meta"].assign(Gam=agg["G"]["dr"], rho=agg["G"]["rho"])
+    c = policy_country_frame(m, p, sbar_col)
+    c = c.join(m.groupby("iso3")[["Gam", "rho"]].mean()).dropna(subset=["Gam", "rho"])
     N = len(c)
     Inc = c[DEC].to_numpy(float)
     w = c["pop"].to_numpy(float) / c["pop"].sum()
@@ -259,6 +257,42 @@ def B_of(c, eps: float, which: str = "Gam", expo: str = "bottom", weighted: bool
         return benefit_from_gamma(c["e"][expo] * c[which][:, None], om, c["s_bar"], c["w"])
     om = atkinson_weights(c["Inc"], eps, np.full(c["N"], 1.0 / c["N"]))
     return benefit_from_gamma(c["e"][expo] * c[which][:, None], om, c["s_bar"], None)
+
+
+def exposure_shares(c: pd.DataFrame, k: float, population_weighted: bool = True) -> pd.DataFrame:
+    """Share of sample exposure selected when every country has the same slope change."""
+    w = c["pop"].to_numpy(float) if population_weighted else np.ones(len(c))
+    w = w / w.sum()
+    income = c[DEC].to_numpy(float)
+    agri = c["agri"].to_numpy(float)
+    shock = c["s_bar"].to_numpy(float)
+    bottom = np.clip(10 * agri[:, None] - np.arange(len(DEC)), 0, 1)
+    uniform = np.broadcast_to(agri[:, None], income.shape)
+
+    def share_inputs(exposure, eps):
+        mass = benefit_from_gamma(exposure, atkinson_weights(income, eps, w), shock, w)
+        return mass / mass.sum()
+
+    exposure_eps0 = share_inputs(uniform, 0.0)
+    bottom_weighted = share_inputs(bottom, 1.0)
+    uniform_weighted = share_inputs(uniform, 1.0)
+    rules = {
+        "Research-first": c["ln_kpc_lag"],
+        "Poorest-first": -c["ln_gdppc"],
+        "Most-agricultural-first": c["agri"],
+    }
+    rows = []
+    for rule, rank in rules.items():
+        selected = topk_policy(rank, k)
+        rows.append({
+            "rule": rule,
+            "countries": int(selected.sum()),
+            "emdes": int(c.loc[selected, "emde"].sum()),
+            "exposure_eps0_pct": 100 * exposure_eps0[selected].sum(),
+            "bottom_eps1_pct": 100 * bottom_weighted[selected].sum(),
+            "uniform_eps1_pct": 100 * uniform_weighted[selected].sum(),
+        })
+    return pd.DataFrame(rows)
 
 
 def ci_of(contrib, clusters):
@@ -345,6 +379,7 @@ def leaf_report(tree, c, B, label):
 
 # ============================================================ main
 def main() -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
     fig_style()
     p = load_panel()
     frame, rc = make_frame(p)
@@ -849,4 +884,23 @@ def fig_policy(csv_path: Path, stem: str) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--exposure-shares", type=float, metavar="BUDGET",
+                        help="write descriptive allocation shares for a budget in (0, 1] as CSV")
+    parser.add_argument("--equal-country", action="store_true",
+                        help="weight each country equally in the exposure comparison")
+    args = parser.parse_args()
+    if args.equal_country and args.exposure_shares is None:
+        parser.error("--equal-country requires --exposure-shares")
+    if args.exposure_shares is not None:
+        if not 0 < args.exposure_shares <= 1:
+            parser.error("--exposure-shares requires a budget in (0, 1]")
+        panel = load_panel()
+        frame, _ = make_frame(panel)
+        shares = exposure_shares(policy_country_frame(frame, panel), args.exposure_shares,
+                                 population_weighted=not args.equal_country)
+        shares.to_csv(sys.stdout, index=False, float_format="%.6f")
+    else:
+        main()

@@ -13,11 +13,11 @@ value-added growth is used as an alternative outcome.
 
 \paragraph{Heat shocks.} Monthly mean surface temperature for each country comes from the ERA5
 reanalysis of the Copernicus Climate Change Service, as aggregated to countries by Our World in
-Data \citep{hersbach2020,owid2026}. For each country and year we take the temperature of the hottest month and subtract a
+Data \citep{hersbach2020,copernicus2019,owid2026}. For each country and year we take the temperature of the hottest month and subtract a
 country-specific linear trend estimated over 1980--2023. Following \citet{dell2012} and
-\citet{burke2015}, the resulting anomaly is treated as exogenous. We use the hottest month rather
-than the annual mean because crop damage is driven by heat extremes during the growing season
-\citep{schlenker2009}. The typical shock size $\bar s_i$ in the welfare aggregation is the standard
+\citet{burke2015}, the resulting anomaly is treated as exogenous. Heat extremes matter for crops \citep{schlenker2009}. We chose the hottest-month anomaly
+after comparing associations with yields. A country's hottest month can differ from the
+period when its cereals are most sensitive to heat. The typical shock size $\bar s_i$ in the welfare aggregation is the standard
 deviation of a country's anomalies over 2000--2023. Annual precipitation anomalies, constructed in
 the same way, enter as a control.
 
@@ -34,7 +34,8 @@ the level of the stock would mostly measure income and leave almost no comparabl
 without capability. We therefore regress $\ln(1+K_{i,t-1}/\text{pop})$ on a cubic
 in lagged log GDP per capita with year fixed effects ($R^2=0.56$). A country has capability
 ($T_{it}=1$) when its residual is positive, that is, when its climate-AI stock exceeds what its income
-predicts. The resulting indicator is weakly negatively correlated with income ($-0.14$, against
+predicts. The threshold measures relative publication activity. It does not capture access to,
+use of, or the quality of adaptation services. The resulting indicator is weakly negatively correlated with income ($-0.14$, against
 $0.54$ for the level-based indicator), and 52 per cent of the estimation sample is capable. Overlap
 nevertheless remains limited: half of the cross-fitted propensity scores lie outside $[0.1,0.9]$,
 which is why scores are clipped to that interval.
@@ -55,14 +56,14 @@ reflects the concentration of farm households at the bottom of the distribution 
 economies \citep{christiaensen2011}. The alternative allocates exposure uniformly across deciles.
 The policy sample comprises the 126 countries with complete distributional data, 86 of them EMDEs.
 
-\paragraph{Covariates.} All time-varying covariates are measured in the year before the outcome, so
-that they cannot respond to the current shock. From the WDI \citep{wdi2026} we take GDP per capita at purchasing-power parity (log), the
+\paragraph{Covariates.} Socioeconomic controls are measured before the outcome. The precipitation
+anomaly is measured in the outcome year. From the WDI \citep{wdi2026} we take GDP per capita at purchasing-power parity (log), the
 share of the population using the internet, the agricultural share of value added, the urban
 population share, population (log), fertiliser use per hectare (log) and the Gini index. The Gini
 index is missing for a quarter of country-years and is therefore used only through its country
 mean in the policy features. Adaptation readiness, which summarises the economic, governance and
 social conditions for adaptation investment, comes from the ND-GAIN index \citep{chen2015ndgain}.
 For the cost analysis we use per-capita electricity consumption, per-capita CO$_2$ emissions and
-the renewable share of electricity generation from Our World in Data.
+the renewable share of electricity generation from Our World in Data \citep{owid2026}.
 
 \input{tables/desc}

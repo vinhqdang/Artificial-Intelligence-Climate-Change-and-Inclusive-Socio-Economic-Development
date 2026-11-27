@@ -20,6 +20,7 @@ import os
 import sys
 import time
 from pathlib import Path
+from tempfile import gettempdir
 
 import numpy as np
 import pandas as pd
@@ -45,9 +46,8 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 PROC = ROOT / "data" / "processed"
 SMOKE = os.environ.get("APP_SMOKE") == "1"
-OUT = (Path("/tmp/claude-0/-home-user-Artificial-Intelligence-Climate-Change-and-Inclusive-Socio-Economic-Development/"
-            "fedb9d6e-2447-5a7d-8860-2639400da4da/scratchpad/app_smoke") if SMOKE
-       else ROOT / "results" / "application")
+OUT = (Path(gettempdir()) / "climate-adaptation-smoke" / "decile"
+       if SMOKE else ROOT / "results" / "application")
 OUT.mkdir(parents=True, exist_ok=True)
 
 SEED = 42

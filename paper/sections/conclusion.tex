@@ -1,26 +1,22 @@
 \section{Conclusion}\label{sec:conclusion}
 
-This paper set out to answer a planner's question: if climate-AI capacity can be built in only some
-countries, where should it go first when the welfare of the poor counts for more? We developed
-equity-weighted doubly robust policy learning for that question. The method combines exogenous
-temperature shocks, orthogonal doubly robust scores for how capability changes shock sensitivity,
-Atkinson welfare weights over income deciles, and interpretable allocation rules learned under a
-budget. We stated the conditions under which its regret vanishes. In simulations it had 30 to 71
-per cent lower regret than the interaction regressions common in the applied literature, and equity
-weighting reduced regret by 35 to 43 per cent when the planner was strongly inequality averse.
+Ranking countries by climate-AI research per person would cover a small share of the
+agricultural heat exposure measured in our sample. The difference from using poverty or
+agricultural employment is already large with equal welfare weight per person and widens when
+poorer deciles receive greater weight. This result compares the reach of rules at a common
+country budget and a common hypothetical improvement in resilience.
 
-Applied to cereal yields in 145 countries, the method finds that heat damages yields but cannot
-detect a resilience dividend from climate-AI research capacity. The confidence interval includes
-both no effect and a complete offset of the damage. Allocation rules learned from these imprecise
-estimates are unstable and do no better than simply targeting the poorest or most agricultural
-countries, while allocating capacity to existing AI leaders yields almost no equity-weighted
-benefit. A conventional interaction regression on agricultural value added suggests a resilience
-dividend that the doubly robust estimates do not confirm.
-
-The broader lesson for research on AI, climate change and inclusive development is that questions
-about who benefits are questions about targeting under heterogeneity, and that answering them
-requires both suitable methods and data that measure what AI actually does. Cross-country research
-indicators are too coarse for the task. Programme-level and subnational data on the deployment of
-AI-enabled adaptation services, linked to measured damages and to the incomes of the households they
-reach, would allow the same method to give much sharper answers. The code is released with the
-paper for that purpose.
+The yield analysis shows that hot months are associated with lower cereal-yield growth.
+Differences in heat sensitivity by research capacity are imprecise. Budget-neutral
+robust swaps lower downside risk in simulations with heterogeneous effects. Their
+estimated gains in the country and regional exercises are too uncertain to establish
+that a funder should revise an exposure ranking on this evidence. Jointly optimising
+portfolios under ellipsoidal uncertainty further reduces downside risk in simulations.
+With agricultural outcomes held out, the resulting allocation loses value in country
+folds and retains the exposure ranking in region folds. Computationally, the
+exchange grid solves the tested low-dimensional lattices quickly, while
+generic integer cutting planes close the bounds more consistently on
+continuous agricultural inputs. The distinction between vulnerability and research capacity
+matters for policy. A funder can use the former to identify people at risk, assess whether the
+latter helps services reach those people, and collect evidence on uptake, avoided losses and
+costs before expanding the programme.

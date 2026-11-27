@@ -1,74 +1,103 @@
 \section{Results}\label{sec:results}
 
-\subsection{Heat damages cereal yields}
+\subsection{Agricultural exposure covered by alternative allocation rules}
+\label{sec:coverage}
 
-Table~\ref{tab:firststage} shows that the hottest-month temperature anomaly lowers cereal-yield
-growth substantially. With country and year fixed effects, a 1$^{\circ}$C hotter-than-trend
-hottest month reduces yield growth by 3.6 percentage points across 155 countries (SE 0.53), and by
-2.7 points in emerging and developing economies (SE 0.76). The annual mean anomaly has no
-detectable average effect ($-0.61$, SE 1.01), in line with the threshold effects of heat documented
-by \citet{schlenker2009}. We report all three shock definitions we examined, because the choice of
-the hottest-month anomaly was made after seeing this table. Among countries whose baseline climate
-is already hot ($\geq 20^{\circ}$C), the estimate is imprecise ($-0.34$, SE 0.91), so the
-first stage is driven mainly by cooler and temperate producers. This matters for interpreting the
-allocation rules below.
+At a budget of 37 of the 126 eligible countries, the research-first rule selects five
+emerging and developing economies (EMDEs). Both the poorest-first and
+most-agricultural-first rules select 37. With equal welfare weight per person, the
+research-first rule covers 3.3 per cent of sample exposure, compared with 58.8 per cent
+for poorest-first and 63.3 per cent for most-agricultural-first
+(Figure~\ref{fig:coverage}). Random selection of 37 countries would cover 29.4 per cent
+in expectation, since every country's probability of selection is $37/126$.
+Poverty weighting reduces the research-first share to 1.5 per cent in the main
+(bottom-first) specification and 0.9 per cent under uniform exposure within countries.
+The ordering persists when the budget covers 25 or 63 countries. At the larger budget,
+research-first covers 26.7 per cent of exposure with equal welfare weight per person,
+compared with 87.1 per cent for poorest-first and 90.4 per cent for most-agricultural-first.
+Giving every country equal weight at the 37-country budget narrows the gap, to 9.8 per
+cent for research-first, 48.5 per cent for poorest-first and 53.7 per cent for
+most-agricultural-first at $\epsilon=0$.
+
+Figure~\ref{fig:allocation_maps} shows where measured exposure is concentrated and
+which countries the research-first and poorest-first rules select. At this budget, the
+two rules select disjoint sets of countries. India and China account for 47.6 per cent of
+the sample exposure at $\epsilon=0$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{allocation_maps.pdf}
+\caption{Agricultural heat exposure and country selection. Panel A shows each eligible country's share of total sample exposure at $\epsilon=0$. The measure combines population, agricultural employment and hottest-month temperature variability. Panel B compares research-first and poorest-first at a budget of 37 countries each. Light grey areas lie outside the 126-country policy sample. Boundaries are from \href{https://www.naturalearthdata.com/about/terms-of-use/}{Natural Earth} (1:50 million, Equal Earth projection).}
+\label{fig:allocation_maps}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{exposure_coverage.pdf}
+\caption{Share of sample agricultural heat exposure covered by each rule. Each rule selects 37 of 126 countries. Under poverty weighting, the bottom-first assumption assigns exposure to poorer deciles first. The uniform assumption gives every decile within a country the same exposure fraction. The dashed line marks expected coverage under random selection. See Appendix Table~\ref{tab:coverage} for numerical values.}
+\label{fig:coverage}
+\end{figure}
+
+These shares describe how much of the sample index of agricultural exposure falls
+within the selected countries. The index uses agricultural employment, population
+and the variability of hottest-month anomalies. Decile incomes determine the
+poverty weights. The comparison holds the improvement in heat sensitivity fixed across
+countries. The next sections examine whether the yield evidence supports assigning
+different improvements to different countries.
+
+\subsection{Hottest-month heat and cereal yields}
+
+Figure~\ref{fig:firststage} shows the association between hotter months and cereal-yield growth. Appendix Table~\ref{tab:firststage} reports the regression estimates.
+With country and year fixed effects, a $1^{\circ}$C hotter-than-trend hottest month is associated
+with 3.6 percentage points lower yield growth across 155 countries (SE 0.53), and with
+2.7 points lower growth in emerging and developing economies (SE 0.76). The annual-mean
+coefficient is smaller in magnitude and imprecise ($-0.61$, SE 1.01). Among countries with
+baseline temperature at least $20^{\circ}$C, the hottest-month estimate is also imprecise
+($-0.34$, SE 0.91). We selected the hottest-month anomaly after examining the initial
+damage regressions. The table therefore reports both temperature measures, along with
+subsample estimates.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_agri_firststage.pdf}
+\caption{Hottest-month temperature anomaly and cereal-yield growth, net of country and year fixed
+effects (binned scatter).}
+\label{fig:firststage}
+\end{figure}
+
+\subsection{Heat sensitivity by research capacity}
+
+Table~\ref{tab:ate} reports the main estimates for 3,336 country-years in 145 countries.
+The split-adjusted difference in heat sensitivity is 1.02 percentage points of yield
+growth per $^{\circ}$C (SE 2.12, 95 per cent confidence interval $[-3.13,5.17]$).
+The interval permits both increased heat sensitivity and a positive difference as
+large as the average fixed-effects heat coefficient. Across splits, point estimates
+range from $-2.56$ to 7.47. The observation-level median score gives 0.84, with standard
+errors of 1.01 for country clustering, 0.94 for two-way clustering and 1.17 using
+Driscoll--Kraay inference. Winsorising scores at the first and 99th percentiles gives
+0.51 (SE 0.74). The 99th percentile of $|\Gamma|$ is about 300, against a median of 11.
+Estimated propensities for 48.5 per cent of observations are outside $[0.1,0.9]$
+before clipping.
+
+The average marginal damage is $-1.49$ for country-years with above-predicted research
+capacity and $-1.31$ for those below it (split-adjusted), and $-1.52$ overall using
+the observation-level median slope score. Corresponding heat coefficients in the same
+sample are $-3.58$ with country and year effects and $-3.17$ with year and region
+effects and lagged covariates (Appendix Table~\ref{tab:recon}). Removing country fixed
+effects explains little of the gap. The regressions and orthogonal scores can weight
+heterogeneous slopes differently. The source of the remaining gap is unresolved, so
+we interpret the magnitude of the orthogonal estimates cautiously.
+
+With a two-way fixed-effects interaction, the estimated difference in sensitivity is
+0.32 (SE 0.97) for cereal yields. For agricultural value-added growth it is 0.82
+(SE 0.46, $p\approx0.07$), compared with 0.07 (split-adjusted SE 1.01) from the
+orthogonal score. Both intervals include zero. This contrast illustrates sensitivity
+to the modelling choice. The data provide no reference value for determining which
+estimate is closer to the true difference in shock sensitivity.
 
 \begin{table}[t]
 \centering
-\caption{Heat shocks and cereal-yield growth: first stage}\label{tab:firststage}
-\small
-\begin{tabular}{lcccc}
-\toprule
-Sample & Coefficient (SE) & $p$ & Observations & Countries \\
-\midrule
-All countries & $-3.572$ (0.530) & $<0.001$ & 3,679 & 155 \\
-EMDEs & $-2.684$ (0.759) & $<0.001$ & 2,538 & 107 \\
-Baseline temp.\ $\geq 20^{\circ}$C & $-0.336$ (0.908) & 0.711 & 1,971 & 83 \\
-Annual-mean anomaly as regressor & $-0.612$ (1.006) & 0.543 & 3,679 & 155 \\
-\bottomrule
-\end{tabular}
-\begin{minipage}{0.95\textwidth}\footnotesize\smallskip
-\emph{Notes:} Dependent variable: $100\times\Delta\ln$ cereal yield (kg/ha). Regressor: hottest-month
-mean temperature minus its 1980--2023 country-specific linear trend ($^{\circ}$C), except in the last
-row. Country and year fixed effects; standard errors clustered by country. Observations with
-$|\Delta\ln\text{yield}|\geq 1$ are dropped as data errors. The sample is larger than the estimation
-sample of Table~\ref{tab:ate}, which also requires the lagged covariates.
-\end{minipage}
-\end{table}
-
-\subsection{No detectable resilience dividend}
-
-Table~\ref{tab:ate} reports the main estimates for 3,336 country-years in 145 countries. The
-median across the 20 sample splits of the average resilience effect is 1.02 percentage points of
-yield growth per $^{\circ}$C, with a split-adjusted standard error of 2.12. The 95 per cent
-confidence interval, $[-3.13, 5.17]$, is wide. It contains zero, and it also contains effects
-larger than the average damage itself. The data therefore cannot distinguish between climate-AI
-capability having no effect on heat damage and its offsetting all of it. Other ways of computing
-the estimate give the same picture. Using the observation-level median score, the estimate is 0.84
-with a country-clustered SE of 1.01, a two-way (country and year) clustered SE of 0.94, or a
-Driscoll--Kraay SE of 1.17. Winsorising the scores at the 1st and 99th percentiles gives 0.51
-(SE 0.74). The scores are heavy-tailed: the 99th percentile of $|\Gamma|$ is about 300 against a
-median of 11.
-
-The average marginal damage implied by the orthogonal scores is similar in the two groups
-($-1.49$ with capability and $-1.31$ without, split-adjusted; $-1.52$ overall). That is less than half the fixed-effects estimate on the
-same sample ($-3.58$ with country and year effects, and $-3.17$ with year and region effects and the
-same covariates; Appendix Table~\ref{tab:recon}). Country fixed effects are therefore not the
-reason. The difference arises within the orthogonal estimator, whose scores weight observations by
-the inverse of the estimated conditional variance of the shock. We have not been able to reconcile
-the two fully, and we treat the scale of the orthogonal estimates with caution.
-
-The classical specification again behaves differently. A two-way fixed-effects regression with a
-shock-by-capability interaction gives 0.32 (SE 0.97) for yields. For agricultural value-added growth
-it gives 0.82 (SE 0.46, $p\approx0.07$), which would often be reported as weak evidence of a
-resilience dividend. The doubly robust estimate for the same outcome is 0.07 (split-adjusted SE
-1.01). Once the flexible relationship between capability, income, connectivity and climate is taken
-into account, the suggestive interaction disappears, as the Monte Carlo evidence on the interaction
-model would lead one to expect.
-
-\begin{table}[t]
-\centering
-\caption{Resilience effect of climate-AI capability on cereal-yield growth}\label{tab:ate}
+\caption{Differences in agricultural heat sensitivity by research capacity}\label{tab:ate}
 \small
 \begin{tabular}{lcc}
 \toprule
@@ -119,43 +148,33 @@ monotone, this describes where the prediction model places resilience rather tha
 is. With about 145 countries and noisy scores, the data cannot rank countries by the size of the
 resilience dividend.
 
-\subsection{Allocation rules}
+\subsection{Welfare comparisons using estimated resilience}
 
-Table~\ref{tab:policy} reports the held-out welfare values of the allocation rules for a budget of
-30 per cent of the 126 countries with complete distributional data. Values are means over countries
-of $\pi(Z_i)B_i(\epsilon)$, which combine the estimated resilience scores with shock size,
-population, agricultural exposure and welfare weights.
+Table~\ref{tab:policy} reports model-based welfare values for the same policy sample
+and budget. Each value uses estimated resilience as well as population, assumed
+agricultural exposure, shock variability and income weights. The individual bootstrap
+intervals include zero wherever reported. Poorest-first has the highest point estimate
+for every $\epsilon>0$. At $\epsilon=2$, the difference between poorest-first and the
+EW-DRPL tree is 1.39 with a pointwise interval of $[0.02,3.26]$. That result is sensitive
+to the objective: the advantage of poorest-first disappears when countries receive
+equal weight (Appendix Table~\ref{tab:unweighted}). The intervals condition on the
+estimated scores and rules and omit uncertainty from fitting them and comparing
+multiple specifications.
 
-The table supports three conclusions, and none of them favours data-driven targeting in this
-application. First, no rule's value is distinguishable from zero, which is what one would expect
-given that the average resilience effect is not. Second, simple rules do at least as well as the
-learned trees. Allocating capacity to the poorest 30 per cent of countries has the highest point
-value under every $\epsilon>0$, and at $\epsilon=2$ it beats the EW-DRPL tree by 1.39
-[$0.02$, $3.26$], the only policy comparison whose interval excludes zero. Third, the rule closest
-to building on existing strength, which allocates capacity to the countries with the largest
-climate-AI stock, has a value of essentially zero. This is largely mechanical: those countries have
-little agricultural exposure and comparatively rich deciles, so even a large resilience effect would
-add little equity-weighted welfare. Its difference from the poorest-first rule is not
-statistically significant ($-0.65$ [$-1.80$, $0.31$] at $\epsilon=1$).
+Prioritising existing research strength has model-based values close to zero.
+At $\epsilon=1$ its estimated difference from poorest-first is $-0.65$
+($[-1.80,0.31]$). The exposure comparison in Figure~\ref{fig:coverage} shows one
+reason for the low point value, even before applying the estimated resilience
+scores. The comparisons between the equity-weighted and utilitarian trees are also
+imprecise. At $\epsilon=1$, the estimated equity gain is 0.33 ($[-0.01,0.90]$)
+and the estimated equity price is $-0.06$ ($[-0.16,0.01]$). A negative estimated
+price is possible for fitted rules evaluated on held-out folds, although a
+utilitarian population optimum would have a non-negative price.
 
-The equity gain of the $\epsilon=1$ rule over the utilitarian rule is 0.33 [$-0.01$, 0.90] and the
-equity price is $-0.06$ [$-0.16$, 0.01]. A negative price, meaning that the equity-weighted rule also
-does better on utilitarian welfare, cannot be a property of the population optimum. It reflects the
-noise of cross-fitted trees. When the objective counts countries rather than people, every rule's
-value is close to zero, and the advantage of poorest-first disappears (Appendix
-Table~\ref{tab:unweighted}). The population-weighted results are thus driven by a few populous,
-poor and agricultural countries.
-
-The learned trees are readable, but they are not stable. For $\epsilon\le1$ the tree treats 31
-countries. Nineteen are low-income countries with a hot baseline climate: eighteen in sub-Saharan Africa
-and Myanmar. Twelve have higher incomes and a predominantly domestic climate-AI research base,
-including China, India, Indonesia, the Philippines and the United States. At $\epsilon=2$ the root
-split moves to internet use, and the low-income branch shrinks to ten countries. Viet Nam is not
-treated by any rule; its estimated equity-weighted benefit is slightly negative at $\epsilon=1$
-and $\epsilon=2$.
-The hot, low-income branch is also the group for which the first stage is weakest
-(Table~\ref{tab:firststage}), so its selection reflects exposure and welfare weights more than any
-measured resilience effect.
+The full-sample tree for $\epsilon\le1$ selects 31 countries; increasing $\epsilon$
+to 2 changes its first split from income to internet use. Appendix
+Table~\ref{tab:gates} and the sensitivity checks below show why the fitted country
+lists provide limited guidance for individual investment decisions.
 
 \begin{table}[t]
 \centering
@@ -204,12 +223,12 @@ per capita; most-agricultural-first: highest agricultural employment share. Tree
 Table~\ref{tab:sens} reports alternative specifications. The average resilience effect stays
 imprecise and close to zero relative to its standard error when the non-orthogonal score is used,
 when propensity scores are clipped at $[0.05,0.95]$, with random-forest nuisance models, in the EMDE
-subsample, with the capability indicator that is not adjusted for income, and for agricultural value
-added. The exception is the annual-mean anomaly, for which the estimate is $-5.59$ (SE 1.92). The
-annual anomaly has no first-stage effect on yields on average (Table~\ref{tab:firststage}), so this
-estimate compares sensitivities that are both close to zero. It is nevertheless the one
-specification in which capability is associated with significantly greater sensitivity, and we
-report it as such.
+subsample, with the level-based research indicator, and for agricultural value
+added. For the annual-mean anomaly, the estimated difference is $-5.59$ (SE 1.92). The
+pooled annual-mean damage coefficient is itself imprecise (Appendix Table~\ref{tab:firststage}).
+The negative difference shows that the moderation estimate depends on the temperature
+measure. The comparison is exploratory because the main measure was chosen after
+inspecting the damage regressions.
 
 The allocation rules are much less stable than the average effect. Relative to the main rules, the
 treated sets are unchanged under alternative clipping, and at $\epsilon=2$ also under uniform
@@ -251,11 +270,10 @@ main treated set.
 \subsection{Decile incomes, aggregate growth and the cost of AI}\label{sec:res_decile}
 
 We also applied EW-DRPL directly to decile income growth from 1,334 household-survey spells in 124
-countries, and to GDP per capita growth (Appendix~\ref{app:decile}). Neither has a usable first
-stage. The annual temperature anomaly has no detectable effect on GDP growth in our 1998--2023
-sample ($-0.10$, SE 0.18), even in hot EMDEs ($-0.27$, SE 0.46), and spell-averaged anomalies have
-none on decile growth. Without measurable damage there is nothing for capability to reduce, and the
-resulting resilience estimates are uninformative.
+countries, and to GDP per capita growth (Appendix~\ref{app:decile}). The annual temperature anomaly has an imprecise coefficient for GDP growth in our
+1998--2023 sample ($-0.10$, SE 0.18), including in hot EMDEs ($-0.27$, SE 0.46).
+Spell-averaged anomalies yield imprecise estimates for decile income growth. The
+resulting estimates provide limited evidence about effect modification.
 
 On the cost side, double machine learning estimates of the association between the climate-AI
 knowledge stock and per-capita electricity use ($-0.015$, SE 0.112) and CO$_2$ emissions (0.061,

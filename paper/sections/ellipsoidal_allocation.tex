@@ -1,0 +1,94 @@
+\subsection{Covariance-aware integer portfolios}
+\label{sec:ellipsoid}
+
+The threshold rules in Section~\ref{sec:swaps} restrict which pairs of countries
+can be exchanged. We now allow any portfolio at the same quota and model the joint
+uncertainty in its estimated gain. This matters when the same fitted heat-sensitivity
+model drives the estimates for several countries. Adding two countries with similarly
+uncertain slopes may add risk, while exchanging two countries with similar
+sensitivities to estimation error can cancel that error.
+
+\subsubsection{Pooling slopes and estimating joint uncertainty}
+
+Let $G$ be the matrix of country-level training scores. Its three columns use
+the score specifications from Section~\ref{sec:swaps}. For training country $i$,
+the feature basis $\phi_i$ contains an intercept, standardised covariates,
+the transformation $\tanh(2z)$ of standardised covariates, and pairwise products
+of the transformed covariates. We standardise using the training set. With
+$\Phi=(\phi_i^\top)_i$, we estimate all three surfaces by
+\[
+ \widehat\Theta=(\Phi^\top\Phi+10P)^{-1}\Phi^\top G,
+ \qquad P=\mathrm{diag}(0,1,\ldots,1).
+\]
+The ridge penalty pools estimates towards a common slope while allowing
+smooth nonlinearities and interactions. Let $\widehat\theta$ average the
+three coefficient vectors and let $H$ contain the feature basis for the
+assignment batch. Define $C=(\Phi^\top\Phi+10P)^{-1}\Phi^\top$, the residual
+$\widehat e=G\mathbf{1}/3-\Phi\widehat\theta$, and the ridge leverage
+$h_i=(\Phi C)_{ii}$. For country $i$, a leverage-adjusted residual
+$\widehat e_i/\max(1-h_i,0.05)$ scales its influence on the fitted slopes.
+We use the matrix
+\[
+ A=\left[
+   HC\,\mathrm{diag}\!\left(\frac{\widehat e_i}{\max(1-h_i,0.05)}\right)
+   \;\middle|\;
+   \frac{H(\widehat\Theta-\widehat\theta\mathbf{1}^\top)}{\sqrt{3}}
+   \right].
+\]
+The first block is a ridge sandwich factor and the second encodes
+disagreement across the fitted surfaces. These blocks can imply correlated
+errors for countries with similar covariates. This construction is a working
+uncertainty model. It does not establish confidence coverage or capture
+unmeasured confounding.
+
+Let $D$ be the diagonal matrix of population-scaled, equity-weighted
+exposure in the assignment batch. Country benefit has centre
+$\mu=DH\widehat\theta$ and uncertainty factor $L=DA$. The ambiguity set
+contains benefit vectors $\mu+Lu$ with $\|u\|_2\leq r$. We fix the radius
+at $r=1.645$ in the benchmark. It acts as a risk penalty and has no
+guaranteed probability interpretation.
+
+\subsubsection{Conic formulation and certificate}
+
+A portfolio is a binary vector $x$ with $\mathbf{1}^\top x=q$, and the reference
+$x_0$ has the same number of places. Write $d=x-x_0$. Cauchy--Schwarz gives the
+worst paired gain in the ellipsoid, including the case $L^\top d=0$:
+\begin{equation}
+ \min_{\|u\|_2\leq r} d^\top(\mu+Lu)
+ = \mu^\top d-r\|L^\top d\|_2 .
+ \label{eq:ellipsoid}
+\end{equation}
+For $L^\top d\ne0$ the minimum is attained by
+$u=-rL^\top d/\|L^\top d\|_2$. Maximising \eqref{eq:ellipsoid} over the quota
+constraint is a mixed-integer second-order cone programme \citep{bentalnemirovski1998}. Both the signs and
+off-diagonal entries of $LL^\top$ matter, because $d$ is positive for additions
+and negative for removals. With radius zero the solution selects the $q$
+largest fitted benefits. With positive radius the ranking is a portfolio
+decision because each country's contribution to risk depends on the other
+additions and removals.
+
+The implementation uses a linear integer master problem with an objective
+variable $t$ and a progressively enlarged set of cuts. For every $\|v\|_2\leq1$,
+the inequality $t\leq(\mu-rLv)^\top d$ is valid. At a master solution that
+overstates the worst-case gain, choosing
+$v=L^\top d/\|L^\top d\|_2$ gives the tightest cut at that portfolio. The
+master dual bound is an upper bound on the conic optimum. The best feasible
+portfolio evaluated directly in \eqref{eq:ellipsoid} supplies a lower bound.
+We initialise it with the reference and pairwise improvements from the
+reference and the zero-radius optimum. The difference between the bounds
+certifies the remaining optimisation error, up to numerical solver tolerance.
+The certificate applies to the fitted objective. Its scope does not extend to
+the realised policy gain.
+
+\subsubsection{Benchmark design}
+
+We compare full-quota optimisation with zero-radius pooling, robust threshold
+swaps and the exposure reference. The new simulations draw 150 training
+countries and an independent batch of 60 test countries in the three designs
+from Section~\ref{sec:swaps}. Each method chooses 18 of the 60 countries,
+and the oracle ranks the 60 countries by their true benefits. In the agricultural
+application we use the same 126-country sample, nested outcome scoring and
+exactly 37 places as in Section~\ref{sec:swaps}. Nuisance fitting and pooling
+exclude all outcome data from the batch being assigned. We evaluate every
+portfolio on the same held-out DR scores and rerun evaluation with alternative
+clipping. Intervals are conditional on the estimated scores and fitted rules.

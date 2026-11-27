@@ -1,0 +1,181 @@
+design,rep,countries,quota,method,lower,upper,gap,certified,seconds,steps
+One-factor lattice,0,64,19,Exchange grid,17.75558801,17.75558806,5.155885319e-08,True,0.001925926,1
+One-factor lattice,0,64,19,Grid without tilt,17.75558801,17.75558806,5.155885319e-08,True,0.00111557,1
+One-factor lattice,0,64,19,Integer cutting planes,17.75558801,17.75559004,2.029563017e-06,True,0.011731167,1
+One-factor lattice,1,64,19,Exchange grid,27.60404353,27.60404357,4.683724342e-08,True,0.001050514,1
+One-factor lattice,1,64,19,Grid without tilt,27.60404353,27.60404357,4.683724342e-08,True,0.001463117,1
+One-factor lattice,1,64,19,Integer cutting planes,27.60404353,27.60404646,2.939675511e-06,True,0.006821802,1
+One-factor lattice,2,64,19,Exchange grid,24.87480961,24.87480966,4.832141087e-08,True,0.001158144,1
+One-factor lattice,2,64,19,Grid without tilt,24.87480961,24.87480966,4.832141087e-08,True,0.001060959,1
+One-factor lattice,2,64,19,Integer cutting planes,24.87480961,24.8748121,2.492424489e-06,True,0.006266045,1
+One-factor lattice,3,64,19,Exchange grid,21.06817876,21.06817882,5.790007407e-08,True,0.001116231,1
+One-factor lattice,3,64,19,Grid without tilt,21.06817876,21.06817882,5.790007407e-08,True,0.001028982,1
+One-factor lattice,3,64,19,Integer cutting planes,21.06817876,21.06818095,2.189262311e-06,True,0.011633232,1
+One-factor lattice,4,64,19,Exchange grid,26.69582154,26.69582159,5.213115273e-08,True,0.001173366,1
+One-factor lattice,4,64,19,Grid without tilt,26.69582154,26.69582159,5.213115273e-08,True,0.001115951,1
+One-factor lattice,4,64,19,Integer cutting planes,26.69582154,26.69582423,2.690910048e-06,True,0.01435336,2
+One-factor lattice,5,64,19,Exchange grid,23.20214736,23.20214741,5.23661825e-08,True,0.001205625,1
+One-factor lattice,5,64,19,Grid without tilt,23.20214736,23.20214741,5.23661825e-08,True,0.001086186,1
+One-factor lattice,5,64,19,Integer cutting planes,23.20214736,23.20214969,2.333916747e-06,True,0.016038517,2
+One-factor lattice,6,64,19,Exchange grid,19.59122417,19.59122422,4.927836628e-08,True,0.001186686,1
+One-factor lattice,6,64,19,Grid without tilt,19.59122417,19.59122422,4.927836628e-08,True,0.001123412,1
+One-factor lattice,6,64,19,Integer cutting planes,19.59122417,19.59122621,2.043750722e-06,True,0.007967126,1
+One-factor lattice,7,64,19,Exchange grid,27.48496672,27.48496677,5.473586739e-08,True,0.001191362,1
+One-factor lattice,7,64,19,Grid without tilt,27.48496672,27.48496677,5.473586739e-08,True,0.001081659,1
+One-factor lattice,7,64,19,Integer cutting planes,27.48496672,27.48496966,2.943273834e-06,True,0.007255026,1
+One-factor lattice,8,64,19,Exchange grid,16.69502929,16.69502934,5.075557752e-08,True,0.001078294,1
+One-factor lattice,8,64,19,Grid without tilt,16.69502929,16.69502934,5.075557752e-08,True,0.001063813,1
+One-factor lattice,8,64,19,Integer cutting planes,16.69502929,16.69503119,1.90599096e-06,True,0.005410933,1
+One-factor lattice,9,64,19,Exchange grid,19.49829956,19.49829961,5.111490964e-08,True,0.001142901,1
+One-factor lattice,9,64,19,Grid without tilt,19.49829956,19.49829961,5.111490964e-08,True,0.001078094,1
+One-factor lattice,9,64,19,Integer cutting planes,19.49829956,19.49830155,1.994155657e-06,True,0.005585923,1
+One-factor lattice,10,64,19,Exchange grid,26.03970398,26.03970404,5.489398802e-08,True,0.001086106,1
+One-factor lattice,10,64,19,Grid without tilt,26.03970398,26.03970404,5.489398802e-08,True,0.00108901,1
+One-factor lattice,10,64,19,Integer cutting planes,26.03970398,26.03970668,2.695239058e-06,True,0.007003522,1
+One-factor lattice,11,64,19,Exchange grid,18.13317084,18.13317089,5.215072818e-08,True,0.001097904,1
+One-factor lattice,11,64,19,Grid without tilt,18.13317084,18.13317089,5.215072818e-08,True,0.001031876,1
+One-factor lattice,11,64,19,Integer cutting planes,18.13317084,18.13317279,1.945586167e-06,True,0.007245592,1
+One-factor lattice,12,64,19,Exchange grid,15.66199488,15.66199492,4.653004027e-08,True,0.001103091,1
+One-factor lattice,12,64,19,Grid without tilt,15.66199488,15.66199492,4.653004027e-08,True,0.001066337,1
+One-factor lattice,12,64,19,Integer cutting planes,15.66199488,15.66199653,1.653650012e-06,True,0.007334494,1
+One-factor lattice,13,64,19,Exchange grid,21.27018347,21.27018352,5.574660378e-08,True,0.001111243,1
+One-factor lattice,13,64,19,Grid without tilt,21.27018347,21.27018352,5.574660378e-08,True,0.001015652,1
+One-factor lattice,13,64,19,Integer cutting planes,21.27018347,21.27018579,2.322720537e-06,True,0.011237783,1
+One-factor lattice,14,64,19,Exchange grid,20.17492932,20.17492932,0,True,4.042e-05,0
+One-factor lattice,14,64,19,Grid without tilt,20.17492932,20.17492932,0,True,2.575799999e-05,0
+One-factor lattice,14,64,19,Integer cutting planes,20.17492932,20.17492932,3.552713679e-15,True,0.0004206160002,0
+One-factor lattice,15,64,19,Exchange grid,18.79006388,18.79006393,5.189821906e-08,True,0.001080047,1
+One-factor lattice,15,64,19,Grid without tilt,18.79006388,18.79006393,5.189821906e-08,True,0.001027049,1
+One-factor lattice,15,64,19,Integer cutting planes,18.79006388,18.79006582,1.944462678e-06,True,0.007184922,1
+Two-factor lattice,0,40,12,Exchange grid,23.8106274,23.81062743,3.389121161e-08,True,0.013763963,1
+Two-factor lattice,0,40,12,Grid without tilt,23.8106274,23.81062743,3.389121161e-08,True,0.005500465,1
+Two-factor lattice,0,40,12,Integer cutting planes,23.8106274,23.8106298,2.403228578e-06,True,0.028523737,2
+Two-factor lattice,1,40,12,Exchange grid,14.63708446,14.63708448,2.854394232e-08,True,0.006328889,1
+Two-factor lattice,1,40,12,Grid without tilt,14.63708446,14.63708448,2.854394232e-08,True,0.005580144,1
+Two-factor lattice,1,40,12,Integer cutting planes,14.63708446,14.63708593,1.472643168e-06,True,0.020831555,2
+Two-factor lattice,2,40,12,Exchange grid,11.98967286,11.98967289,3.243199664e-08,True,0.006827931,1
+Two-factor lattice,2,40,12,Grid without tilt,11.98967286,11.98967289,3.243199664e-08,True,0.005603749,1
+Two-factor lattice,2,40,12,Integer cutting planes,11.98967286,11.98967406,1.203561181e-06,True,0.021506986,2
+Two-factor lattice,3,40,12,Exchange grid,12.281567,12.28156704,3.439243379e-08,True,0.006611168,1
+Two-factor lattice,3,40,12,Grid without tilt,12.281567,12.28156704,3.439243379e-08,True,0.005549578,1
+Two-factor lattice,3,40,12,Integer cutting planes,12.281567,12.28156825,1.253060281e-06,True,0.011358182,2
+Two-factor lattice,4,40,12,Exchange grid,14.2960141,14.29601413,3.398354131e-08,True,0.006871756,1
+Two-factor lattice,4,40,12,Grid without tilt,14.2960141,14.29601413,3.398354131e-08,True,0.005527226,1
+Two-factor lattice,4,40,12,Integer cutting planes,14.2960141,14.29601582,1.718379707e-06,True,0.005378894,1
+Two-factor lattice,5,40,12,Exchange grid,9.19782003,9.197820063,3.242346125e-08,True,0.006857775,1
+Two-factor lattice,5,40,12,Grid without tilt,9.19782003,9.197820063,3.242346125e-08,True,0.005510962,1
+Two-factor lattice,5,40,12,Integer cutting planes,9.19782003,9.197820969,9.392339262e-07,True,0.032744819,3
+Two-factor lattice,6,40,12,Exchange grid,14.20230612,14.20230615,2.669261256e-08,True,0.008420501,1
+Two-factor lattice,6,40,12,Grid without tilt,14.20230612,14.20230615,2.669261256e-08,True,0.0052682,1
+Two-factor lattice,6,40,12,Integer cutting planes,14.20230612,14.20230756,1.442441036e-06,True,0.010227259,2
+Two-factor lattice,7,40,12,Exchange grid,12.74052325,12.74052329,3.335960486e-08,True,0.005202762,1
+Two-factor lattice,7,40,12,Grid without tilt,12.74052325,12.74052329,3.335960486e-08,True,0.004970237,1
+Two-factor lattice,7,40,12,Integer cutting planes,12.74052325,12.74052453,1.277345586e-06,True,0.004265347,3
+Two-factor lattice,8,40,12,Exchange grid,9.820106532,9.820106563,3.177766139e-08,True,0.005715906,1
+Two-factor lattice,8,40,12,Grid without tilt,9.820106532,9.820106563,3.177766139e-08,True,0.005601736,1
+Two-factor lattice,8,40,12,Integer cutting planes,9.820106532,9.820107521,9.899068942e-07,True,0.00903806,2
+Two-factor lattice,9,40,12,Exchange grid,13.77881575,13.77881579,3.406005966e-08,True,0.006629065,1
+Two-factor lattice,9,40,12,Grid without tilt,13.77881575,13.77881579,3.406005966e-08,True,0.005318434,1
+Two-factor lattice,9,40,12,Integer cutting planes,13.77881575,13.77881713,1.381050641e-06,True,0.026166309,3
+Two-factor lattice,10,40,12,Exchange grid,13.15744378,13.15744382,3.783358338e-08,True,0.007991482,1
+Two-factor lattice,10,40,12,Grid without tilt,13.15744378,13.15744382,3.783358338e-08,True,0.006718278,1
+Two-factor lattice,10,40,12,Integer cutting planes,13.15744378,13.1574451,1.315832336e-06,True,0.038516998,3
+Two-factor lattice,11,40,12,Exchange grid,17.21109906,17.2110991,3.561851969e-08,True,0.005706332,1
+Two-factor lattice,11,40,12,Grid without tilt,17.21109906,17.2110991,3.561851969e-08,True,0.006898416,1
+Two-factor lattice,11,40,12,Integer cutting planes,17.21109906,17.21110083,1.76731157e-06,True,0.006938425,1
+Two-factor lattice,12,40,12,Exchange grid,13.52375454,13.52375457,2.855808034e-08,True,0.008728694,1
+Two-factor lattice,12,40,12,Grid without tilt,13.52375454,13.52375457,2.855808034e-08,True,0.006065446,1
+Two-factor lattice,12,40,12,Integer cutting planes,13.52375454,13.52375617,1.628117273e-06,True,0.005089834,1
+Two-factor lattice,13,40,12,Exchange grid,8.98438271,8.984382742,3.218754685e-08,True,0.009972861,1
+Two-factor lattice,13,40,12,Grid without tilt,8.98438271,8.984382742,3.218754685e-08,True,0.006219926,1
+Two-factor lattice,13,40,12,Integer cutting planes,8.98438271,8.984383617,9.072039102e-07,True,0.059371133,3
+Two-factor lattice,14,40,12,Exchange grid,5.489558064,5.489558095,3.117643743e-08,True,0.008470585,1
+Two-factor lattice,14,40,12,Grid without tilt,5.489558064,5.489558095,3.117643743e-08,True,0.006233796,1
+Two-factor lattice,14,40,12,Integer cutting planes,5.489558064,5.48955869,6.257768588e-07,True,0.025348032,2
+Two-factor lattice,15,40,12,Exchange grid,11.09814468,11.09814471,3.319006225e-08,True,0.005391814,1
+Two-factor lattice,15,40,12,Grid without tilt,11.09814468,11.09814471,3.319006225e-08,True,0.005832249,1
+Two-factor lattice,15,40,12,Integer cutting planes,11.09814468,11.09814582,1.134302737e-06,True,0.065933008,4
+Six continuous factors,0,32,9,Exchange grid,6.641100143,9.293533929,2.652433786,False,0.435488275,2
+Six continuous factors,0,32,9,Grid without tilt,6.641100143,9.044320019,2.403219876,False,0.400505225,2
+Six continuous factors,0,32,9,Integer cutting planes,6.901884566,6.901885282,7.160822699e-07,True,0.180189796,6
+Six continuous factors,1,32,9,Exchange grid,3.568326794,6.343089297,2.774762503,False,0.431574186,2
+Six continuous factors,1,32,9,Grid without tilt,3.568326794,8.024715345,4.456388551,False,0.40817051,2
+Six continuous factors,1,32,9,Integer cutting planes,3.568326794,3.568327169,3.748029092e-07,True,0.206262656,10
+Six continuous factors,2,32,9,Exchange grid,5.281952249,10.25124925,4.969297001,False,0.32751716,2
+Six continuous factors,2,32,9,Grid without tilt,5.465657763,12.55875715,7.09309939,False,0.360260854,2
+Six continuous factors,2,32,9,Integer cutting planes,7.075073869,7.075074579,7.099816139e-07,True,0.424513741,9
+Six continuous factors,3,32,9,Exchange grid,6.542824502,8.261998027,1.719173525,False,0.396341701,2
+Six continuous factors,3,32,9,Grid without tilt,6.542824502,9.190631071,2.647806569,False,0.4114865,2
+Six continuous factors,3,32,9,Integer cutting planes,6.996029523,6.996029523,0,True,0.309325038,9
+Six continuous factors,4,32,9,Exchange grid,10.63226041,13.67245182,3.040191411,False,0.384340278,2
+Six continuous factors,4,32,9,Grid without tilt,10.76271509,15.24731103,4.48459594,False,0.386965103,2
+Six continuous factors,4,32,9,Integer cutting planes,11.05721793,11.05721904,1.111548196e-06,True,1.065591754,17
+Six continuous factors,5,32,9,Exchange grid,7.425313288,10.98444384,3.559130553,False,0.443390343,2
+Six continuous factors,5,32,9,Grid without tilt,7.425313288,10.57549404,3.15018075,False,0.365363545,2
+Six continuous factors,5,32,9,Integer cutting planes,7.780695805,7.780695805,0,True,0.37347424,10
+Six continuous factors,6,32,9,Exchange grid,3.549408362,9.642069716,6.092661354,False,0.344081579,2
+Six continuous factors,6,32,9,Grid without tilt,5.215850689,8.640632546,3.424781857,False,0.380896585,2
+Six continuous factors,6,32,9,Integer cutting planes,5.944702829,5.944702829,0,True,0.445660252,12
+Six continuous factors,7,32,9,Exchange grid,13.07522826,15.26144917,2.18622091,False,0.416746645,2
+Six continuous factors,7,32,9,Grid without tilt,13.07522826,14.94073062,1.865502357,False,0.406229475,2
+Six continuous factors,7,32,9,Integer cutting planes,13.07522826,13.07522959,1.327551853e-06,True,0.10793488,9
+Six continuous factors,8,32,9,Exchange grid,2.351691138,7.217743843,4.866052705,False,0.355733548,2
+Six continuous factors,8,32,9,Grid without tilt,3.325197476,7.521893769,4.196696293,False,0.284593507,2
+Six continuous factors,8,32,9,Integer cutting planes,3.6587779,3.65877827,3.700347295e-07,True,1.93299502,25
+Six continuous factors,9,32,9,Exchange grid,5.001954991,10.53882325,5.536868259,False,0.344932825,2
+Six continuous factors,9,32,9,Grid without tilt,5.903397448,10.22363871,4.320241259,False,0.395602342,2
+Six continuous factors,9,32,9,Integer cutting planes,6.507656884,6.507657535,6.516770972e-07,True,1.41033453,24
+Six continuous factors,10,32,9,Exchange grid,3.845220966,4.724727393,0.879506427,False,0.49784379,2
+Six continuous factors,10,32,9,Grid without tilt,2.987002705,9.034690067,6.047687362,False,0.421186798,2
+Six continuous factors,10,32,9,Integer cutting planes,3.845220966,3.845220966,0,True,0.04922232,5
+Six continuous factors,11,32,9,Exchange grid,6.038256813,8.760348001,2.722091188,False,0.40730474,2
+Six continuous factors,11,32,9,Grid without tilt,6.493589429,9.531585008,3.037995579,False,0.353571933,2
+Six continuous factors,11,32,9,Integer cutting planes,6.493589429,6.493589429,0,True,0.091273167,9
+Six continuous factors,12,32,9,Exchange grid,4.634206225,8.559278574,3.925072348,False,0.429230602,2
+Six continuous factors,12,32,9,Grid without tilt,4.634206225,7.645925917,3.011719692,False,0.422587087,2
+Six continuous factors,12,32,9,Integer cutting planes,4.982756472,4.982756472,0,True,0.890947259,18
+Six continuous factors,13,32,9,Exchange grid,2.760212967,6.869169918,4.108956951,False,0.448038232,2
+Six continuous factors,13,32,9,Grid without tilt,3.031816005,7.547923298,4.516107293,False,0.389436711,2
+Six continuous factors,13,32,9,Integer cutting planes,3.582947966,3.582947966,0,True,0.122888189,8
+Six continuous factors,14,32,9,Exchange grid,7.713892575,12.6893838,4.975491221,False,0.469202545,2
+Six continuous factors,14,32,9,Grid without tilt,7.713892575,12.6893838,4.975491221,False,0.327198651,2
+Six continuous factors,14,32,9,Integer cutting planes,8.655568116,8.655568987,8.707026939e-07,True,0.19217448,9
+Six continuous factors,15,32,9,Exchange grid,10.45796974,12.37078989,1.912820151,False,0.434033971,2
+Six continuous factors,15,32,9,Grid without tilt,10.45796974,12.37078989,1.912820151,False,0.405683511,2
+Six continuous factors,15,32,9,Integer cutting planes,10.45796974,10.4579708,1.056450644e-06,True,0.120793102,5
+Agriculture country folds,0,26,7,Exchange grid,0,1.656560803,1.656560803,False,0.00460328,3
+Agriculture country folds,0,26,7,Grid without tilt,0,2.134511804,2.134511804,False,0.0039513,3
+Agriculture country folds,0,26,7,Integer cutting planes,0,1e-07,1e-07,True,0.055176963,8
+Agriculture country folds,1,25,8,Exchange grid,1.45151504,1.895388833,0.4438737923,False,0.004310284,3
+Agriculture country folds,1,25,8,Grid without tilt,1.45151504,2.040188053,0.5886730122,False,0.004008886,3
+Agriculture country folds,1,25,8,Integer cutting planes,1.534750985,1.534753662,2.676589002e-06,True,0.001956392,1
+Agriculture country folds,2,25,7,Exchange grid,0,5.503092962e-08,5.503092962e-08,True,0.001878956,2
+Agriculture country folds,2,25,7,Grid without tilt,0,2.501216214,2.501216214,False,0.002578057,3
+Agriculture country folds,2,25,7,Integer cutting planes,0,5.736266263e-07,5.736266263e-07,True,0.002420212,1
+Agriculture country folds,3,25,8,Exchange grid,0,1.210563193,1.210563193,False,0.011288188,3
+Agriculture country folds,3,25,8,Grid without tilt,0,1.045631131,1.045631131,False,0.009198229,3
+Agriculture country folds,3,25,8,Integer cutting planes,0,1e-07,1e-07,True,0.008073334,2
+Agriculture country folds,4,25,7,Exchange grid,0.3277962718,1.335225583,1.007429311,False,0.004637541,3
+Agriculture country folds,4,25,7,Grid without tilt,0.3277962718,1.566080253,1.238283981,False,0.004380429,3
+Agriculture country folds,4,25,7,Integer cutting planes,0.3277962718,0.3277962718,0,True,0.003759304,1
+Agriculture region folds,0,13,3,Exchange grid,0,1.098789372e-08,1.098789372e-08,True,0.0006387610001,1
+Agriculture region folds,0,13,3,Grid without tilt,0,1.098789372e-08,1.098789372e-08,True,0.000464791,1
+Agriculture region folds,0,13,3,Integer cutting planes,0,9.823864926e-07,9.823864926e-07,True,0.001846287,1
+Agriculture region folds,1,44,14,Exchange grid,0,0.3333444335,0.3333444335,False,0.16398201,3
+Agriculture region folds,1,44,14,Grid without tilt,0,0.2718399649,0.2718399649,False,0.073045802,3
+Agriculture region folds,1,44,14,Integer cutting planes,0,1e-07,1e-07,True,0.017447995,2
+Agriculture region folds,2,18,5,Exchange grid,0,5.227202247e-09,5.227202247e-09,True,0.002532058,2
+Agriculture region folds,2,18,5,Grid without tilt,0,5.227202247e-09,5.227202247e-09,True,0.002495664,2
+Agriculture region folds,2,18,5,Integer cutting planes,0,1e-07,1e-07,True,0.006096652,2
+Agriculture region folds,3,10,3,Exchange grid,0,4.409710301e-09,4.409710301e-09,True,0.0007645979999,2
+Agriculture region folds,3,10,3,Grid without tilt,0,0.1232096154,0.1232096154,False,0.0007941519998,3
+Agriculture region folds,3,10,3,Integer cutting planes,0,1e-07,1e-07,True,0.004344004,2
+Agriculture region folds,4,2,1,Exchange grid,0,1.000000001e-09,1.000000001e-09,True,0.0002875580003,1
+Agriculture region folds,4,2,1,Grid without tilt,0,1.000000001e-09,1.000000001e-09,True,0.0001579659997,1
+Agriculture region folds,4,2,1,Integer cutting planes,0,1e-07,1e-07,True,0.001560733,1
+Agriculture region folds,5,4,1,Exchange grid,0,0,0,True,2.535800013e-05,0
+Agriculture region folds,5,4,1,Grid without tilt,0,0,0,True,1.194700008e-05,0
+Agriculture region folds,5,4,1,Integer cutting planes,0,0,0,True,1.233799958e-05,0
+Agriculture region folds,6,35,10,Exchange grid,0,0.2971167006,0.2971167006,False,0.036301692,3
+Agriculture region folds,6,35,10,Grid without tilt,0,0.3178298345,0.3178298345,False,0.036391355,3
+Agriculture region folds,6,35,10,Integer cutting planes,0,1e-07,1e-07,True,0.020190897,4

@@ -1,35 +1,34 @@
 \begin{abstract}
-\noindent\textbf{Purpose} -- This paper asks where capacity in artificial intelligence (AI) for
-climate adaptation should be built first when poorer households' welfare counts for more, and
-whether such capacity has made incomes less vulnerable to heat.
+\noindent\textbf{Purpose} -- How should adaptation funders revise a vulnerability-based
+allocation when the benefits associated with climate-AI research are uncertain?
 
-\smallskip\noindent\textbf{Design/methodology/approach} -- We develop equity-weighted doubly
-robust policy learning. It combines exogenous temperature shocks, orthogonal doubly robust scores
-for how AI capability changes shock sensitivity, Atkinson welfare weights over income deciles and
-budget-constrained decision trees. We state regret conditions, run simulations and apply the method
-to cereal yields in 145 countries, measuring climate-AI capability with bibliometric data.
+\smallskip\noindent\textbf{Design/methodology/approach} -- We develop an integer portfolio model
+that maximises worst-case welfare gains over an exposure ranking. It accounts for correlated
+prediction errors and preserves the quota. A signed exchange-grid algorithm certifies
+the solution on discrete risk grids. We also compare policies on held-out countries.
 
-\smallskip\noindent\textbf{Findings} -- In simulations the method has 30--71 per cent lower regret
-than standard interaction regressions, and equity weighting lowers regret by 35--43 per cent under
-strong inequality aversion. Empirically, a 1$^{\circ}$C hotter-than-trend hottest month lowers
-cereal-yield growth by 3.6 percentage points, but climate-AI capability has no detectable effect on
-this damage. Learned allocation rules are unstable and do no better than targeting the poorest
-countries; allocating capacity to existing AI leaders yields almost no equity-weighted benefit.
+\smallskip\noindent\textbf{Findings} -- At the same 37-country budget, research-first covers
+3.3 per cent of measured agricultural heat exposure, compared with 58.8 per cent for
+poorest-first. In weak-overlap simulations, the portfolio loses to the exposure ranking in
+3.5 per cent of replications, compared with 26.5 per cent for threshold swaps. On held-out
+agricultural data it performs worse than the reference in country folds and retains it in
+region folds. The exchange grid is faster on the tested discrete instances, while
+integer cutting planes certify more continuous instances.
 
-\smallskip\noindent\textbf{Research limitations/implications} -- Bibliometric output measures
-research capacity, not deployment, and overlap between countries is limited.
+\smallskip\noindent\textbf{Research limitations/implications} -- Publications proxy research
+capacity. The study has no measures of programme uptake or household losses.
 
-\smallskip\noindent\textbf{Practical implications} -- AI-for-adaptation programmes should be
-evaluated against measured damages, using programme-level data.
+\smallskip\noindent\textbf{Practical implications} -- Funders should compare any data-driven
+changes with a transparent vulnerability ranking using a common quota.
 
-\smallskip\noindent\textbf{Social implications} -- Making inequality aversion explicit shows how
-targeting choices distribute resilience gains.
+\smallskip\noindent\textbf{Social implications} -- Welfare weights show whose exposure counts
+most under each allocation.
 
-\smallskip\noindent\textbf{Originality/value} -- The paper introduces an equity-weighted
-policy-learning method for AI-enabled climate resilience, with open code and data.
+\smallskip\noindent\textbf{Originality/value} -- We derive bounds from signed rounding residuals and
+an adaptive correction for omitted risk directions.
 
 \smallskip\noindent\textbf{Keywords} -- Artificial intelligence, Climate adaptation, Inequality,
-Policy learning, Double machine learning, Agriculture
+Robust optimisation, Agricultural resilience
 
 \smallskip\noindent\textbf{JEL classification} -- C14, C54, O33, Q54, I32
 

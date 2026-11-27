@@ -1,0 +1,16 @@
+design,method,problems,certified,median_gap,maximum_gap,mean_lower,median_seconds
+One-factor lattice,Exchange grid,16,16,5.172853612e-08,5.790007407e-08,21.53375968,0.001113737
+One-factor lattice,Grid without tilt,16,16,5.172853612e-08,5.790007407e-08,21.53375968,0.0010722155
+One-factor lattice,Integer cutting planes,16,16,2.116506517e-06,2.943273834e-06,21.53375968,0.007250309
+Two-factor lattice,Exchange grid,16,16,3.281102945e-08,3.783358338e-08,12.88868252,0.006842853
+Two-factor lattice,Grid without tilt,16,16,3.281102945e-08,3.783358338e-08,12.88868252,0.00559094
+Two-factor lattice,Integer cutting planes,16,16,1.296588961e-06,2.403228578e-06,12.88868252,0.0211692705
+Six continuous factors,Exchange grid,16,0,3.299660982,6.092661354,6.219988714,0.4229886235
+Six continuous factors,Grid without tilt,16,0,3.810739075,7.09309939,6.452755508,0.3925195265
+Six continuous factors,Integer cutting planes,16,16,3.724188193e-07,1.327551853e-06,6.911477941,0.257793847
+Agriculture country folds,Exchange grid,5,1,1.007429311,1.656560803,0.3558622624,0.00460328
+Agriculture country folds,Grid without tilt,5,0,1.238283981,2.501216214,0.3558622624,0.004008886
+Agriculture country folds,Integer cutting planes,5,5,1e-07,2.676589002e-06,0.3725094514,0.003759304
+Agriculture region folds,Exchange grid,7,5,5.227202247e-09,0.3333444335,0,0.0007645979999
+Agriculture region folds,Grid without tilt,7,4,1.098789372e-08,0.3178298345,0,0.0007941519998
+Agriculture region folds,Integer cutting planes,7,7,1e-07,9.823864926e-07,0,0.004344004

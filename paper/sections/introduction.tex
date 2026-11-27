@@ -1,84 +1,69 @@
 \section{Introduction}\label{sec:intro}
 
-Artificial intelligence (AI) is increasingly presented as a tool for climate adaptation. Machine
-learning now supports early warning of floods, droughts and heatwaves, crop-yield forecasting,
-pest detection and the targeting of relief after disasters
-\citep{rolnick2022,lealfilho2022,reichstein2025}. Development agencies, multilateral banks and
-governments are beginning to fund ``AI for climate resilience'' programmes in low- and
-middle-income countries. Every such programme faces the same allocation problem: capacity cannot
-be built everywhere at once, so \emph{where should it be built first?}
+Development agencies considering artificial intelligence (AI) for climate adaptation face a
+choice about where to fund early-warning and agricultural advisory services. Publications are
+an observable indicator of local research capacity and may help identify institutions that can
+implement a programme. A country can have a strong research base and relatively few people
+whose livelihoods depend on farming. Countries with greater agricultural exposure may also
+have fewer institutions able to develop or deploy these tools. Using research strength to
+allocate funds therefore makes an implicit choice about whose exposure the programme will
+cover. This choice matters for inclusive development because poorer households are often both
+more exposed to climate damage and less able to recover from it
+\citep{hallegatte2017,diffenbaugh2019,christiaensen2011}.
 
-The answer depends on whose resilience counts. Climate damages fall disproportionately on poor
-countries and on poor households within them \citep{hallegatte2017,diffenbaugh2019}, whereas the
-capabilities needed to develop and use AI are concentrated in rich countries and better-off groups
-\citep{cazzaniga2024,korinek2021}. If AI-enabled adaptation protects mainly the incomes of
-households that are already well connected and well off, a programme that maximises total
-resilience may leave the most vulnerable no better protected \citep{larosa2024}. AI capability
-also has a physical cost: data-centre electricity use is projected to more than double by 2030
-\citep{iea2025,devries2023}, and the carbon-abatement benefits of AI appear weaker where income is
-more unequal \citep{dong2024}. The special issue asks who benefits from AI-driven climate solutions,
-who bears their costs, and under what conditions AI promotes inclusive climate-resilient
-development. These are questions about distribution and about targeting, and the standard
-toolkit of the empirical literature, which estimates an average effect and adds an interaction
-term with a single inequality measure, is poorly suited to answer them.
+We ask two questions. First, how much agricultural exposure would be covered if a funder
+prioritised the countries with the largest stock of climate-AI research per person? Second, does
+the country-level evidence on cereal yields indicate that research capacity is associated with
+a smaller decline in yield growth in hotter years? The first question describes the reach of
+alternative allocation rules. The second concerns differences in shock sensitivity, which could
+justify prioritising one group of countries if those differences were precisely estimated and
+relevant to an actual intervention. In the main application, publication counts from OpenAlex
+measure research capacity \citep{priem2022}. Direct measures of who received an advisory or
+acted on a warning would be needed to estimate the effects of deployment.
 
-This paper develops and applies a method designed for the targeting question. We call it
-\emph{equity-weighted doubly robust policy learning} (EW-DRPL). It has three parts. First, it uses
-year-to-year temperature shocks, which are plausibly exogenous once country-specific trends are
-removed \citep{dell2012,burke2015}, to measure how sensitive the income growth of each decile of a
-country's distribution is to climate shocks. Second, it estimates how this sensitivity differs
-between countries with and without climate-AI capability through orthogonalised, cross-fitted,
-doubly robust scores \citep{robinson1988,chernozhukov2018}. These scores let machine-learning
-methods absorb the strong confounding between AI capability and development without biasing the
-estimated resilience effect. Third, it aggregates decile-level resilience effects with
-Atkinson-type welfare weights \citep{atkinson1970} and learns an interpretable allocation rule, a
-shallow decision tree, that maximises equity-weighted welfare under a budget constraint
-\citep{kitagawa2018,athey2021}. Varying the inequality-aversion parameter shows how the
-recommended allocation changes as a planner cares more about the poorest. The difference between
-the rules yields two quantities that speak directly to the special issue: the \emph{equity gain} of
-targeting for the poor, and the \emph{equity price} in aggregate resilience of doing so.
+For the first question we compare three rules at the same illustrative budget of 37 out of
+126 countries. With equal welfare weight per person, the research-first rule covers 3.3 per cent
+of the sample's agricultural heat exposure, compared with 58.8 per cent for the poorest
+countries and 63.3 per cent for the countries with the highest agricultural employment shares.
+Coverage is a share of an index of temperature variability, agricultural employment and
+population. It represents each rule's relative reach under a common per-degree resilience
+improvement. At an inequality aversion of one, research-first covers 1.5 per cent under the main
+assumption about exposure by income decile, compared with 72.8 and 78.4 per cent for the other
+two rules. The ordering persists with uniform exposure across deciles and with smaller and
+larger budgets. This comparison quantifies what would have to be traded off when donors
+favour places where research infrastructure is already in place.
 
-We apply EW-DRPL to a new global dataset, focusing on agriculture, the sector through which heat
-most directly reaches poor households \citep{ortizbobea2021,christiaensen2011}. National
-climate-AI capability is measured from the OpenAlex index of scholarly works \citep{priem2022} as a
-depreciated stock of research at the intersection of AI or machine learning and climate change.
-A country counts as capable when its stock exceeds the level predicted by its income, so that
-capability is not simply a proxy for development. We also measure \emph{knowledge sovereignty}, the
-share of a country's climate-AI research carried out by domestic institutions alone. Outcomes are
-cereal-yield growth for 145 countries from 2000 to 2023, shocks are hottest-month temperature
-anomalies from the ERA5 reanalysis, and the welfare weights use decile incomes from the World
-Bank's Poverty and Inequality Platform together with the agricultural exposure of each decile. A
-Monte Carlo study shows how the estimator behaves at the sample sizes typical of cross-country
-work, and an appendix applies the method directly to decile income growth from 1,334
-household-survey spells.
+For the second question we study cereal-yield growth in 145 countries from 2000 to 2023. A
+$1^{\circ}$C hotter-than-trend hottest month is associated with a 3.6 percentage point reduction in
+yield growth in the fixed-effects specification. The split-adjusted difference in sensitivity
+between country-years with above- and below-predicted research stocks is 1.02 percentage points
+per degree (95 per cent confidence interval $[-3.13,5.17]$). The interval accommodates both
+worse heat sensitivity and sizable buffering. Nearly half of the estimated research-capacity
+propensities lie outside $[0.1,0.9]$, even after adjusting the research indicator for income.
+Policy trees fitted to these scores show no reliable improvement over simple rules using
+poverty or agricultural employment.
 
-Heat damages yields: a 1$^{\circ}$C hotter-than-trend hottest month lowers cereal-yield growth
-by 3.6 percentage points. Countries with climate-AI capability, however, show no detectably
-smaller losses. The average resilience effect is 1.0 points per $^{\circ}$C with a split-adjusted
-standard error of 2.1, an interval that includes both no effect and a complete offset. A standard
-interaction regression on agricultural value added would suggest a marginally significant
-resilience dividend, which the doubly robust estimates do not confirm. Allocation rules learned from
-these imprecise estimates are unstable across specifications and do no better than simply targeting
-the poorest or most agricultural countries. Allocating capacity to the countries with the most
-climate-AI research yields almost no equity-weighted benefit, because those countries have little
-agricultural exposure. In simulations, EW-DRPL has 30 to 71 per cent lower regret than the
-interaction approach, and equity weighting reduces regret by 35 to 43 per cent when the planner is
-strongly inequality averse. Taken together, the method works as designed where the signal is
-adequate, and the application shows that national research indicators do not provide one.
+We use \emph{equity-weighted doubly robust policy learning} (EW-DRPL) to connect estimates of
+shock sensitivity to allocation choices. We then introduce a rule for funders that already
+have a vulnerability ranking. The rule replaces some places on that list while preserving
+the quota. It chooses the replacements that maximise the worst estimated improvement over
+the list across the shortlisted score specifications. Its candidates range from keeping
+the full list to replacing countries based on a single interpretable threshold.
+Simulations compare the rule with policies fitted using one score specification at a time.
+In the agricultural data we refit all models and rules outside the countries or regions
+held out for evaluation (Section~\ref{sec:swaps}). We then allow unrestricted
+portfolios at the same quota and account for correlated errors in estimated benefits.
+A mixed-integer conic formulation penalises uncertainty in the joint gain relative
+to the reference. We report both the quality of the numerical solution and held-out
+welfare (Section~\ref{sec:ellipsoid}). For the computational problem we derive a
+separate exchange-grid algorithm. It compresses signed subset sums, tracks the
+residuals discarded by the grid, and returns a bound even at early stopping
+(Section~\ref{sec:exchange_grid}).
 
-The paper contributes to three literatures. For the economics of AI and climate change, it moves
-from technical potential and single-country carbon studies \citep{liu2022,chen2022,dong2024} to
-measured, distribution-specific resilience across a sample dominated by emerging and developing
-economies. For climate econometrics, it extends the analysis of heterogeneous climate damages
-\citep{burke2015,kalkuhl2020} from the country to the income decile and asks what capability
-changes the damages. For the econometrics of treatment choice, it extends equality-minded policy
-learning \citep{kitagawa2021,athey2021} to a setting in which the ``treatment'' moderates the effect
-of an exogenous shock rather than being randomly assigned itself. It provides an orthogonal score
-and the conditions for vanishing regret in that case, together with an implementation in
-open-source code.
-
-Section~\ref{sec:lit} reviews the related literature. Section~\ref{sec:method} presents the method,
-Section~\ref{sec:mc} the Monte Carlo evidence and Section~\ref{sec:data} the data.
-Section~\ref{sec:results} reports the empirical results and Section~\ref{sec:discussion} discusses
-the implications for policy in emerging and developing economies.
-Section~\ref{sec:conclusion} concludes.
+The contribution to inclusive-development research is a comparison of the reach of
+research-based and vulnerability-based allocation, a test of whether the research indicator
+predicts agricultural resilience, and a way to use unstable estimates to revise a
+vulnerability ranking under an exact quota. The distinction helps a funder decide what
+evidence to collect. Vulnerability determines whose losses a programme aims to reduce.
+Service coverage, uptake, implementation costs and measured avoided losses determine
+whether a proposed programme can reduce them.

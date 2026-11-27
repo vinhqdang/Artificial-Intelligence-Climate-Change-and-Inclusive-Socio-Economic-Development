@@ -1,29 +1,51 @@
 \section{Additional Monte Carlo results}\label{app:mc}
 
+\begin{table}[t]
+\centering
+\caption{Monte Carlo results}\label{tab:mc}
+\scriptsize
+\resizebox{\textwidth}{!}{\input{../results/montecarlo/mc_table.tex}}
+\begin{minipage}{\textwidth}\footnotesize\smallskip
+\emph{Notes:} 200 replications; Monte Carlo standard errors in parentheses. Regret is the
+difference between the welfare of the oracle depth-2 tree and that of the learned rule, both
+evaluated with the true benefits under the indicated inequality aversion $\epsilon$. Budget
+$k=0.3$. ``crossfit'' learns the tree on four country folds and applies it to the fifth.
+Propensity scores are clipped to $[0.1,0.9]$.
+\end{minipage}
+\end{table}
+
 \input{tables/mc_trim}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.9\textwidth]{fig_regret.pdf}
-\caption{Monte Carlo regret by method, inequality aversion and sample size (200 replications).}
-\label{fig:regret}
-\end{figure}
-
 \section{Additional results for cereal yields}\label{app:agri}
+
+\begin{table}[t]
+\centering
+\caption{Heat shocks and cereal-yield growth: first stage}\label{tab:firststage}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Sample & Coefficient (SE) & $p$ & Observations & Countries \\
+\midrule
+All countries & $-3.572$ (0.530) & $<0.001$ & 3,679 & 155 \\
+EMDEs & $-2.684$ (0.759) & $<0.001$ & 2,538 & 107 \\
+Baseline temp.\ $\geq 20^{\circ}$C & $-0.336$ (0.908) & 0.711 & 1,971 & 83 \\
+Annual-mean anomaly as regressor & $-0.612$ (1.006) & 0.543 & 3,679 & 155 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}\footnotesize\smallskip
+\emph{Notes:} Dependent variable: $100\times\Delta\ln$ cereal yield (kg/ha). Regressor: hottest-month
+mean temperature minus its 1980--2023 country-specific linear trend ($^{\circ}$C), except in the last
+row. Country and year fixed effects; standard errors clustered by country. Observations with
+$|\Delta\ln\text{yield}|\geq 1$ are dropped as data errors. The sample is larger than the estimation
+sample of Table~\ref{tab:ate}, which also requires the lagged covariates.
+\end{minipage}
+\end{table}
 
 \input{tables/gates}
 
 \input{tables/recon}
 
 \input{tables/unweighted}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.75\textwidth]{fig_agri_firststage.pdf}
-\caption{Hottest-month temperature anomaly and cereal-yield growth, net of country and year fixed
-effects (binned scatter).}
-\label{fig:firststage}
-\end{figure}
 
 \begin{figure}[htbp]
 \centering
@@ -55,3 +77,44 @@ reports the cost module.
 \input{tables/decile}
 
 \input{tables/cost}
+
+\section{Additional allocation and solver results}\label{app:allocation}
+
+\input{tables/coverage}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Quota-preserving rules on independent simulated test countries}
+\label{tab:swap_simulation}
+\input{../results/robust_allocation/simulation.tex}
+\begin{minipage}{0.9\textwidth}\footnotesize\smallskip
+\emph{Notes.} 500 replications per design. Every rule selects 90 of 300 test
+countries. Gain is the mean equity-weighted welfare change from the exposure
+reference. Regret is relative to the best member of the training-derived library
+evaluated with the true test-country benefits. Loss rate is the fraction of
+replications with a strictly negative gain, allowing a numerical tolerance.
+\end{minipage}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Estimated welfare changes relative to exposure-based allocation}
+\label{tab:swap_application}
+\input{../results/robust_allocation/application.tex}
+\begin{minipage}{0.9\textwidth}\footnotesize\smallskip
+\emph{Notes.} All rules allocate 37 places across 126 eligible countries. Gain is the
+mean difference in equity-weighted welfare using the same orthogonal score with the
+propensity clipped at 0.10 for evaluation. Country bootstrap intervals condition on
+the learned rules and scores. Replacements count the places allocated to countries
+outside the batch-specific reference allocation. The two designs use different
+batch definitions and therefore different reference assignments.
+\end{minipage}
+\end{table}
+
+\input{tables/ellipsoidal_simulation}
+
+\input{tables/ellipsoidal_application}
+
+\input{tables/exchange_grid}

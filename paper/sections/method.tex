@@ -1,21 +1,19 @@
-\section{Equity-weighted doubly robust policy learning}\label{sec:method}
+\subsection{Equity-weighted doubly robust policy learning}\label{sec:method}
 
 This section sets out the decision problem, the identifying assumptions and the estimator. The
-estimator combines three ingredients that have so far been used separately: the climate-econometric
-use of year-to-year weather variation as an exogenous shock \citep{dell2012,burke2015,hsiang2016};
-doubly robust, cross-fitted scores for heterogeneous effects \citep{robinson1988,chernozhukov2018};
-and welfare-maximising treatment choice \citep{manski2004,kitagawa2018,athey2021}, extended here to
-welfare criteria that weight gains by the income of the people who receive them
-\citep{atkinson1970,kitagawa2021}.
+method combines year-to-year weather variation \citep{dell2012,burke2015,hsiang2016},
+cross-fitted scores for heterogeneous effects \citep{robinson1988,chernozhukov2018}, and
+welfare-maximising treatment choice with income-dependent weights
+\citep{manski2004,kitagawa2018,athey2021,atkinson1970,kitagawa2021}.
 
-\subsection{Decision problem}
+\subsubsection{Decision problem}
 
-A planner, such as a development bank, a donor coalition or a regional body, can build climate-AI
-capacity in a limited share $k$ of countries. Capacity means the research groups, data
-infrastructure and skilled staff needed to develop and run AI-based adaptation services such as
-early warning, agro-advisory and disaster-risk targeting. The planner chooses a rule
-$\pi(Z_i)\in\{0,1\}$ based on observable country characteristics $Z_i$, and cares about how much
-capacity reduces the losses that hot years inflict on each part of the income distribution.
+A planner, such as a development bank, can support an adaptation programme in a limited
+share $k$ of countries. The planner chooses a rule $\pi(Z_i)\in\{0,1\}$ based on observable
+country characteristics $Z_i$. The budget treats countries as equally costly for comparison.
+The empirical treatment indicator $T$ describes existing research capacity. Translating a
+difference in sensitivity by $T$ into the expected effect of funding a particular service
+would require evidence on what the funding changes.
 
 Let $i$ index countries, $d=1,\dots,10$ income deciles and $j$ observation periods (years or
 survey spells). $Y_{idj}$ is the outcome relevant to decile $d$: the growth of its mean income when
@@ -39,7 +37,7 @@ the change in decile $d$'s sensitivity to shocks when a country with characteris
 climate-AI capability. When $S$ measures hot anomalies and $\beta_d<0$, $\rho_d>0$ means that
 capability reduces the damage.
 
-\subsection{Identification}
+\subsubsection{Identification}
 
 \begin{assumption}[Shock exogeneity]\label{as:shock}
 Conditional on $(X,T)$, the de-trended temperature shock $S$ is independent of $(u_d,\eta_d)$.
@@ -47,7 +45,7 @@ Conditional on $(X,T)$, the de-trended temperature shock $S$ is independent of $
 
 \begin{assumption}[Selection on observables for sensitivity]\label{as:select}
 Let $b_d(0)$ and $b_d(1)$ be a unit's potential shock sensitivities without and with capability.
-Conditional on $X$, measured before the period, capability $T$ is independent of
+Conditional on $X$, capability $T$ is independent of
 $\{b_d(0),b_d(1)\}$, and one country's capability does not affect another country's sensitivity.
 \end{assumption}
 
@@ -65,35 +63,32 @@ and institutions, capability is not systematically held by countries whose incom
 less) shock-sensitive for unobserved reasons. Two threats are plausible: strong national
 agricultural research systems may raise both climate-AI output and resilience, and international
 research collaboration may transmit capability across borders. We therefore read the estimates as
-conditional associations that become causal only under Assumption~\ref{as:select}. For the same
-reason, $X$ contains only variables measured in the previous year, so that covariates are not
-themselves affected by the current shock.
+conditional associations. A causal interpretation requires the identification assumptions above.
+Socioeconomic controls are lagged. The contemporaneous precipitation anomaly controls for
+concurrent weather, and time and region enter as design controls.
 
-\subsection{Estimator}
+\subsubsection{Estimator}
 
 \paragraph{Step 1: cross-fitted nuisance functions.} Countries are split into $K=5$ folds. For
 each fold, the following functions are estimated with gradient-boosted trees on the other folds:
 $\hat s(X,T)=E[S\mid X,T]$; the conditional shock variance $\hat v(X,T)=E[(S-\hat s)^2\mid X,T]$;
 the outcome mean $\hat\ell_d(X,T)=E[Y_d\mid X,T]$; and the capability propensity
-$\hat e(X)=P(T=1\mid X)$, clipped to $[0.1,0.9]$ following the rule of thumb of
-\citet{crump2009}. Clipping keeps every observation but bounds the inverse weights; with limited
-overlap it shifts weight from the propensity correction towards the slope model. The conditional
-variance is floored at 5 per cent of the unconditional variance of $S$.
+$\hat e(X)=P(T=1\mid X)$. We clip propensity estimates to $[0.1,0.9]$, retaining
+every observation and bounding the inverse weights. \citet{crump2009} discuss the limited-overlap
+problem and study trimming, which excludes observations. We floor the estimated conditional
+variance at the larger of $10^{-3}$ and 5 per cent of the unconditional variance of $S$.
 
 \paragraph{Step 2: slope scores.} Model~\eqref{eq:model} implies
 $E[(Y_d-\ell_d)(S-s)\mid X,T]=\beta_d(X,T)\,v(X,T)$, so the Robinson-type ratio
-$\psi_d=(Y_d-\hat\ell_d)(S-\hat s)/\hat v$ is an unbiased signal of $\beta_d(X,T)$. This signal is
-insensitive to errors in $\hat\ell_d$ and $\hat s$ but not to errors in $\hat v$. We therefore
-fit a preliminary slope function $\hat m_{d,t}(X)=E[\psi_d\mid X,T=t]$ and use the orthogonalised
-score
+$\psi_d=(Y_d-\hat\ell_d)(S-\hat s)/\hat v$ has conditional mean $\beta_d(X,T)$ at
+the true nuisance functions. Its bias can depend on variance error to first order.
+We regress $\psi_d$ on $X$ separately by treatment state to obtain a preliminary
+slope estimate $\hat m_{d,t}(X)$ and form the orthogonalised score
 \begin{equation}\label{eq:psistar}
 \psi^{*}_d = \hat m_{d,T}(X) + \frac{(Y_d-\hat\ell_d)(S-\hat s) - \hat m_{d,T}(X)\,(S-\hat s)^2}{\hat v(X,T)} ,
 \end{equation}
-whose conditional mean is $\beta_d(X,T)$ when $\hat m=\beta$. At the true nuisance functions its
-first-order sensitivity to $\hat\ell_d$, $\hat s$, $\hat v$ and $\hat m$ is zero: errors in $\hat v$
-enter only through the product $(\hat m-\beta)(\hat v-v)$, and errors in $\hat s$ only through
-second-order terms. The construction is a slope analogue of the R-learner and DR-learner
-\citep{nie2021,kennedy2023}.
+The construction is related to the use of residuals in the R-learner and of
+pseudo-outcomes in the DR-learner \citep{nie2021,kennedy2023}.
 
 \paragraph{Step 3: doubly robust resilience scores.} Augmented inverse-propensity weighting
 of $\psi^{*}_d$ across capability states gives
@@ -102,11 +97,24 @@ of $\psi^{*}_d$ across capability states gives
  + \frac{T\,\{\psi^{*}_d-\hat m_{d,1}(X)\}}{\hat e(X)}
  - \frac{(1-T)\,\{\psi^{*}_d-\hat m_{d,0}(X)\}}{1-\hat e(X)} .
 \end{equation}
-$E[\Gamma_d\mid X]=\rho_d(X)$ if either the slope functions or the propensity score are correctly
-specified, and $\Gamma_d$ is Neyman-orthogonal \citep{chernozhukov2018,semenova2021}. Averages of $\Gamma_d$
-estimate decile-specific average resilience effects. Plotted against $d$, they form a
-\emph{resilience incidence curve}, which shows whether capability protects the bottom of the
-distribution more or less than the top.
+To see what the robustness claim requires, fix $X$, a treatment state $t$ and the fitted
+functions. Let $s_t$, $v_t$ and $\ell_t$ be the true conditional shock mean, shock variance and
+outcome mean for that state, and write $\Delta_s=s_t-\hat s_t$ and
+$\Delta_\ell=\ell_t-\hat\ell_t$. Taking the conditional expectation of the numerator gives
+\begin{equation}\label{eq:slope_remainder}
+E[\psi_d^*-\hat m_{d,t}\mid X,T=t]
+= \frac{(\beta_d(X,t)-\hat m_{d,t})v_t
+       +\Delta_\ell\Delta_s-\hat m_{d,t}\Delta_s^2}{\hat v_t}.
+\end{equation}
+If the shock mean is correctly specified and both slope models are correct, the corrections
+have conditional mean zero for any positive working variance and admissible propensity.
+If the shock mean, shock variance and propensity are correct, the corrections recover the
+difference in slopes even when the slope models are wrong. At the true functions the remaining
+errors enter as products, yielding Neyman orthogonality
+\citep{chernozhukov2018,semenova2021}. Clipping can invalidate the propensity route where the
+true propensity lies outside the clipping interval. In the agricultural application the
+same yield score enters every decile, so all within-country distributional differences come
+from the exposure assumptions and welfare weights.
 
 \paragraph{Step 4: equity weighting.} Following \citet{atkinson1970}, the marginal social value of
 a unit of income growth for decile $d$ of country $i$ is
@@ -132,58 +140,32 @@ $b_i(\epsilon)=\bar s_i\sum_d p_d\,\omega_{id}(\epsilon)\,x_{id}\,\rho_d(X_i)$.
 \paragraph{Step 5: policy learning.} The planner's rule is chosen from $\Pi$, the class of depth-2
 decision trees on a short list of interpretable characteristics $Z$, by solving
 \begin{equation}\label{eq:policy}
-\hat\pi_{\epsilon} = \arg\max_{\pi\in\Pi}\; \frac{1}{N}\sum_{i=1}^{N} w_i\,\pi(Z_i)\,B_i(\epsilon)
+\hat\pi_{\epsilon} = \arg\max_{\pi\in\Pi}\; \sum_{i=1}^{N} w_i\,\pi(Z_i)\,B_i(\epsilon)
 \quad\text{s.t.}\quad \frac{1}{N}\sum_{i=1}^{N}\pi(Z_i)\le k ,
 \end{equation}
-with country population weights $w_i$. The objective counts people, while the budget counts
-countries, so populous countries weigh more in the choice of rule; we also report an unweighted
-objective. Depth-2 trees keep the rule readable as a short list of
+with population shares $w_i$ summing to one. The implementation equivalently uses the
+country mean of contributions scaled by $Nw_i$. The objective weights by population while the
+budget counts countries. We also report an equal-country objective. Depth-2 trees keep the rule readable as a short list of
 conditions, which is what makes it usable as a policy instrument, and the problem can be solved
 exactly by enumerating splits at the deciles of each feature together with every budget-feasible
 set of leaves.
 
-\begin{proposition}[Regret]\label{prop:regret}
-Suppose Assumptions~\ref{as:shock}--\ref{as:overlap} hold; countries are independent draws, with
-arbitrary dependence across periods within a country; the oracle scores $\Gamma_{id}$ are bounded;
-the welfare weights, exposures, shock sizes and population weights are known and bounded,
-$0<\omega_{id}(\epsilon)\le\bar\omega_\epsilon$, $x_{id}\le1$, $\bar s_i\le\bar s$, $w_i\le\bar w$;
-the nuisance estimators satisfy
-$\|\hat e-e\|_2\cdot\|\hat m_{d,t}-\beta_{d}(\cdot,t)\|_2=o_p(N^{-1/2})$,
-$\|\hat m_{d,t}-\beta_d(\cdot,t)\|_2\cdot\|\hat v-v\|_2=o_p(N^{-1/2})$ and
-$\|\hat s-s\|_2=o_p(N^{-1/4})$; and $\Pi$ has finite VC dimension. Then the regret of
-$\hat\pi_\epsilon$ relative to the best rule in $\Pi$ under the $\epsilon$-weighted criterion
-satisfies
-\[
-\sup_{\pi\in\Pi}W_\epsilon(\pi)-W_\epsilon(\hat\pi_\epsilon)
-=O_p\!\left(\bar w\,\bar s\,\bar\omega_\epsilon\,\sqrt{\mathrm{VC}(\Pi)/N}\right),
-\qquad W_\epsilon(\pi)=E[w\,\pi(Z)\,b(\epsilon)] .
-\]
-\end{proposition}
+For descriptive coverage, replace every $\bar\Gamma_{id}$ in
+Equation~\eqref{eq:benefit} with one. Let $H_i(\epsilon)$ be the resulting exposure index
+before population scaling. The share covered by rule $\pi$ is
+\begin{equation}\label{eq:coverage}
+C_\epsilon(\pi)=
+\frac{\sum_i w_i\,\pi(Z_i)\,H_i(\epsilon)}
+     {\sum_i w_i\,H_i(\epsilon)}.
+\end{equation}
+At $\epsilon=0$, this is the selected share of population times agricultural employment
+share times typical heat variability. At $\epsilon=1$, the employment shares assigned to
+poorer deciles receive greater weight. Equal, strictly positive improvements in shock
+sensitivity across countries would make these coverage shares proportional to welfare
+gains under the stated model. The coverage shares can be calculated from the observed inputs
+and the assumed allocation of exposure across deciles.
 
-\noindent\emph{Proof sketch.} $B_i(\epsilon)$ is a bounded linear combination of the orthogonal
-scores $\Gamma_{id}$ with coefficients $\bar s_i p_d\,\omega_{id}(\epsilon)$ that do not depend on
-the nuisance functions. Hence it inherits Neyman orthogonality and the product-rate condition makes
-the error from estimating the nuisances $o_p(N^{-1/2})$ uniformly over $\Pi$. The remaining term
-is the empirical process of an oracle score whose envelope is scaled by $\bar s\,\bar\omega_\epsilon$,
-and the bound follows from Theorem~1 of \citet{athey2021} applied to that scaled score. The budget
-constraint restricts $\Pi$ to a subset and does not increase its complexity; because it is imposed
-in sample, the learned rule satisfies it in sample but only approximately in the population.
-\hfill$\square$
-
-The proposition is an asymptotic guide rather than a guarantee for our application. Its
-conditions are demanding: scores built from inverse propensities and inverse variances are bounded
-only after clipping and flooring, product-rate conditions are hard to verify with around 150
-countries, the welfare weights and exposures are themselves estimated or imputed, and temperature
-shocks are correlated across neighbouring countries. It also does not cover the aggregation across
-sample splits described below.
-
-The proposition makes one trade-off explicit. Greater inequality aversion raises
-$\bar\omega_\epsilon$, because the poorest deciles in the poorest countries receive large weights,
-so the statistical price of an equity-minded rule is a larger upper bound on regret. With $N$ in the low
-hundreds this price is not negligible, and the Monte Carlo evidence in Section~\ref{sec:mc}
-quantifies it.
-
-\subsection{Evaluation and inference}
+\subsubsection{Evaluation and inference}
 
 \paragraph{Aggregation across sample splits.} With around 150 countries, cross-fitted scores depend
 noticeably on how countries are assigned to folds. We therefore repeat the cross-fitting with 20
@@ -194,15 +176,16 @@ $\big[\mathrm{median}_s\{\widehat{\mathrm{se}}_s^2+(\hat\theta_s-\tilde\theta)^2
 $\tilde\theta$ is the median estimate. For heterogeneity and policy learning we use, for each
 observation, the median of its 20 scores.
 
-\paragraph{Policy evaluation.} Policies are evaluated out of sample. The tree is learned on four country folds and its value is
-computed from the held-out scores of the fifth, rotating across folds. We compare the
-equity-weighted rule $\hat\pi_\epsilon$ with (i) the utilitarian rule $\hat\pi_0$ evaluated under
-the same $\epsilon$; (ii) a plug-in rule that ranks countries by $\hat m_{d,1}-\hat m_{d,0}$ without
-the doubly robust correction; (iii) an ``AI-to-the-capable'' rule that allocates capacity to the
-countries with the most AI research; (iv) a ``poorest-first'' rule; and (v) random allocation.
-Confidence intervals for policy values and their differences come from a country-cluster bootstrap
-of the held-out values that holds the learned rules fixed; they therefore do not reflect uncertainty
-in the first-step nuisance estimates or in the choice of tree. Two summary quantities connect the method to the special issue's
+\paragraph{Policy evaluation.} Trees are fitted on four country folds and scored on
+the fifth, rotating across folds. The country scores entering that comparison are themselves
+cross-fitted and aggregated across splits. The score construction is shared across the
+tree folds, so the comparison holds out countries from tree search and is not a fully
+nested evaluation of the nuisance fits and tree search together. The country limit
+applies within each training fold. We compare against a utilitarian tree, a plug-in tree
+using $\hat m_{d,1}-\hat m_{d,0}$, and research-first, poorest-first,
+most-agricultural-first and random assignment. Country-cluster bootstrap intervals
+condition on the estimated scores and rules. They do not incorporate first-step
+estimation or rule-selection uncertainty. Two summary quantities connect the method to the special issue's
 question. The \emph{equity gain}, $W_\epsilon(\hat\pi_\epsilon)-W_\epsilon(\hat\pi_0)$, measures how
 much welfare an equity-minded planner loses by using the utilitarian rule. The \emph{equity price},
 $W_0(\hat\pi_0)-W_0(\hat\pi_\epsilon)$, measures the aggregate income resilience given up by
@@ -210,5 +193,5 @@ prioritising the poor.
 
 Alongside the policy results, we report the average resilience effect and its best linear
 projection on $Z$, and sorted group average treatment effects with classification analysis
-\citep[GATES and CLAN;][]{chernozhukov2025}. These describe which characteristics separate the
-countries in which capability matters most from those in which it does not.
+\citep[GATES and CLAN;][]{chernozhukov2025}. These compare estimated resilience across groups defined by their predicted
+shock-sensitivity differences.

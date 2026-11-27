@@ -1,0 +1,13 @@
+fold,countries,quota,iterations,lower_bound,upper_bound,solver_gap,termination,design
+0,26,7,8,0,3.846153846e-09,3.846153846e-09,gap tolerance,Country folds
+1,25,8,1,0.06139003941,0.06139014647,1.070635601e-07,gap tolerance,Country folds
+2,25,7,1,0,2.294506505e-08,2.294506505e-08,gap tolerance,Country folds
+3,25,8,2,0,4e-09,4e-09,gap tolerance,Country folds
+4,25,7,1,0.01311185087,0.01311185087,0,gap tolerance,Country folds
+0,13,3,1,0,7.556819174e-08,7.556819174e-08,gap tolerance,Region folds
+1,44,14,2,0,2.272727273e-09,2.272727273e-09,gap tolerance,Region folds
+2,18,5,2,0,5.555555556e-09,5.555555556e-09,gap tolerance,Region folds
+3,10,3,2,0,1e-08,1e-08,gap tolerance,Region folds
+4,2,1,1,0,5e-08,5e-08,gap tolerance,Region folds
+5,4,1,0,0,0,0,gap tolerance,Region folds
+6,35,10,4,0,2.857142857e-09,2.857142857e-09,gap tolerance,Region folds

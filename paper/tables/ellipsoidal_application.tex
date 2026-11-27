@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Integer portfolios in held-out agricultural country and region folds}
+\label{tab:ellipsoid_application}
+\begin{tabular}{lrr}
+\toprule
+Rule & Gain [95\% interval] & Replacements \\
+\midrule
+\multicolumn{3}{l}{\emph{Country folds}} \\
+Exposure reference & 0.000 [0.000, 0.000] & 0 \\
+Threshold swaps & 0.455 [$-0.122$, 1.219] & 21 \\
+Pooled mean & 0.054 [$-0.735$, 0.916] & 27 \\
+Ellipsoidal portfolio & $-0.271$ [$-0.754$, $-0.009$] & 7 \\
+\midrule
+\multicolumn{3}{l}{\emph{Region folds}} \\
+Exposure reference & 0.000 [0.000, 0.000] & 0 \\
+Threshold swaps & 0.065 [$-0.184$, 0.403] & 14 \\
+Pooled mean & $-0.048$ [$-1.019$, 1.136] & 25 \\
+Ellipsoidal portfolio & 0.000 [0.000, 0.000] & 0 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}\footnotesize\smallskip
+\emph{Notes.} 37 places across 126 countries in each design. Gains use the same
+held-out DR score with propensity clipping at 0.10. Conditional intervals resample
+country contributions while holding the fits and portfolios fixed. A zero gain and
+zero-width interval result mechanically when the portfolio is the reference.
+\end{minipage}
+\end{table}

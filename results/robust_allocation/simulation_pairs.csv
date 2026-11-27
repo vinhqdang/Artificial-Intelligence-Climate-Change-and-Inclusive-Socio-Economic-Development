@@ -1,0 +1,10 @@
+design,comparator,difference,mc_se,reps
+Homogeneous effects,DR swaps,0.00703396,0.00094274,500
+Homogeneous effects,Plug-in swaps,0.00777073,0.00092439,500
+Homogeneous effects,Mean-score swaps,0.00467173,0.00079085,500
+Moderate overlap,DR swaps,0.00484946,0.00134520,500
+Moderate overlap,Plug-in swaps,0.00063195,0.00121993,500
+Moderate overlap,Mean-score swaps,-0.00025600,0.00119823,500
+Weak overlap,DR swaps,0.00436972,0.00100917,500
+Weak overlap,Plug-in swaps,0.00178431,0.00093685,500
+Weak overlap,Mean-score swaps,0.00159084,0.00089360,500

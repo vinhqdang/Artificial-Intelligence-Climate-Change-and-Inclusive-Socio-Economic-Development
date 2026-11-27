@@ -1,63 +1,67 @@
 \section{Discussion and policy implications}\label{sec:discussion}
 
-\paragraph{Who benefits?} The special issue asks who benefits from AI-driven climate solutions. For
-agriculture, the sector in which heat reaches the poor most directly, our answer is that the
-benefit cannot be detected in national aggregates. Heat damages yields, but countries whose
-climate-AI research exceeds what their income would predict do not suffer measurably smaller
-losses. The confidence interval is wide enough to include both no effect and a complete offset, so
-the finding is an absence of evidence, not evidence of absence. It is nonetheless relevant for a
-debate that often reasons from technical potential: measured against outcomes, national research
-capacity in climate-relevant AI has not produced a resilience dividend large enough to be visible
-across countries. This is consistent with the argument of \citet{larosa2024} that AI helps
-vulnerable communities only when it is accessible to them. Research output that stays in
-universities, or that is led by foreign partners, need not reach the extension services, insurers
-and farmers through whom resilience would be built.
+\paragraph{Assess vulnerability and delivery capacity separately.}
+At a budget of 37 countries, a rule that ranks countries by climate-AI publications reaches
+only five emerging and developing economies. The poverty and agricultural employment rules
+each reach 37. The coverage gap is already large at equal welfare weight per person and
+widens under poverty weighting. Research networks can matter for implementation. A donor
+could use agricultural exposure and poverty to identify eligible locations, then assess
+delivery capacity through extension staffing, access to weather data and the ability to
+reach farmers in those locations. Where delivery capacity is weak, a partnership with a
+research institution in another country might serve high-exposure communities. The value of
+such a partnership depends on actual delivery and costs, which the country-level comparison
+cannot quantify.
 
-\paragraph{Under what conditions?} The data do not identify the conditions under which capability
-matters. Inequality and knowledge sovereignty have the largest projection coefficients relative to
-their standard errors, but neither is close to statistical significance, and the sorted group
-effects are not monotone. The application does show which conditions drive the allocation rules
-once resilience effects are imprecise: agricultural exposure, the welfare weights and population.
-Simple rules that target the poorest or the most agricultural countries do at least as well as
-learned trees, and the trees change with the specification. When the effect being targeted is
-measured this imprecisely, an equity-minded planner gains little from data-driven targeting. The
-choice of rule is then governed by the welfare weights themselves, which is a normative decision
-our framework makes explicit.
+\paragraph{What the comparison establishes.}
+Exposure coverage holds the per-degree resilience improvement fixed across countries.
+At equal welfare weight per person and the same budget, the sites selected by
+research-first would need an exposure-weighted average improvement roughly 18 times
+that of the sites selected by poorest-first to produce the same gain under this model.
+The ratio follows from dividing the two coverage shares. Differences in delivery cost
+could change that comparison. Country selection also depends on the assumed equal cost of
+serving each country and on whether the objective counts people or countries. Within the
+countries selected here, agricultural employment is a proxy for livelihood dependence and its
+distribution across deciles is imputed. Actual exposure depends on crop calendars, irrigation,
+off-farm income and local heat extremes. The coverage results describe the sample and the
+stated assumptions. They provide a benchmark for asking what benefits or cost savings
+would warrant prioritising research strength.
 
-\paragraph{Who bears the costs?} The economy-wide energy and emissions footprint of national AI
-research capacity is too imprecisely estimated to detect, and the confidence intervals do not
-exclude meaningful effects. The electricity and water demands of AI arise in data centres
-\citep{iea2025,devries2023}, which are concentrated in a few, mostly high-income locations, while the
-countries that might benefit from AI-enabled adaptation are elsewhere. The distributional question
-on the cost side is therefore a cross-border one, and it cannot be answered with national research
-indicators.
+\paragraph{When changing a vulnerability ranking might help.}
+The swap algorithm makes the decision to revise a ranking explicit. Its gains must be
+compared with the reference under the same welfare weights and the same number of places.
+Agreement across three fitted scores reduces losses in our heterogeneous-effect simulations.
+The homogeneous-effect design demonstrates that several fitted models can favour an exchange
+even when the exposure ranking is optimal. In the regional exercise the DR-only rule has
+a higher point estimate than robust swaps. Optimising portfolios jointly can lower
+downside risk substantially in simulation, while giving up mean gains when overlap is
+moderate. On held-out agricultural data the conic optimum either loses relative to
+the reference or keeps it, depending on the holdout design. The optimisation certificate
+narrows the source of uncertainty to the fitted benefit model and its evaluation.
+These results favour starting with a transparent reference and collecting independent
+evidence about the gain from departing from it.
 
-\paragraph{Implications for emerging and developing economies.} The results suggest three
-implications for governments and development partners in emerging and developing economies,
-including Viet Nam and its ASEAN neighbours. First, AI-for-adaptation programmes should be evaluated
-against measured damages rather than research output or technical potential. The method in this
-paper can be applied to programme-level or subnational data, where both damages and the use of AI
-tools are measured far more precisely than in cross-country aggregates. Second, allocating capacity
-according to existing AI strength is not supported by any of our estimates. Because the leading
-countries have little agricultural exposure, it yields almost no equity-weighted benefit, even if
-the resilience effect were large. Third, under the current state of evidence, exposure-based rules
-are as defensible as data-driven ones. Countries such as Viet Nam, where agriculture remains an
-important source of income for poorer rural households, have a strong case for investment in
-applied, domestically embedded tools such as agro-advisory and early-warning services. That case
-rests on exposure and equity, together with programme-level evidence that such tools work, not on
-the cross-country estimates reported here.
+\paragraph{What a programme evaluation should measure.}
+For an AI-enabled heat advisory delivered through agricultural extension, an evaluation could
+record which households receive and act on the advice, plot-level yields after hot spells,
+and household agricultural income. Where rollout can be phased across districts or extension
+catchments, randomising the rollout order would allow estimation of the effect of offering the
+service. Linking farms to planting dates and growing-season temperatures would separate the
+relevant weather exposure from annual national averages. Pre-specifying outcomes and
+reporting uptake and losses by baseline income, gender and farm size would test the
+distributional assumptions that drive the welfare comparison. Programme costs, including
+staff time and computing, would make it possible to compare investments on a common budget.
+These measurements are pertinent to programmes in Viet Nam and elsewhere in Southeast Asia,
+where local services and crop calendars can differ substantially within a country.
 
-\paragraph{Limitations.} Six limitations qualify these conclusions. First, bibliometric output
-measures research capacity, not deployment, and the binary income-adjusted indicator measures it
-with error, which biases resilience estimates towards zero. No cross-country measure of AI use in
-agriculture or disaster management exists. Second, overlap between countries with and without
-capability is limited: about half of the propensity scores fall outside $[0.1,0.9]$ and are
-clipped. Third, identification rests on selection on observables for shock sensitivity
-(Assumption~\ref{as:select}). Unobserved factors such as strong agricultural research institutes
-could bias the estimates in either direction, and research collaboration may create spillovers
-across countries. Fourth, the orthogonal estimates imply an average damage about half as large as
-fixed-effects estimates on the same sample, a discrepancy we have not fully resolved. Fifth, the
-shock definition was chosen after inspecting the first stage. We report the alternatives, and the
-one significant resilience estimate, for the annual-mean anomaly, has the opposite sign. Sixth, the
-decile exposure of agricultural income is approximated from employment shares. Household-survey data
-on income sources by decile would allow a direct measure.
+\paragraph{Limits of the shock-sensitivity estimates.}
+The research indicator can be associated with unobserved determinants of yield sensitivity,
+including irrigation and the capacity of national agricultural research systems. International
+collaboration can transmit knowledge across borders. Income adjustment leaves limited
+comparability between research-capacity groups, and clipping reduces the influence of
+observations with extreme propensities at the cost of relying more on the slope model.
+Hottest-month heat was selected after examining the damage estimates, and the annual-mean
+specification produces a negative moderation estimate. The fixed-effects and orthogonal
+estimators also give different magnitudes for average damage on the same sample. These issues
+limit what the fitted scores can contribute to an allocation decision. Electricity use and
+emissions from programme delivery likewise require operational data. National research output and
+economy-wide energy consumption provide only a coarse check (Appendix~\ref{app:decile}).

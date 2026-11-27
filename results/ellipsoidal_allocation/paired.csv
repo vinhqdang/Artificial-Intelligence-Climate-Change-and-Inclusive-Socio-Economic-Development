@@ -1,0 +1,10 @@
+design,comparator,difference,mc_se,reps
+Homogeneous effects,Exposure baseline,-0.00211270,0.00041954,200
+Homogeneous effects,Robust swaps,0.01084254,0.00125835,200
+Homogeneous effects,Pooled mean,0.01849112,0.00142724,200
+Moderate overlap,Exposure baseline,0.01310655,0.00107117,200
+Moderate overlap,Robust swaps,0.00223618,0.00171166,200
+Moderate overlap,Pooled mean,-0.00448236,0.00136509,200
+Weak overlap,Exposure baseline,0.01291357,0.00102991,200
+Weak overlap,Robust swaps,0.00526626,0.00137175,200
+Weak overlap,Pooled mean,-0.00004338,0.00159065,200

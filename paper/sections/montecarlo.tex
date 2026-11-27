@@ -1,7 +1,7 @@
-\section{Monte Carlo evidence}\label{sec:mc}
+\subsection{Monte Carlo evidence}\label{sec:mc}
 
-Before turning to the data, we examine how EW-DRPL performs at sample sizes typical of
-cross-country work, where the asymptotics behind Proposition~\ref{prop:regret} may be a poor guide.
+The simulations compare the allocation rules when the shock-response function and the best
+feasible tree are known. They use sample sizes of the same order as the application.
 
 \paragraph{Design.} Each simulated country has six correlated characteristics that mimic log income,
 inequality, internet access, agricultural share, baseline temperature and knowledge sovereignty.
@@ -26,21 +26,14 @@ $\psi^*_d$. The naive rule ranks countries by the fitted interaction effects fro
 regression of $Y$ on $S$, $S\times T$ and $S\times T\times Z$ with decile fixed effects, the
 standard specification in the applied literature.
 
-\begin{table}[t]
+\begin{figure}[htbp]
 \centering
-\caption{Monte Carlo results}\label{tab:mc}
-\scriptsize
-\resizebox{\textwidth}{!}{\input{../results/montecarlo/mc_table.tex}}
-\begin{minipage}{\textwidth}\footnotesize\smallskip
-\emph{Notes:} 200 replications; Monte Carlo standard errors in parentheses. Regret is the
-difference between the welfare of the oracle depth-2 tree and that of the learned rule, both
-evaluated with the true benefits under the indicated inequality aversion $\epsilon$. Budget
-$k=0.3$. ``crossfit'' learns the tree on four country folds and applies it to the fifth.
-Propensity scores are clipped to $[0.1,0.9]$.
-\end{minipage}
-\end{table}
+\includegraphics[width=0.9\textwidth]{fig_regret.pdf}
+\caption{Monte Carlo regret by method, inequality aversion and sample size (200 replications).}
+\label{fig:regret}
+\end{figure}
 
-\paragraph{Results.} Table~\ref{tab:mc} and Appendix Figure~\ref{fig:regret} report the results.
+\paragraph{Results.} Figure~\ref{fig:regret} and Appendix Table~\ref{tab:mc} report the results.
 Four findings stand out.
 
 First, the standard interaction regression is a poor targeting device. Its regret exceeds that of
@@ -64,15 +57,14 @@ and shock variances. Dropping the outcome model (IPW-only) raises regret in ever
 Fourth, the doubly robust correction does not improve targeting over a well-specified plug-in rule
 in this design. The plug-in rule, which ranks countries by $\hat m_{d,1}-\hat m_{d,0}$, has lower
 regret at $N=150$, the same regret at $N=500$, and a lower RMSE for the average effect at $N=150$ (0.33 against 0.56). Its
-advantage is variance: it omits the inverse-weighted corrections. The doubly robust rule is
-insurance against misspecification of the slope model, which our design does not impose. We
+advantage is variance: it omits the inverse-weighted corrections. The design does not test whether the correction helps under deliberate slope-model
+misspecification. We
 therefore report both in the application. Clipping the propensity score at $[0.1,0.9]$ rather than
 $[0.05,0.95]$ cuts the RMSE of the doubly robust average effect at $N=150$ from 1.08 to 0.56 and
 leaves regret essentially unchanged (Appendix Table~\ref{tab:mc_trim}).
 
 The design is favourable to the estimator in several respects. Shocks are normal and independent
 across countries, the response is linear in the shock, capability is redrawn for every spell, and
-exposure and shock sizes are known. The application departs from each of these. The practical
-lesson for cross-country work with around 150 countries is that average effects will be estimated
-imprecisely even when targeting rules are informative, and that limited overlap between countries
-with and without capability is the binding constraint.
+exposure and shock sizes are known. The application departs from each of these. In this design, average effects can be imprecise at 150 countries even when some
+targeting rules improve on the pooled interaction benchmark. The results describe the
+simulated assignment and shock processes.
