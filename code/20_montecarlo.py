@@ -237,8 +237,8 @@ def latex_tables(summ, n_reps):
     lines.append("\\toprule")
     lines.append(" & \\multicolumn{3}{c}{$N=150$} & \\multicolumn{3}{c}{$N=500$} \\\\")
     lines.append("\\cmidrule(lr){2-4}\\cmidrule(lr){5-7}")
-    lines.append("Method & $\\varepsilon=0$ & $\\varepsilon=1$ & $\\varepsilon=2$ & "
-                 "$\\varepsilon=0$ & $\\varepsilon=1$ & $\\varepsilon=2$ \\\\")
+    lines.append("Method & $\\epsilon=0$ & $\\epsilon=1$ & $\\epsilon=2$ & "
+                 "$\\epsilon=0$ & $\\epsilon=1$ & $\\epsilon=2$ \\\\")
     for metric, title in [("regret", "Panel A: regret vs.\\ oracle tree (true welfare)"),
                           ("recall", "Panel B: share of oracle-treated countries recovered")]:
         lines.append("\\midrule")
