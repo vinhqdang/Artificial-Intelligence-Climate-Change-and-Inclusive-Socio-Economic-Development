@@ -1,0 +1,52 @@
+\section{Additional Monte Carlo results}\label{app:mc}
+
+\input{tables/mc_trim}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{fig_regret.pdf}
+\caption{Monte Carlo regret by method, inequality aversion and sample size (200 replications).}
+\label{fig:regret}
+\end{figure}
+
+\section{Additional results for cereal yields}\label{app:agri}
+
+\input{tables/gates}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_agri_firststage.pdf}
+\caption{Hottest-month temperature anomaly and cereal-yield growth, net of country and year fixed
+effects (binned scatter).}
+\label{fig:firststage}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_agri_overlap.pdf}
+\caption{Cross-fitted propensity scores for income-adjusted climate-AI capability, by capability
+status. Dotted lines mark the trimming bounds 0.1 and 0.9.}
+\label{fig:overlap}
+\end{figure}
+
+\section{Decile income growth, aggregate growth and costs}\label{app:decile}
+
+This appendix applies EW-DRPL directly to the distributional data. Decile mean income or
+consumption comes from the World Bank's Poverty and Inequality Platform. For each country we keep
+national surveys of one welfare concept and form spells from consecutive surveys that the
+platform flags as comparable and that are at most ten years apart. The outcome is the annualised
+log growth of each decile's mean, winsorised at the 1st and 99th percentiles within decile, and
+the shock is the mean annual temperature anomaly over the spell. The estimation sample contains
+1,334 spells in 124 countries.
+
+Table~\ref{tab:decile} reports the decile-specific resilience effects. The point estimates are more
+negative for the poorer deciles, but none is distinguishable from zero, and the average changes sign
+across sample splits (from $-4.6$ to $4.1$). The underlying problem is the first stage: the annual
+temperature anomaly has no detectable effect on GDP per capita growth in our sample
+($-0.10$, SE 0.18; in hot EMDEs $-0.27$, SE 0.46), and spell averages dilute it further. Applied to
+country-year GDP growth, the average resilience effect is 0.12 (SE 0.50). Table~\ref{tab:cost}
+reports the cost module.
+
+\input{tables/decile}
+
+\input{tables/cost}

@@ -676,7 +676,7 @@ def main() -> None:
     cost = cost_module(cy)
     RES["cost"] = cost
     cc = [(y, t_) for y in ["ln_elec_pc", "ln_co2pc"] for t_ in ["ln_kpc_lag", "ln_ai_pc_lag", "r_inc"]]
-    heads = ["elec on K-stock", "CO2 on K-stock", "elec on AI pc", "CO2 on AI pc", "elec on income residual", "CO2 on income residual"]
+    heads = ["elec on K-stock", "elec on AI pc", "elec on income residual", "CO2 on K-stock", "CO2 on AI pc", "CO2 on income residual"]
     cost_rows = [
         {"": "treatment coefficient", **{h: fmt_se(cost[k]["theta"], cost[k]["se"], 3) for h, k in zip(heads, cc)}},
         {"": "p-value", **{h: fmt(cost[k]["p"], 3) for h, k in zip(heads, cc)}},

@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{The energy and emissions cost of AI capability (double machine learning)}\label{tab:cost}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{Log electricity per capita} & \multicolumn{3}{c}{Log CO$_2$ per capita} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Treatment & Climate-AI stock & AI output & Income residual & Climate-AI stock & AI output & Income residual \\
+\midrule
+Coefficient (SE) & -0.015 (0.112) & 0.070 (0.060) & -0.046 (0.112) & 0.061 (0.099) & 0.028 (0.056) & 0.054 (0.099) \\
+$p$-value & 0.894 & 0.243 & 0.679 & 0.538 & 0.613 & 0.587 \\
+High $-$ low renewable share & 0.247 (0.202) & 0.119 (0.098) & 0.423 (0.204) & 0.075 (0.186) & 0.088 (0.108) & 0.196 (0.189) \\
+Country-years & 3192 & 3192 & 3192 & 3192 & 3192 & 3192 \\
+\bottomrule
+\end{tabular}}
+\begin{minipage}{0.95\textwidth}\footnotesize\smallskip
+\emph{Notes:} Partially linear model with cross-fitted gradient-boosting nuisances (five country
+folds) and Mundlak country means of all controls (log GDP per capita, urban share, log population,
+internet use, agricultural share, renewable share, baseline temperature, year). 149 countries,
+2001--2022. SE clustered by country. Climate-AI stock: $\ln(1+K/\text{pop})$, lagged; AI output:
+$\ln(1+$AI works per million$)$, lagged; income residual: capability beyond income (continuous).
+\end{minipage}
+\end{table}

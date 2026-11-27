@@ -224,3 +224,9 @@ __marimo__/
 
 # project data
 data/raw/
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out

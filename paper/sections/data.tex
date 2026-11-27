@@ -1,54 +1,97 @@
 \section{Data}\label{sec:data}
 
-All data are public, and the code that downloads and assembles them is available in the
-replication package. The country-year panel covers the 159 countries with a population of at
-least one million in 2010, from 1998 to 2023. Table~\ref{tab:desc} reports descriptive statistics
-for the estimation sample.
+All data are public, and the replication package contains the code that downloads and assembles
+them. The country-year panel covers the 159 countries with at least one million inhabitants in 2010,
+from 1998 to 2023. The estimation sample for the main application consists of 3,338 country-years
+in 145 countries, 99 of them emerging and developing economies (EMDEs, countries not classified as
+high income by the World Bank). Table~\ref{tab:desc} reports descriptive statistics.
 
-\paragraph{Decile income growth.} Distributional outcomes come from the World Bank's Poverty and
-Inequality Platform (PIP), which reports the mean of the welfare aggregate and the share of each
-decile for every household survey in its database. We take national surveys, keep one welfare
-concept per country (income or consumption, whichever has more surveys), and form \emph{spells}
-from consecutive surveys of the same country that PIP flags as comparable and that are at most ten
-years apart. For each spell and decile, the outcome $Y_{idj}$ is the annualised log growth of the
-decile's mean welfare, in per cent, where the decile mean equals the survey mean times ten times
-the decile share in purchasing-power-parity dollars per day. This yields 1,723 spells in 130
-countries. The estimation sample, which requires every covariate to be observed at the start of the
-spell and capability to be measured (from 2001), contains \NSpells{} spells in \NCountriesSp{}
-countries. Outcomes are winsorised at the 1st and 99th percentiles within each decile.
+\paragraph{Outcome: cereal-yield growth.} The outcome is $100\times\Delta\ln$ of cereal yield in
+kilograms per hectare, from the World Development Indicators (WDI). Eighteen observations with
+absolute log changes of one or more are treated as data errors and dropped. Agricultural
+value-added growth is used as an alternative outcome.
 
-\paragraph{Temperature shocks.} Annual mean surface temperature for each country is the average of
-the monthly series from the ERA5 reanalysis of the Copernicus Climate Change Service, as
-aggregated to countries by Our World in Data. Following the climate-econometrics literature
-\citep{dell2012,burke2015}, the shock $S_{it}$ is the deviation of annual temperature from a
-country-specific linear trend estimated over 1980--2023. Its standard deviation across country-years
-is 0.40$^{\circ}$C. For a spell, $S_{ij}$ is the mean of the annual shocks over the years the spell
-covers, and $\bar s_i$, the typical shock size used in the welfare aggregation, is the standard
-deviation of the country's shocks over 2000--2023. The baseline climate is the mean temperature of
-1980--2000.
+\paragraph{Heat shocks.} Monthly mean surface temperature for each country comes from the ERA5
+reanalysis of the Copernicus Climate Change Service, as aggregated to countries by Our World in
+Data. For each country and year we take the temperature of the hottest month and subtract a
+country-specific linear trend estimated over 1980--2023. Following \citet{dell2012} and
+\citet{burke2015}, the resulting anomaly is treated as exogenous. We use the hottest month rather
+than the annual mean because crop damage is driven by heat extremes during the growing season
+\citep{schlenker2009}. The typical shock size $\bar s_i$ in the welfare aggregation is the standard
+deviation of a country's anomalies over 2000--2023. Annual precipitation anomalies, constructed in
+the same way, enter as a control.
 
 \paragraph{Climate-AI capability and knowledge sovereignty.} We query the OpenAlex index of
-scholarly works \citep{priem2022} for every country and year, counting works with at least one
-author affiliated in the country. AI works are those tagged with the ``artificial intelligence'' or
-``machine learning'' concepts. \emph{Climate-AI} works are AI works also tagged with ``climate
-change''. Because capability accumulates, we construct a knowledge stock
-$K_{it}=\sum_{\tau\le t}(1-\delta)^{t-\tau}C_{i\tau}$ from annual climate-AI output $C_{i\tau}$ since
-1998, with depreciation $\delta=0.15$, and express it per million population. A country has
-climate-AI capability ($T_{it}=1$) if its lagged stock per capita is above the cross-country median
-of that year. A spell takes the value of $T$ at its start year. \emph{Knowledge sovereignty} is the
-share of a country's climate-AI works in which every author is affiliated in that country, computed
-over 1998--2007, 2008--2015 and 2016--2023. It is set to a separate value when a country has fewer
-than five climate-AI works in the period. General AI output per million population enters the
-covariates, so the capability indicator captures specialisation in climate-relevant AI rather than
-AI research in general. Bibliometric output measures research capacity, not deployment. We discuss
-what this implies for interpretation in Section~\ref{sec:discussion}.
+scholarly works \citep{priem2022} for every country and year since 1998, counting works with at
+least one author affiliated in the country. AI works are those tagged with the ``artificial
+intelligence'' or ``machine learning'' concepts. \emph{Climate-AI} works are AI works that are also
+tagged with ``climate change''. Because capability accumulates, we build a knowledge stock
+$K_{it}=\sum_{\tau\le t}(1-\delta)^{t-\tau}C_{i\tau}$ from annual climate-AI output $C_{i\tau}$ with
+depreciation $\delta=0.15$, and express it per million population.
 
-\paragraph{Covariates.} From the World Development Indicators we take GDP per capita at
-purchasing-power parity (log), the Gini index (interpolated linearly within country between
-surveys, without extrapolation), the share of the population using the internet, the agricultural
-share of value added, the urban population share and population (log). Adaptation readiness, which
-summarises economic, governance and social conditions for adaptation investment, comes from the
-ND-GAIN index \citep{chen2015ndgain}. For the cost analysis we use per-capita electricity
-consumption, per-capita CO$_2$ emissions and the renewable share of electricity generation from Our
-World in Data. Countries are classified as emerging and developing economies (EMDEs) if the World
-Bank does not classify them as high income.
+Climate-AI research is heavily concentrated in rich countries, so a capability indicator based on
+the level of the stock would mostly measure income and leave almost no comparable countries
+without capability. We therefore regress $\ln(1+K_{i,t-1}/\text{pop})$ on a cubic
+in lagged log GDP per capita with year fixed effects ($R^2=0.56$). A country has capability
+($T_{it}=1$) when its residual is positive, that is, when its climate-AI stock exceeds what its income
+predicts. The resulting indicator is weakly negatively correlated with income ($-0.14$, against
+$0.54$ for the level-based indicator), and 52 per cent of the estimation sample is capable. Overlap
+nevertheless remains limited: half of the cross-fitted propensity scores lie outside $[0.1,0.9]$,
+which is why scores are trimmed to that interval.
+
+\emph{Knowledge sovereignty} is the share of a country's climate-AI works in which every author is
+affiliated in that country, computed over 1998--2007, 2008--2015 and 2016--2023. Countries with fewer
+than five climate-AI works in a period receive a separate code. General AI output per million
+population enters the covariates, so the capability indicator captures specialisation in
+climate-relevant AI rather than AI research in general.
+
+\paragraph{Welfare weights and agricultural exposure.} Decile mean incomes, which determine the
+Atkinson weights, come from each country's most recent survey in the World Bank's Poverty and
+Inequality Platform (PIP). The share of each decile whose income depends on agriculture is not
+observed. In the main specification we allocate the agricultural employment share (WDI, averaged
+over 2000--2023) to the lowest deciles first, so that in a country where 28 per cent of workers are
+in agriculture, the first two deciles are fully exposed and the third is 80 per cent exposed. This
+reflects the concentration of farm households at the bottom of the distribution in developing
+economies \citep{christiaensen2011}. The alternative allocates exposure uniformly across deciles.
+The policy sample comprises the 126 countries with complete distributional data, 86 of them EMDEs.
+
+\paragraph{Covariates.} From the WDI we take GDP per capita at purchasing-power parity (log), the
+share of the population using the internet, the agricultural share of value added, the urban
+population share, population (log), fertiliser use per hectare (log) and the Gini index. The Gini
+index is missing for a quarter of country-years and is therefore used only through its country
+mean in the policy features. Adaptation readiness, which summarises the economic, governance and
+social conditions for adaptation investment, comes from the ND-GAIN index \citep{chen2015ndgain}.
+For the cost analysis we use per-capita electricity consumption, per-capita CO$_2$ emissions and
+the renewable share of electricity generation from Our World in Data.
+
+\begin{table}[t]
+\centering
+\caption{Descriptive statistics by capability status}\label{tab:desc}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{No capability ($T=0$)} & \multicolumn{2}{c}{Capability ($T=1$)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Mean & SD & Mean & SD \\
+\midrule
+Cereal-yield growth (\%) & 1.151 & 17.188 & 1.613 & 18.626 \\
+Hottest-month anomaly ($^{\circ}$C) & 0.039 & 0.673 & $-0.052$ & 0.727 \\
+Annual anomaly ($^{\circ}$C) & 0.018 & 0.382 & $-0.020$ & 0.403 \\
+Agricultural value-added growth (\%) & 2.410 & 9.098 & 2.585 & 8.528 \\
+Log GDP per capita (PPP) & 9.548 & 1.108 & 9.218 & 1.206 \\
+Gini index & 37.636 & 7.806 & 38.652 & 8.378 \\
+Internet users (\%) & 42.415 & 26.466 & 32.804 & 35.754 \\
+Agriculture, value added (\% GDP) & 10.332 & 9.841 & 13.019 & 11.686 \\
+Urban population (\%) & 60.378 & 20.976 & 54.354 & 22.048 \\
+Log population & 16.502 & 1.440 & 16.382 & 1.393 \\
+ND-GAIN readiness ($\times100$) & 40.983 & 13.713 & 41.970 & 16.377 \\
+Log AI works per million (lag) & 2.807 & 1.675 & 2.537 & 2.337 \\
+Baseline temperature ($^{\circ}$C) & 17.956 & 8.141 & 17.248 & 8.205 \\
+Log fertiliser use (kg/ha) & 4.130 & 1.738 & 3.753 & 1.857 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}\footnotesize\smallskip
+\emph{Notes:} Estimation sample, 3,338 country-years in 145 countries (1,601 with $T=0$ and 1,737
+with $T=1$). Capability: lagged climate-AI knowledge stock above the level predicted by income.
+\end{minipage}
+\end{table}

@@ -38,17 +38,33 @@ recommended allocation changes as a planner cares more about the poorest. The di
 the rules yields two quantities that speak directly to the special issue: the \emph{equity gain} of
 targeting for the poor, and the \emph{equity price} in aggregate resilience of doing so.
 
-We apply EW-DRPL to a new global dataset. National climate-AI capability is measured from the
-OpenAlex index of scholarly works \citep{priem2022} as research output at the intersection of AI or
-machine learning with climate change, together with a measure of \emph{knowledge sovereignty}: the
-share of a country's climate-AI research carried out by domestic institutions alone. Decile-level
-income and consumption growth come from \DataSpells{} comparable household-survey spells in the
-World Bank's Poverty and Inequality Platform, temperature shocks from ERA5 reanalysis, and
-covariates from the World Development Indicators and the ND-GAIN index \citep{chen2015ndgain}.
-A Monte Carlo study shows how the estimator behaves at the sample sizes typical of cross-country
-work.
+We apply EW-DRPL to a new global dataset, focusing on agriculture, the sector through which heat
+most directly reaches poor households \citep{ortizbobea2021,christiaensen2011}. National
+climate-AI capability is measured from the OpenAlex index of scholarly works \citep{priem2022} as a
+depreciated stock of research at the intersection of AI or machine learning and climate change.
+A country counts as capable when its stock exceeds the level predicted by its income, so that
+capability is not simply a proxy for development. We also measure \emph{knowledge sovereignty}, the
+share of a country's climate-AI research carried out by domestic institutions alone. Outcomes are
+cereal-yield growth for 145 countries from 2000 to 2023, shocks are hottest-month temperature
+anomalies from the ERA5 reanalysis, and the welfare weights use decile incomes from the World
+Bank's Poverty and Inequality Platform together with the agricultural exposure of each decile. A
+Monte Carlo study shows how the estimator behaves at the sample sizes typical of cross-country
+work, and an appendix applies the method directly to decile income growth from 1,334
+household-survey spells.
 
-\FindingsIntro{}
+The results are sobering. A 1$^{\circ}$C hotter-than-trend hottest month lowers cereal-yield growth
+by 3.6 percentage points, but countries with climate-AI capability suffer the same losses as
+countries without it. The average resilience effect is 0.26 points (SE 1.07), and effects larger
+than about two-thirds of the damage are ruled out. A standard interaction regression on
+agricultural value added would suggest a marginally significant resilience dividend, which the
+doubly robust estimates do not confirm. The allocation rule closest to current practice, building
+on existing AI strength, delivers essentially no equity-weighted benefit, because the leading
+countries have little agricultural exposure. Rules that favour the poorest and most agricultural
+countries have higher, though imprecise, value. Inequality aversion changes the recommended
+allocation only when it is high; at that point Viet Nam and four other ASEAN members enter the
+priority set. In simulations, EW-DRPL has less than one-third of the regret of the interaction
+approach, and equity weighting reduces regret by 36--43 per cent when the planner is strongly
+inequality averse.
 
 The paper contributes to three literatures. For the economics of AI and climate change, it moves
 from technical potential and single-country carbon studies \citep{liu2022,chen2022,dong2024} to
