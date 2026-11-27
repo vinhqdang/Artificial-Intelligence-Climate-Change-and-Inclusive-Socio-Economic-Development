@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{ATE of the resilience score under alternative aggregation and inference.}
+\label{tab:agri_inference}
+\begin{tabular}{lrrr}
+\toprule
+estimator & estimate & SE & 95\% CI \\
+\midrule
+median over seeds (main), cluster by country & 0.843 & 1.014 & [-1.144, 2.829] \\
+split-adjusted (median theta over seeds) & 1.022 & 2.118 & [-3.128, 5.173] \\
+mean over seeds, cluster by country & 1.185 & 1.300 & [-1.363, 3.733] \\
+median over seeds, winsorised 1/99 pct of Gamma & 0.505 & 0.738 & [-0.941, 1.951] \\
+median over seeds, two-way cluster (country, year) & 0.843 & 0.937 & [-0.995, 2.680] \\
+median over seeds, Driscoll-Kraay (lag 2) & 0.843 & 1.172 & [-1.455, 3.140] \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize Split-adjusted SE per Chernozhukov et al. (2018) over 20 fold seeds. Two-way SE: Cameron-Gelbach-Miller (country, year). Driscoll-Kraay on yearly sums with Bartlett kernel.
+\end{table}

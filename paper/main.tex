@@ -22,11 +22,17 @@
 
 \onehalfspacing
 
-\title{Who should get climate-AI capacity first? Equity-weighted policy learning for
-AI-enabled climate resilience}
+\title{Targeting climate-AI capacity for inclusive resilience: equity-weighted policy learning and
+cross-country evidence}
+\newif\ifanonymous
+\IfFileExists{anonymous.flag}{\anonymoustrue}{\anonymousfalse}
+\ifanonymous
+\author{}
+\else
 \author{Quang-Vinh Dang\\
 \small British University Vietnam, Hung Yen, Vietnam\\
 \small \href{mailto:vinh.dq4@buv.edu.vn}{vinh.dq4@buv.edu.vn} \quad ORCID: 0000-0002-3877-8024}
+\fi
 \date{}
 
 \begin{document}
@@ -42,6 +48,7 @@ AI-enabled climate resilience}
 \input{sections/results}
 \input{sections/discussion}
 \input{sections/conclusion}
+\input{sections/declarations}
 
 \bibliographystyle{apalike}
 \bibliography{references}

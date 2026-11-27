@@ -1,17 +1,17 @@
 \begin{table}[htbp]
 \centering
-\caption{Baseline TWFE: country and year fixed effects; controls ln GDP pc, internet, agriculture share, urban, ln population, readiness, ln AI pc (lag), precipitation shock, ln fertilizer.}
+\caption{Baseline TWFE: country and year fixed effects; controls are one-year lags of ln GDP pc, internet, agriculture share, urban, ln population, ln fertilizer, readiness, ln AI pc (lag), precipitation shock.}
 \label{tab:agri_baseline}
 \begin{tabular}{lcc}
 \toprule
 term & dly (cereal yield growth) & agri VA growth \\
 \midrule
-hotm & -3.388 (0.804) & -1.722 (0.378) \\
-hotm x T\_res & 0.245 (1.000) & 0.848 (0.455) \\
-T\_res (main effect) & 0.871 (0.575) & 0.633 (0.359) \\
-ln GDP pc & 5.077 (2.256) & 4.363 (1.603) \\
-internet & -0.000 (0.022) & -0.005 (0.018) \\
-N & 3338 & 3304 \\
+hotm & -3.386 (0.820) & -1.766 (0.379) \\
+hotm x T\_res & 0.315 (0.970) & 0.817 (0.457) \\
+T\_res (main effect) & 0.515 (0.572) & 0.185 (0.366) \\
+ln GDP pc (lag) & -3.720 (2.002) & -6.042 (1.382) \\
+internet (lag) & -0.034 (0.023) & -0.011 (0.016) \\
+N & 3336 & 3305 \\
 countries & 145 & 146 \\
 \bottomrule
 \end{tabular}

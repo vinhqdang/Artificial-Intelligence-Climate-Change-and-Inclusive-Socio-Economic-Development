@@ -1,10 +1,10 @@
-variant,spells,countries,ATE (SE),eps=1 treated,Jaccard vs main
-"main (T_res, hotm, dly, bottom exposure)",3338,145,0.258 (1.069),22,1.000
-(a) raw psi score,3338,145,0.129 (1.139),29,0.645
-"(b) propensity trimming [0.05, 0.95]",3338,126,0.507 (1.172),22,1.000
-(c) annual shock instead of hotm,3338,126,-6.060 (2.050),7,0.208
-(d) random forest nuisances,3338,126,0.376 (0.748),22,1.000
-(e) EMDE-only sample,2250,86,0.314 (1.282),13,0.591
-(f) T_stock instead of T_res,3338,126,1.791 (1.625),35,0.239
-(g) agricultural VA growth outcome,3304,125,0.467 (0.550),26,0.000
-(h) uniform exposure e_id = a_i (policy only),--,126,--,22,1.000
+variant,rows,countries,ATE (SE),eps=1 treated,Jaccard eps=1,eps=2 treated,Jaccard eps=2
+"main (T_res, hotm, dly, bottom exposure)",3336,145,0.843 (1.014),31,1.000,22,1.000
+(a) raw psi score,3336,145,0.727 (1.126),22,0.710,34,0.514
+"(b) propensity trimming [0.05, 0.95]",3336,126,0.978 (1.070),31,1.000,22,1.000
+(c) annual shock instead of hotm,3336,126,-5.594 (1.916),33,0.208,28,0.111
+(d) random forest nuisances,3336,126,-0.138 (0.760),22,0.710,12,0.417
+(e) EMDE-only sample,2247,86,0.669 (1.417),25,0.514,24,0.278
+(f) T_stock instead of T_res,3336,126,2.258 (1.672),33,0.143,29,0.085
+(g) agricultural VA growth outcome,3305,125,0.001 (0.610),26,0.018,31,0.082
+(h) uniform exposure e_id = a_i (policy only),--,126,--,22,0.710,22,1.000

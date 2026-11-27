@@ -1,62 +1,63 @@
 \section{Discussion and policy implications}\label{sec:discussion}
 
-\paragraph{Who benefits?} The special issue asks who benefits from AI-driven climate solutions. Our
-answer for agriculture, the sector in which heat reaches the poor most directly, is that the
-benefit is not yet visible in aggregate outcomes. Countries whose climate-AI research capacity
-exceeds what their income would predict suffer the same yield losses from hot months as other
-countries. This does not mean that AI-based adaptation tools fail where they are deployed. It means
-that national research capacity, the most widely available measure of AI capability, has not
-translated into economy-wide resilience large enough to detect, and that claims about AI's
-contribution to adaptation should be judged against measured damages rather than technical
-potential. The finding is consistent with \citet{larosa2024}, who argue that AI helps vulnerable
-communities only when it is accessible to them. Research output that remains in universities, or
-that is produced mainly by foreign partners, may not reach the extension services, insurers and
-farmers through whom resilience would be built.
+\paragraph{Who benefits?} The special issue asks who benefits from AI-driven climate solutions. For
+agriculture, the sector in which heat reaches the poor most directly, our answer is that the
+benefit cannot be detected in national aggregates. Heat damages yields, but countries whose
+climate-AI research exceeds what their income would predict do not suffer measurably smaller
+losses. The confidence interval is wide enough to include both no effect and a complete offset, so
+the finding is an absence of evidence, not evidence of absence. It is nonetheless relevant for a
+debate that often reasons from technical potential: measured against outcomes, national research
+capacity in climate-relevant AI has not produced a resilience dividend large enough to be visible
+across countries. This is consistent with the argument of \citet{larosa2024} that AI helps
+vulnerable communities only when it is accessible to them. Research output that stays in
+universities, or that is led by foreign partners, need not reach the extension services, insurers
+and farmers through whom resilience would be built.
 
-\paragraph{Under what conditions?} The heterogeneity estimates are imprecise, but their pattern is
-informative for policy design. The coefficient on inequality suggests that capability is, if
-anything, less protective in more unequal countries, mirroring the finding of \citet{dong2024}
-that inequality weakens AI's carbon-abatement benefits. The learned allocation rules, although unstable across specifications, repeatedly
-select on two conditions, connectivity and knowledge sovereignty, rather than on income or existing
-AI strength. Poorly connected countries in hot climates, where yield damages are large and
-agricultural exposure is high, appear in every rule. Where connectivity is higher, the rules favour
-countries whose climate-AI research is predominantly domestic. Both conditions point to the same
-policy lever: AI capacity yields resilience only if it is embedded in local institutions and if
-the people exposed to heat can be reached.
+\paragraph{Under what conditions?} The data do not identify the conditions under which capability
+matters. Inequality and knowledge sovereignty have the largest projection coefficients relative to
+their standard errors, but neither is close to statistical significance, and the sorted group
+effects are not monotone. The application does show which conditions drive the allocation rules
+once resilience effects are imprecise: agricultural exposure, the welfare weights and population.
+Simple rules that target the poorest or the most agricultural countries do at least as well as
+learned trees, and the trees change with the specification. When the effect being targeted is
+measured this imprecisely, an equity-minded planner gains little from data-driven targeting. The
+choice of rule is then governed by the welfare weights themselves, which is a normative decision
+our framework makes explicit.
 
 \paragraph{Who bears the costs?} The economy-wide energy and emissions footprint of national AI
-research capacity is too small to detect. This is not evidence that AI is environmentally benign.
-The electricity and water demands of AI arise in data centres \citep{iea2025,devries2023}, which are
-concentrated in a few, mostly high-income locations, and the countries that build research capacity
-for adaptation are not those that host the infrastructure. The distributional question on the cost
-side is therefore a cross-border one, between the places that bear the environmental footprint of
-AI infrastructure and the places that might benefit from AI-enabled adaptation. It cannot be
-answered with national research indicators.
+research capacity is too imprecisely estimated to detect, and the confidence intervals do not
+exclude meaningful effects. The electricity and water demands of AI arise in data centres
+\citep{iea2025,devries2023}, which are concentrated in a few, mostly high-income locations, while the
+countries that might benefit from AI-enabled adaptation are elsewhere. The distributional question
+on the cost side is therefore a cross-border one, and it cannot be answered with national research
+indicators.
 
-\paragraph{Implications for emerging and developing economies.} Three implications follow for
-governments and development partners in emerging and developing economies, including Viet Nam and
-its ASEAN neighbours. First, the most common allocation heuristic, building on existing strength,
-performs worst in our evaluation. Concentrating capacity where climate-AI research is already
-strongest yields almost no equity-weighted resilience, because those countries have little
-agricultural exposure. Second, programmes should be evaluated against measured damages. The
-method in this paper can be applied to programme-level or subnational data, where both damages
-and capability are measured more precisely than in cross-country aggregates. Third, the choice of
-inequality aversion is a political decision that our framework makes explicit. In our application
-it changes the recommended set of countries only at high values of $\epsilon$. At $\epsilon=2$ the
-rule includes Viet Nam and four other ASEAN members, because the region combines high exposure of
-lower-income rural households to heat with modest domestic climate-AI research. For Viet Nam, where
-agriculture remains an important source of income for poorer rural households, the result supports investment in domestically led applied
-climate-AI, such as agro-advisory and early-warning services, rather than in research output as
-such.
+\paragraph{Implications for emerging and developing economies.} The results suggest three
+implications for governments and development partners in emerging and developing economies,
+including Viet Nam and its ASEAN neighbours. First, AI-for-adaptation programmes should be evaluated
+against measured damages rather than research output or technical potential. The method in this
+paper can be applied to programme-level or subnational data, where both damages and the use of AI
+tools are measured far more precisely than in cross-country aggregates. Second, allocating capacity
+according to existing AI strength is not supported by any of our estimates. Because the leading
+countries have little agricultural exposure, it yields almost no equity-weighted benefit, even if
+the resilience effect were large. Third, under the current state of evidence, exposure-based rules
+are as defensible as data-driven ones. Countries such as Viet Nam, where agriculture remains an
+important source of income for poorer rural households, have a strong case for investment in
+applied, domestically embedded tools such as agro-advisory and early-warning services. That case
+rests on exposure and equity, together with programme-level evidence that such tools work, not on
+the cross-country estimates reported here.
 
-\paragraph{Limitations.} Four limitations qualify these conclusions. First, bibliometric output
-measures research capacity, not deployment. A direct measure of AI use in agriculture and disaster
-management would sharpen the estimates considerably, and no such measure currently exists across
-countries. Second, overlap between countries with and without income-adjusted capability is
-limited, and about half of country-years have propensity scores outside $[0.1,0.9]$. This is a
-property of the data, not of the estimator, but it limits precision. Third, identification of the
-resilience effect rests on selection on observables for shock sensitivity
-(Assumption~\ref{as:select}). Unobserved factors that raise both research capacity and agricultural
-resilience, such as strong agricultural research institutes, could bias the estimates in either
-direction. Fourth, the decile exposure of agricultural income is approximated from employment
-shares. Household-survey data on income sources by decile would allow a direct measure.
+\paragraph{Limitations.} Six limitations qualify these conclusions. First, bibliometric output
+measures research capacity, not deployment, and the binary income-adjusted indicator measures it
+with error, which biases resilience estimates towards zero. No cross-country measure of AI use in
+agriculture or disaster management exists. Second, overlap between countries with and without
+capability is limited: about half of the propensity scores fall outside $[0.1,0.9]$ and are
+clipped. Third, identification rests on selection on observables for shock sensitivity
+(Assumption~\ref{as:select}). Unobserved factors such as strong agricultural research institutes
+could bias the estimates in either direction, and research collaboration may create spillovers
+across countries. Fourth, the orthogonal estimates imply an average damage about half as large as
+fixed-effects estimates on the same sample, a discrepancy we have not fully resolved. Fifth, the
+shock definition was chosen after inspecting the first stage. We report the alternatives, and the
+one significant resilience estimate, for the annual-mean anomaly, has the opposite sign. Sixth, the
+decile exposure of agricultural income is approximated from employment shares. Household-survey data
+on income sources by decile would allow a direct measure.

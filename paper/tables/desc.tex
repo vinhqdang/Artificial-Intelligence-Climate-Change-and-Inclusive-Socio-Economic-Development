@@ -1,0 +1,30 @@
+\begin{table}[t]
+\centering
+\caption{Descriptive statistics by capability status}\label{tab:desc}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{No capability ($T=0$)} & \multicolumn{2}{c}{Capability ($T=1$)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Mean & SD & Mean & SD \\
+\midrule
+Cereal-yield growth (\%) & 1.157 & 17.312 & 1.540 & 18.498 \\
+Hottest-month anomaly ($^{\circ}$C) & 0.038 & 0.673 & $-$0.052 & 0.728 \\
+Annual anomaly ($^{\circ}$C) & 0.019 & 0.381 & $-$0.021 & 0.404 \\
+Agricultural value-added growth (\%) & 2.387 & 9.098 & 2.523 & 8.554 \\
+Log GDP per capita (PPP), lag & 9.527 & 1.108 & 9.202 & 1.209 \\
+Gini index & 37.638 & 7.783 & 38.648 & 8.385 \\
+Internet users (\%), lag & 38.836 & 26.137 & 31.237 & 35.371 \\
+Agriculture, value added (\% GDP), lag & 10.435 & 9.830 & 13.221 & 11.862 \\
+Urban population (\%), lag & 59.952 & 21.053 & 54.093 & 22.089 \\
+Log population, lag & 16.492 & 1.442 & 16.369 & 1.394 \\
+ND-GAIN readiness ($\times100$), lag & 40.967 & 13.731 & 42.059 & 16.346 \\
+Log AI works per million, lag & 2.804 & 1.676 & 2.551 & 2.338 \\
+Baseline temperature ($^{\circ}$C) & 17.985 & 8.130 & 17.204 & 8.222 \\
+Log fertiliser use (kg/ha), lag & 4.100 & 1.760 & 3.744 & 1.867 \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.95\textwidth}\footnotesize\smallskip
+\emph{Notes:} Estimation sample, 3,336 country-years in 145 countries (1,602 with $T=0$ and 1,734 with $T=1$). Capability: lagged climate-AI knowledge stock above the level predicted by income. ``Lag'' denotes values for the previous year. The Gini index is not used as a covariate (a quarter of values are missing) and is summarised over available observations.
+\end{minipage}
+\end{table}

@@ -1,0 +1,15 @@
+\begin{table}[htbp]
+\centering
+\caption{Split-adjusted inference over 20 fold seeds (Chernozhukov et al. 2018).}
+\label{tab:agri_split}
+\begin{tabular}{lrrr}
+\toprule
+quantity & estimate & SE\_adj & 95\% CI \\
+\midrule
+beta(T=1): mean psi* | T\_res=1, median over seeds & -1.489 & 1.188 & [-3.817, 0.839] \\
+beta(T=0): mean psi* | T\_res=0, median over seeds & -1.310 & 1.214 & [-3.689, 1.070] \\
+ATE of rho, median over seeds & 1.022 & 2.118 & [-3.128, 5.173] \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize theta\_s and SE\_s are per seed (country-clustered); SE\_adj = sqrt(median\_s(SE\_s^2 + (theta\_s - median theta)^2)).
+\end{table}

@@ -1,20 +1,17 @@
 \section{Results}\label{sec:results}
 
-The main application concerns cereal yields, the channel through which heat most directly reaches
-poor rural households. Section~\ref{sec:res_decile} reports the decile-income and cost analyses,
-whose first stage turns out to be too weak to identify resilience effects.
-
 \subsection{Heat damages cereal yields}
 
 Table~\ref{tab:firststage} shows that the hottest-month temperature anomaly lowers cereal-yield
 growth substantially. With country and year fixed effects, a 1$^{\circ}$C hotter-than-trend
 hottest month reduces yield growth by 3.6 percentage points across 155 countries (SE 0.53), and by
-2.7 points in emerging and developing economies (SE 0.76). The annual mean anomaly, by contrast, has
-no detectable average effect (-0.61, SE 1.01). Peak heat matters more than the annual average, in
-line with the threshold effects documented by \citet{schlenker2009}. Within the subsample of
-countries whose baseline climate is already hot ($\geq 20^{\circ}$C), year-to-year variation in the
-hottest month is smaller and the estimate is imprecise ($-0.34$, SE 0.91). We therefore use the
-hottest-month anomaly as the shock $S$ in what follows.
+2.7 points in emerging and developing economies (SE 0.76). The annual mean anomaly has no
+detectable average effect ($-0.61$, SE 1.01), in line with the threshold effects of heat documented
+by \citet{schlenker2009}. We report all three shock definitions we examined, because the choice of
+the hottest-month anomaly was made after seeing this table. Among countries whose baseline climate
+is already hot ($\geq 20^{\circ}$C), the estimate is imprecise ($-0.34$, SE 0.91), so the
+first stage is driven mainly by cooler and temperate producers. This matters for interpreting the
+allocation rules below.
 
 \begin{table}[t]
 \centering
@@ -34,32 +31,40 @@ Annual-mean anomaly as regressor & $-0.612$ (1.006) & 0.543 & 3,679 & 155 \\
 \emph{Notes:} Dependent variable: $100\times\Delta\ln$ cereal yield (kg/ha). Regressor: hottest-month
 mean temperature minus its 1980--2023 country-specific linear trend ($^{\circ}$C), except in the last
 row. Country and year fixed effects; standard errors clustered by country. Observations with
-$|\Delta\ln\text{yield}|\geq 1$ are dropped as data errors.
+$|\Delta\ln\text{yield}|\geq 1$ are dropped as data errors. The sample is larger than the estimation
+sample of Table~\ref{tab:ate}, which also requires the lagged covariates.
 \end{minipage}
 \end{table}
 
-\subsection{No detectable resilience dividend from climate-AI capability}
+\subsection{No detectable resilience dividend}
 
-Table~\ref{tab:ate} reports the main estimates for 3,338 country-years in 145 countries. The
-average resilience effect of climate-AI capability, the mean of the orthogonal doubly robust scores
-$\Gamma$, is 0.26 percentage points of yield growth per $^{\circ}$C (SE 1.07). The average marginal
-damage is almost identical in country-years with and without capability: $-1.53$ (SE 0.70) and
-$-1.63$ (SE 0.83). Across the 20 sample splits, the estimate ranges from $-2.26$ to $3.84$, with a
-median of 0.18.
+Table~\ref{tab:ate} reports the main estimates for 3,336 country-years in 145 countries. The
+median across the 20 sample splits of the average resilience effect is 1.02 percentage points of
+yield growth per $^{\circ}$C, with a split-adjusted standard error of 2.12. The 95 per cent
+confidence interval, $[-3.13, 5.17]$, is wide. It contains zero, and it also contains effects
+larger than the average damage itself. The data therefore cannot distinguish between climate-AI
+capability having no effect on heat damage and its offsetting all of it. Other ways of computing
+the estimate give the same picture. Using the observation-level median score, the estimate is 0.84
+with a country-clustered SE of 1.01, a two-way (country and year) clustered SE of 0.94, or a
+Driscoll--Kraay SE of 1.17. Winsorising the scores at the 1st and 99th percentiles gives 0.51
+(SE 0.74). The scores are heavy-tailed: the 99th percentile of $|\Gamma|$ is about 300 against a
+median of 11.
 
-The estimate is not merely insignificant; it is informative about magnitudes. The 95 per cent
-confidence interval, $[-1.84, 2.35]$, excludes resilience effects larger than about two-thirds of
-the average heat damage of 3.6 points. Climate-AI research capacity, at the levels observed between
-2000 and 2023, has not eliminated the yield losses that hot months inflict, and the data are equally
-consistent with it having had no effect at all.
+The average marginal damage implied by the orthogonal scores is similar in the two groups
+($-1.49$ with capability and $-1.31$ without, split-adjusted; $-1.52$ overall). That is less than half the fixed-effects estimate on the
+same sample ($-3.58$ with country and year effects, and $-3.17$ with year and region effects and the
+same covariates; Appendix Table~\ref{tab:recon}). Country fixed effects are therefore not the
+reason. The difference arises within the orthogonal estimator, whose scores weight observations by
+the inverse of the estimated conditional variance of the shock. We have not been able to reconcile
+the two fully, and we treat the scale of the orthogonal estimates with caution.
 
-The classical specification tells a slightly different story, which illustrates the Monte Carlo
-results of Section~\ref{sec:mc}. A two-way fixed-effects regression with a shock-by-capability
-interaction gives $0.25$ (SE 1.00) for yields, but for agricultural value-added growth it gives
-$0.85$ (SE 0.46, $p\approx0.06$), which would usually be read as weak evidence of a resilience
-dividend. The doubly robust estimate for the same outcome is $0.47$ (SE 0.55). Once the flexible
-relationship between capability, income, connectivity and climate is accounted for, the suggestive
-interaction disappears.
+The classical specification again behaves differently. A two-way fixed-effects regression with a
+shock-by-capability interaction gives 0.32 (SE 0.97) for yields. For agricultural value-added growth
+it gives 0.82 (SE 0.46, $p\approx0.07$), which would often be reported as weak evidence of a
+resilience dividend. The doubly robust estimate for the same outcome is 0.07 (split-adjusted SE
+1.01). Once the flexible relationship between capability, income, connectivity and climate is taken
+into account, the suggestive interaction disappears, as the Monte Carlo evidence on the interaction
+model would lead one to expect.
 
 \begin{table}[t]
 \centering
@@ -67,77 +72,90 @@ interaction disappears.
 \small
 \begin{tabular}{lcc}
 \toprule
- & Estimate (SE) & Observations \\
+ & Estimate (SE) & 95\% CI \\
 \midrule
-\multicolumn{3}{l}{\emph{EW-DRPL scores}}\\
-Average resilience effect, $E[\Gamma]$ & 0.258 (1.069) & 3,338 \\
-Mean marginal damage, capability ($T=1$) & $-1.532$ (0.699) & 1,737 \\
-Mean marginal damage, no capability ($T=0$) & $-1.632$ (0.826) & 1,601 \\
-Split-to-split range of $E[\Gamma]$ (20 splits) & [$-2.264$, 3.837] & \\
+\multicolumn{3}{l}{\emph{EW-DRPL, average resilience effect}}\\
+Median over splits, split-adjusted SE (main) & 1.022 (2.118) & [$-3.13$, 5.17] \\
+Observation-level median score, country clusters & 0.843 (1.014) & [$-1.14$, 2.83] \\
+\quad two-way clusters (country, year) & 0.843 (0.937) & [$-1.00$, 2.68] \\
+\quad Driscoll--Kraay (2 lags) & 0.843 (1.172) & [$-1.46$, 3.14] \\
+\quad scores winsorised at 1st/99th percentiles & 0.505 (0.738) & [$-0.94$, 1.95] \\
+Split-to-split range & [$-2.56$, 7.47] & \\
+\midrule
+\multicolumn{3}{l}{\emph{EW-DRPL, mean marginal damage}}\\
+Capability ($T=1$, 1,734 obs.) & $-1.489$ (1.188) & [$-3.82$, 0.84] \\
+No capability ($T=0$, 1,602 obs.) & $-1.310$ (1.214) & [$-3.69$, 1.07] \\
 \midrule
 \multicolumn{3}{l}{\emph{Two-way fixed effects (for comparison)}}\\
-Heat shock & $-3.388$ (0.804) & 3,338 \\
-Heat shock $\times$ capability & 0.245 (1.000) & \\
-Heat shock $\times$ capability, agricultural value added & 0.848 (0.455) & 3,304 \\
+Heat shock & $-3.386$ (0.820) & \\
+Heat shock $\times$ capability & 0.315 (0.970) & \\
+Heat shock $\times$ capability, agricultural value added & 0.817 (0.457) & \\
 \midrule
 \multicolumn{3}{l}{\emph{EW-DRPL, agricultural value added}}\\
-Average resilience effect & 0.467 (0.550) & 3,304 \\
+Average resilience effect (split-adjusted) & 0.066 (1.014) & [$-1.92$, 2.05] \\
 \bottomrule
 \end{tabular}
 \begin{minipage}{0.95\textwidth}\footnotesize\smallskip
-\emph{Notes:} Units: percentage points of annual growth per $^{\circ}$C of hottest-month anomaly. 145
-countries. Scores are the median across 20 cross-fitting splits; standard errors clustered by
-country. Capability: climate-AI knowledge stock above the level predicted by income in the
-previous year. Covariates: log GDP per capita, internet use, agricultural share, urban share, log
-population, ND-GAIN readiness, lagged general AI output, baseline temperature, precipitation shock,
-fertiliser use, year and region.
+\emph{Notes:} Units: percentage points of annual growth per $^{\circ}$C of hottest-month anomaly.
+3,336 country-years in 145 countries (3,305 for agricultural value added). Capability:
+climate-AI knowledge stock above the level predicted by income in the previous year. Covariates,
+lagged one year: log GDP per capita, internet use, agricultural share, urban share, log population,
+log fertiliser use, ND-GAIN readiness and general AI output; also baseline temperature, the
+precipitation shock, year and region. Damage rows: split-adjusted SEs.
 \end{minipage}
 \end{table}
 
-\subsection{Who would gain? Heterogeneity}
+\subsection{Heterogeneity}
 
 Neither the best linear projection of $\Gamma$ on the policy features nor the sorted group effects
-reveal a reliable gradient. The coefficient on inequality is the largest relative to its standard
-error ($-1.76$, SE 1.06, $p=0.10$): if anything, capability is associated with less resilience in
-more unequal countries, the direction suggested by \citet{dong2024} for carbon abatement. Income,
-connectivity, agricultural share, baseline climate and knowledge sovereignty all have coefficients
-well within one standard error of zero. The GATES contrast between the top and bottom quintiles of
-predicted resilience is 5.4 (SE 3.6), and the quintile means are not monotone
-(Appendix Table~\ref{tab:gates}). The classification analysis shows that country-years with the
-highest predicted resilience have much lower internet use than those with the lowest (a difference of
-19 percentage points, SE 4.8) and slightly lower knowledge sovereignty. Because the sorted group
-effects are not monotone, we read this as a description of where the prediction model places
-resilience, not as evidence that low connectivity causes it. With about 145 countries and noisy
-scores, the data cannot sort countries reliably by the size of the resilience dividend.
+reveal a reliable gradient. All six projection coefficients are within 1.4 standard errors of zero,
+the largest relative to its SE being inequality ($-1.63$, SE 1.23) and knowledge sovereignty
+($-1.58$, SE 1.47). The difference between the top and bottom quintiles of predicted resilience is
+4.5 (SE 3.7), and the quintile means are not monotone (Appendix Table~\ref{tab:gates}). The
+classification analysis shows that the model predicts the largest resilience effects for
+country-years with lower internet use (22 percentage points lower in the top than in the bottom
+quintile, SE 4.4), lower knowledge sovereignty and lower income. Because the sorted effects are not
+monotone, this describes where the prediction model places resilience rather than where resilience
+is. With about 145 countries and noisy scores, the data cannot rank countries by the size of the
+resilience dividend.
 
-\subsection{Equity-weighted allocation rules}
+\subsection{Allocation rules}
 
 Table~\ref{tab:policy} reports the held-out welfare values of the allocation rules for a budget of
-30 per cent of the 126 countries with complete distributional data. Values are expressed per
-country, in equity-weighted percentage points of yield growth among exposed households.
+30 per cent of the 126 countries with complete distributional data. Values are means over countries
+of $\pi(Z_i)B_i(\epsilon)$, which combine the estimated resilience scores with shock size,
+population, agricultural exposure and welfare weights.
 
-Three results stand out. First, no rule's value is distinguishable from zero, which is what one
-would expect given that the average resilience effect itself is not. Second, the equity gain and
-equity price are both close to zero: at $\epsilon=1$ the gain is $-0.02$ [$-0.18$, $0.14$] and the
-price 0.02 [$-0.02$, $0.06$], and at $\epsilon=2$ the gain is 0.09 [$-0.23$, $0.58$]. Because the
-learned rules for $\epsilon=0$, 0.5 and 1 coincide, inequality aversion changes the recommendation
-only at $\epsilon=2$. Third, the rule that is closest to current practice, building on existing
-strength by allocating capacity to the countries with the largest climate-AI stock, has a value
-of essentially zero with a tight confidence interval ($-0.005$ [$-0.036$, $0.021$] at
-$\epsilon=1$). Those countries have little agricultural exposure and comparatively rich deciles,
-so even a large resilience effect would add little equity-weighted welfare. Rules that target the
-poorest or the most agricultural countries have larger point values (0.28 and 0.27 at
-$\epsilon=1$), but their intervals are wide.
+The table supports three conclusions, and none of them favours data-driven targeting in this
+application. First, no rule's value is distinguishable from zero, which is what one would expect
+given that the average resilience effect is not. Second, simple rules do at least as well as the
+learned trees. Allocating capacity to the poorest 30 per cent of countries has the highest point
+value under every $\epsilon>0$, and at $\epsilon=2$ it beats the EW-DRPL tree by 1.39
+[$0.02$, $3.26$], the only policy comparison whose interval excludes zero. Third, the rule closest
+to building on existing strength, which allocates capacity to the countries with the largest
+climate-AI stock, has a value of essentially zero. This is largely mechanical: those countries have
+little agricultural exposure and comparatively rich deciles, so even a large resilience effect would
+add little equity-weighted welfare. Its difference from the poorest-first rule is not
+statistically significant ($-0.65$ [$-1.80$, $0.31$] at $\epsilon=1$).
 
-The learned trees are readable, which is the purpose of restricting the policy class, but they
-should be interpreted as illustrations rather than recommendations. For $\epsilon\le1$ the rule
-treats (i) countries with internet use below 8.3 per cent and a hot baseline climate, mostly in the
-Sahel and East and Central Africa, and (ii) better-connected countries whose climate-AI research is
-predominantly domestic, including India, Indonesia and the Philippines. At $\epsilon=2$ the root
-split moves to knowledge sovereignty. The rule then treats poorly connected countries with
-predominantly foreign-led climate-AI research and hot countries with domestic research, a set of 31
-countries that includes Viet Nam, Thailand, Malaysia, Indonesia and the Philippines.
-Section~\ref{sec:robust} shows that these sets change with the specification.
+The equity gain of the $\epsilon=1$ rule over the utilitarian rule is 0.33 [$-0.01$, 0.90] and the
+equity price is $-0.06$ [$-0.16$, 0.01]. A negative price, meaning that the equity-weighted rule also
+does better on utilitarian welfare, cannot be a property of the population optimum. It reflects the
+noise of cross-fitted trees. When the objective counts countries rather than people, every rule's
+value is close to zero, and the advantage of poorest-first disappears (Appendix
+Table~\ref{tab:unweighted}). The population-weighted results are thus driven by a few populous,
+poor and agricultural countries.
+
+The learned trees are readable, but they are not stable. For $\epsilon\le1$ the tree treats 31
+countries. Nineteen are low-income countries with a hot baseline climate: eighteen in sub-Saharan Africa
+and Myanmar. Twelve have higher incomes and a predominantly domestic climate-AI research base,
+including China, India, Indonesia, the Philippines and the United States. At $\epsilon=2$ the root
+split moves to internet use, and the low-income branch shrinks to ten countries. Viet Nam is not
+treated by any rule; its estimated equity-weighted benefit is slightly negative at $\epsilon=1$
+and $\epsilon=2$.
+The hot, low-income branch is also the group for which the first stage is weakest
+(Table~\ref{tab:firststage}), so its selection reflects exposure and welfare weights more than any
+measured resilience effect.
 
 \begin{table}[t]
 \centering
@@ -147,79 +165,86 @@ Section~\ref{sec:robust} shows that these sets change with the specification.
 \toprule
 Rule & $\epsilon=0$ & $\epsilon=0.5$ & $\epsilon=1$ & $\epsilon=2$ \\
 \midrule
-EW-DRPL ($\epsilon$-specific tree) & 0.107 & 0.100 & 0.072 & 0.334 \\
- & {\footnotesize[$-0.17$, 0.49]} & {\footnotesize[$-0.35$, 0.64]} & {\footnotesize[$-0.65$, 0.81]} & {\footnotesize[$-1.04$, 1.67]} \\
-Utilitarian tree & 0.107 & 0.113 & 0.094 & 0.241 \\
- & {\footnotesize[$-0.17$, 0.49]} & {\footnotesize[$-0.34$, 0.66]} & {\footnotesize[$-0.56$, 0.74]} & {\footnotesize[$-1.03$, 1.58]} \\
-Plug-in tree & 0.169 & 0.149 & 0.550 & 1.106 \\
- & {\footnotesize[$-0.09$, 0.56]} & {\footnotesize[$-0.29$, 0.69]} & {\footnotesize[$-0.14$, 1.40]} & {\footnotesize[$-0.06$, 2.78]} \\
-Capable-first & $-0.004$ & $-0.003$ & $-0.005$ & $-0.010$ \\
- & {\footnotesize[$-0.02$, 0.01]} & {\footnotesize[$-0.02$, 0.02]} & {\footnotesize[$-0.04$, 0.02]} & {\footnotesize[$-0.05$, 0.02]} \\
-Poorest-first & 0.155 & 0.217 & 0.284 & 0.667 \\
- & {\footnotesize[$-0.14$, 0.60]} & {\footnotesize[$-0.31$, 0.88]} & {\footnotesize[$-0.55$, 1.20]} & {\footnotesize[$-0.89$, 2.39]} \\
-Most-agricultural-first & 0.158 & 0.215 & 0.273 & 0.643 \\
- & {\footnotesize[$-0.14$, 0.60]} & {\footnotesize[$-0.31$, 0.88]} & {\footnotesize[$-0.55$, 1.21]} & {\footnotesize[$-0.91$, 2.37]} \\
-Random (expected) & 0.071 & 0.087 & 0.098 & 0.190 \\
+EW-DRPL ($\epsilon$-specific tree) & 0.190 & 0.344 & 0.399 & $-0.119$ \\
+ & {\footnotesize[$-0.17$, 0.74]} & {\footnotesize[$-0.25$, 1.13]} & {\footnotesize[$-0.40$, 1.30]} & {\footnotesize[$-1.10$, 0.84]} \\
+Utilitarian tree & 0.190 & 0.185 & 0.072 & $-0.282$ \\
+ & {\footnotesize[$-0.17$, 0.74]} & {\footnotesize[$-0.37$, 0.98]} & {\footnotesize[$-0.69$, 1.01]} & {\footnotesize[$-1.36$, 0.72]} \\
+Plug-in tree & 0.387 & 0.284 & 0.475 & 0.789 \\
+ & {\footnotesize[$-0.05$, 0.98]} & {\footnotesize[$-0.22$, 1.06]} & {\footnotesize[$-0.19$, 1.37]} & {\footnotesize[$-0.22$, 2.08]} \\
+Capable-first & $-0.006$ & $-0.007$ & $-0.007$ & $-0.009$ \\
+ & {\footnotesize[$-0.02$, 0.01]} & {\footnotesize[$-0.02$, 0.01]} & {\footnotesize[$-0.04$, 0.02]} & {\footnotesize[$-0.05$, 0.02]} \\
+Poorest-first & 0.310 & 0.471 & 0.647 & 1.268 \\
+ & {\footnotesize[$-0.08$, 0.89]} & {\footnotesize[$-0.17$, 1.35]} & {\footnotesize[$-0.33$, 1.79]} & {\footnotesize[$-0.62$, 3.26]} \\
+Most-agricultural-first & 0.291 & 0.431 & 0.581 & 1.169 \\
+ & {\footnotesize[$-0.11$, 0.87]} & {\footnotesize[$-0.21$, 1.30]} & {\footnotesize[$-0.41$, 1.70]} & {\footnotesize[$-0.64$, 3.16]} \\
+Random (expected) & 0.130 & 0.176 & 0.213 & 0.358 \\
 \midrule
-Equity gain $W_\epsilon(\hat\pi_\epsilon)-W_\epsilon(\hat\pi_0)$ & & & $-0.022$ & 0.093 \\
- & & & {\footnotesize[$-0.18$, 0.14]} & {\footnotesize[$-0.23$, 0.58]} \\
-Equity price $W_0(\hat\pi_0)-W_0(\hat\pi_\epsilon)$ & & & 0.017 & 0.018 \\
- & & & {\footnotesize[$-0.02$, 0.06]} & {\footnotesize[$-0.02$, 0.06]} \\
+Equity gain $W_\epsilon(\hat\pi_\epsilon)-W_\epsilon(\hat\pi_0)$ & & & 0.327 & 0.164 \\
+ & & & {\footnotesize[$-0.01$, 0.90]} & {\footnotesize[$-0.04$, 0.52]} \\
+Equity price $W_0(\hat\pi_0)-W_0(\hat\pi_\epsilon)$ & & & $-0.061$ & $-0.020$ \\
+ & & & {\footnotesize[$-0.16$, 0.01]} & {\footnotesize[$-0.09$, 0.03]} \\
+EW-DRPL minus poorest-first & & & $-0.248$ & $-1.386$ \\
+ & & & {\footnotesize[$-0.77$, 0.14]} & {\footnotesize[$-3.26$, $-0.02$]} \\
 \bottomrule
 \end{tabular}
 \begin{minipage}{0.95\textwidth}\footnotesize\smallskip
 \emph{Notes:} 126 countries, of which 86 EMDEs; capacity for 37. Each rule is learned on four
-country folds and evaluated on the fifth; the columns give the inequality aversion $\epsilon$ used
-in evaluation. Values are the mean over countries of $\pi(Z_i)B_i(\epsilon)$ in equity-weighted
-percentage points of yield growth, with agricultural exposure allocated to the lowest deciles first.
-95 per cent country-cluster bootstrap intervals in brackets (500 replications). Capable-first:
-largest climate-AI stock per capita; poorest-first: lowest GDP per capita; most-agricultural-first:
-highest agricultural employment share.
+country folds and evaluated on the fifth; columns give the inequality aversion used in evaluation.
+Values: mean over countries of $\pi(Z_i)B_i(\epsilon)$, where $B_i$ includes the shock size, the
+population scale and the agricultural exposure of each decile (allocated to the lowest deciles
+first). 95 per cent country-cluster bootstrap intervals in brackets (500 replications), holding the
+learned rules fixed. Capable-first: largest climate-AI stock per capita; poorest-first: lowest GDP
+per capita; most-agricultural-first: highest agricultural employment share. Trees treat fewer than
+37 countries because a depth-2 tree can only treat whole leaves.
 \end{minipage}
 \end{table}
 
 \subsection{Robustness}\label{sec:robust}
 
-Table~\ref{tab:sens} reports alternative specifications. The average resilience effect remains
-small and imprecise when the non-orthogonal score is used (0.13, SE 1.14), when propensity scores
-are trimmed at $[0.05,0.95]$ (0.51, SE 1.17), with random-forest nuisance models (0.38, SE 0.75), in
-the EMDE subsample (0.31, SE 1.28), and with the unadjusted capability indicator (1.79, SE 1.63).
-The one exception is the annual-mean anomaly, for which the estimate is $-6.06$ (SE 2.05). Because
-the annual anomaly has no first-stage effect on yields on average (Table~\ref{tab:firststage}), we do
-not read this as evidence that capability increases damage. Allocating agricultural exposure
-uniformly across deciles instead of to the lowest deciles first leaves the $\epsilon=1$ rule
-unchanged.
+Table~\ref{tab:sens} reports alternative specifications. The average resilience effect stays
+imprecise and close to zero relative to its standard error when the non-orthogonal score is used,
+when propensity scores are clipped at $[0.05,0.95]$, with random-forest nuisance models, in the EMDE
+subsample, with the capability indicator that is not adjusted for income, and for agricultural value
+added. The exception is the annual-mean anomaly, for which the estimate is $-5.59$ (SE 1.92). The
+annual anomaly has no first-stage effect on yields on average (Table~\ref{tab:firststage}), so this
+estimate compares sensitivities that are both close to zero. It is nevertheless the one
+specification in which capability is associated with significantly greater sensitivity, and we
+report it as such.
 
-The allocation rules are less stable than the average effect. The $\epsilon=1$ treated set is
-unchanged under alternative trimming, random-forest nuisances and uniform exposure (Jaccard index
-1.0), but overlaps only partly with the main set when the score is not orthogonalised (0.65), in
-EMDEs (0.59) or with the unadjusted capability indicator (0.24). This instability is the empirical
-counterpart of the small-sample regret documented in the Monte Carlo, and it is the main reason we
-present the trees as illustrations.
+The allocation rules are much less stable than the average effect. Relative to the main rules, the
+treated sets are unchanged under alternative clipping, and at $\epsilon=2$ also under uniform
+exposure. Under the other specifications they overlap only partly, with Jaccard indices between
+0.02 and 0.71 at $\epsilon=1$ and between 0.08 and 0.51 at $\epsilon=2$. With a budget of 20 per
+cent, the held-out values of the learned rules lie between $-0.28$ and 0.08. This instability is the empirical
+counterpart of the small-sample regret documented in the Monte Carlo study, and it is why we do not
+draw country-specific recommendations from the trees.
 
 \begin{table}[t]
 \centering
 \caption{Sensitivity analysis}\label{tab:sens}
 \small
-\begin{tabular}{lcccc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
 \toprule
-Specification & Obs. & Average effect (SE) & Treated ($\epsilon=1$) & Jaccard \\
+ & & & \multicolumn{3}{c}{Treated set vs main} \\
+\cmidrule(lr){4-6}
+Specification & Obs. & Average effect (SE) & $n$ ($\epsilon=1$) & Jaccard ($\epsilon=1$) & Jaccard ($\epsilon=2$) \\
 \midrule
-Main & 3,338 & 0.258 (1.069) & 22 & 1.00 \\
-(a) Non-orthogonal slope score & 3,338 & 0.129 (1.139) & 29 & 0.65 \\
-(b) Propensity trimming $[0.05,0.95]$ & 3,338 & 0.507 (1.172) & 22 & 1.00 \\
-(c) Annual-mean anomaly as shock & 3,338 & $-6.060$ (2.050) & 7 & 0.21 \\
-(d) Random-forest nuisance models & 3,338 & 0.376 (0.748) & 22 & 1.00 \\
-(e) EMDEs only & 2,250 & 0.314 (1.282) & 13 & 0.59 \\
-(f) Capability without income adjustment & 3,338 & 1.791 (1.625) & 35 & 0.24 \\
-(g) Agricultural value added as outcome & 3,304 & 0.467 (0.550) & 26 & 0.00 \\
-(h) Uniform exposure across deciles & -- & -- & 22 & 1.00 \\
+Main & 3,336 & 0.843 (1.014) & 31 & 1.00 & 1.00 \\
+(a) Non-orthogonal slope score & 3,336 & 0.727 (1.126) & 22 & 0.71 & 0.51 \\
+(b) Clipping at $[0.05,0.95]$ & 3,336 & 0.978 (1.070) & 31 & 1.00 & 1.00 \\
+(c) Annual-mean anomaly as shock & 3,336 & $-5.594$ (1.916) & 33 & 0.21 & 0.11 \\
+(d) Random-forest nuisance models & 3,336 & $-0.138$ (0.760) & 22 & 0.71 & 0.42 \\
+(e) EMDEs only & 2,247 & 0.669 (1.417) & 25 & 0.51 & 0.28 \\
+(f) Capability without income adjustment & 3,336 & 2.258 (1.672) & 33 & 0.14 & 0.09 \\
+(g) Agricultural value added as outcome & 3,305 & 0.001 (0.610) & 26 & 0.02 & 0.08 \\
+(h) Uniform exposure across deciles & -- & -- & 22 & 0.71 & 1.00 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \begin{minipage}{0.95\textwidth}\footnotesize\smallskip
-\emph{Notes:} Average effect: mean of the median-over-splits scores, country-clustered SE. Treated:
-number of countries treated by the full-sample $\epsilon=1$ tree; Jaccard: overlap with the main
-treated set.
+\emph{Notes:} Average effect: observation-level median score over 20 splits, country-clustered SE.
+$n$: number of countries treated by the full-sample $\epsilon=1$ tree. Jaccard: overlap with the
+main treated set.
 \end{minipage}
 \end{table}
 
@@ -230,14 +255,12 @@ countries, and to GDP per capita growth (Appendix~\ref{app:decile}). Neither has
 stage. The annual temperature anomaly has no detectable effect on GDP growth in our 1998--2023
 sample ($-0.10$, SE 0.18), even in hot EMDEs ($-0.27$, SE 0.46), and spell-averaged anomalies have
 none on decile growth. Without measurable damage there is nothing for capability to reduce, and the
-resulting resilience estimates are uninformative: the average across deciles is $-1.58$ (SE 1.80),
-with a sign that changes across sample splits. The decile profile does point in one direction, with
-the estimates for the poorest deciles more negative than for the richest ($-3.11$ for the first
-decile against 0.02 for the tenth), but none is distinguishable from zero.
+resulting resilience estimates are uninformative.
 
-On the cost side, double machine learning estimates of the association between climate-AI
-knowledge stocks and per-capita electricity use ($-0.015$, SE 0.112) and CO$_2$ emissions (0.061,
-SE 0.099) are small and imprecise. The same holds for general AI output (0.070, SE 0.060, and 0.028,
-SE 0.056). National research capacity in AI is not, at least not yet, a measurable driver of
-economy-wide energy demand. The electricity footprint documented by \citet{iea2025} is concentrated
-where data centres are located, which is not necessarily where AI research is produced.
+On the cost side, double machine learning estimates of the association between the climate-AI
+knowledge stock and per-capita electricity use ($-0.015$, SE 0.112) and CO$_2$ emissions (0.061,
+SE 0.099), and between general AI output and the same outcomes (0.070, SE 0.060, and 0.028, SE
+0.056), are imprecise and centred near zero. These intervals do not rule out economically meaningful
+effects, but they give no indication that national AI research capacity drives economy-wide energy
+demand. The electricity footprint documented by \citet{iea2025} arises where data centres are
+located, which is not necessarily where AI research is produced.

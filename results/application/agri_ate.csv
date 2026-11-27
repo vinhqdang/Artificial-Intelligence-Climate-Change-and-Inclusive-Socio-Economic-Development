@@ -1,6 +1,5 @@
 quantity,estimate,N,countries
-"ATE of rho (mean Gamma, median over seeds)",0.258 (1.069),3338,145
-"mean psi* | T_res = 1 (beta, T=1)",-1.532 (0.699),1737,--
-"mean psi* | T_res = 0 (beta, T=0)",-1.632 (0.826),1601,--
-"mean Gamma, mean-over-seeds (comparison)",0.184,3338,145
-seed ATE min / p25 / median / p75 / max,-2.264 / -0.781 / 0.178 / 0.669 / 3.837,--,--
+"ATE of rho (mean Gamma, median over seeds)",0.843 (1.014),3336,145
+"mean psi* | T_res = 1 (beta, T=1)",-1.446 (0.691),1734,--
+"mean psi* | T_res = 0 (beta, T=0)",-1.593 (0.823),1602,--
+seed ATE min / p25 / median / p75 / max,-2.563 / 0.137 / 1.022 / 2.084 / 7.469,--,--

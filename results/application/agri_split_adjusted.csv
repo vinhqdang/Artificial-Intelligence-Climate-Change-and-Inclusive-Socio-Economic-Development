@@ -1,0 +1,4 @@
+quantity,estimate,SE_adj,95% CI
+"beta(T=1): mean psi* | T_res=1, median over seeds",-1.489,1.188,"[-3.817, 0.839]"
+"beta(T=0): mean psi* | T_res=0, median over seeds",-1.310,1.214,"[-3.689, 1.070]"
+"ATE of rho, median over seeds",1.022,2.118,"[-3.128, 5.173]"

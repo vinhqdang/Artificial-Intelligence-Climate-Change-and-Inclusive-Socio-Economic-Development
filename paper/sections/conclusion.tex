@@ -2,27 +2,25 @@
 
 This paper set out to answer a planner's question: if climate-AI capacity can be built in only some
 countries, where should it go first when the welfare of the poor counts for more? We developed
-equity-weighted doubly robust policy learning to answer it. The method combines exogenous
-temperature shocks, orthogonal doubly robust scores for the effect of capability on shock
-sensitivity, Atkinson welfare weights over income deciles, and interpretable allocation rules
-learned under a budget. We established its regret properties and showed in simulations that it
-outperforms the interaction regressions common in the applied literature by a wide margin. Equity
-weighting matters most when inequality aversion is high, and orthogonalisation matters for
-reliable targeting.
+equity-weighted doubly robust policy learning for that question. The method combines exogenous
+temperature shocks, orthogonal doubly robust scores for how capability changes shock sensitivity,
+Atkinson welfare weights over income deciles, and interpretable allocation rules learned under a
+budget. We stated the conditions under which its regret vanishes. In simulations it had 30 to 71
+per cent lower regret than the interaction regressions common in the applied literature, and equity
+weighting reduced regret by 35 to 43 per cent when the planner was strongly inequality averse.
 
-Applied to cereal yields in 145 countries, the method finds strong heat damages but no detectable
-resilience dividend from climate-AI research capacity. The estimates rule out effects larger than
-about two-thirds of the damage. The allocation most often used in practice, building on existing
-AI strength, delivers essentially no equity-weighted benefit, while rules that prioritise the poorest and the most
-agriculturally dependent countries have higher, though imprecise, value. Inequality aversion changes the recommended
-allocation only when it is high, at which point Viet Nam and most of its ASEAN neighbours enter the
-priority set.
+Applied to cereal yields in 145 countries, the method finds that heat damages yields but cannot
+detect a resilience dividend from climate-AI research capacity. The confidence interval includes
+both no effect and a complete offset of the damage. Allocation rules learned from these imprecise
+estimates are unstable and do no better than simply targeting the poorest or most agricultural
+countries, while allocating capacity to existing AI leaders yields almost no equity-weighted
+benefit. A conventional interaction regression on agricultural value added suggests a resilience
+dividend that the doubly robust estimates do not confirm.
 
-The broader lesson for research on AI, climate change and inclusive development is methodological
-as well as substantive. Questions about who benefits are questions about targeting under
-heterogeneity, and they call for methods that estimate allocation rules and their welfare
-consequences directly. They also call for better data. The binding constraints in our application
-are the absence of cross-country measures of AI deployment and the limited overlap between countries
-with and without capability. Programme-level and subnational data on AI-enabled adaptation services
-would allow the same method to deliver much sharper answers. The code is released with the paper
-for that purpose.
+The broader lesson for research on AI, climate change and inclusive development is that questions
+about who benefits are questions about targeting under heterogeneity, and that answering them
+requires both suitable methods and data that measure what AI actually does. Cross-country research
+indicators are too coarse for the task. Programme-level and subnational data on the deployment of
+AI-enabled adaptation services, linked to measured damages and to the incomes of the households they
+reach, would allow the same method to give much sharper answers. The code is released with the
+paper for that purpose.

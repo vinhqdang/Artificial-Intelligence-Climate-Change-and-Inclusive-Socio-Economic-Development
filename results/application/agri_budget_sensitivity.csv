@@ -1,9 +1,9 @@
 k,eps,treated,rule,held-out value
-0.2,0.0,22,"root [internet <= 8.292]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",-0.0642
-0.2,0.5,22,"root [internet <= 8.292]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",-0.1186
-0.2,1.0,22,"root [internet <= 8.292]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",-0.1559
-0.2,2.0,12,"root [ln_gdppc <= 7.81]; left [base_temp <= 22.17]; right [internet <= 8.292]; treated leaves (LL, LR, RL, RR) = (False, True, True, False)",0.3967
-0.5,0.0,22,"root [internet <= 8.292]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.1850
-0.5,0.5,22,"root [internet <= 8.292]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.1601
-0.5,1.0,22,"root [internet <= 8.292]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.1077
-0.5,2.0,59,"root [sov_z <= 0.2593]; left [sov_z <= 0.1532]; right [base_temp <= 22.17]; treated leaves (LL, LR, RL, RR) = (True, False, False, True)",0.3257
+0.2,0.0,22,"root [internet <= 7.105]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",-0.0596
+0.2,0.5,22,"root [internet <= 7.105]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.0258
+0.2,1.0,22,"root [internet <= 7.105]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.0778
+0.2,2.0,22,"root [internet <= 7.105]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",-0.2818
+0.5,0.0,31,"root [ln_gdppc <= 8.367]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.3322
+0.5,0.5,31,"root [ln_gdppc <= 8.367]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.4357
+0.5,1.0,31,"root [ln_gdppc <= 8.367]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.4246
+0.5,2.0,22,"root [internet <= 7.105]; left [base_temp <= 22.17]; right [sov_z <= 0.5756]; treated leaves (LL, LR, RL, RR) = (False, True, False, True)",0.4399

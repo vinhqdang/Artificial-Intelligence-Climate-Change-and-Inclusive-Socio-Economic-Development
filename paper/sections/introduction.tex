@@ -52,19 +52,19 @@ Monte Carlo study shows how the estimator behaves at the sample sizes typical of
 work, and an appendix applies the method directly to decile income growth from 1,334
 household-survey spells.
 
-The results are sobering. A 1$^{\circ}$C hotter-than-trend hottest month lowers cereal-yield growth
-by 3.6 percentage points, but countries with climate-AI capability suffer the same losses as
-countries without it. The average resilience effect is 0.26 points (SE 1.07), and effects larger
-than about two-thirds of the damage are ruled out. A standard interaction regression on
-agricultural value added would suggest a marginally significant resilience dividend, which the
-doubly robust estimates do not confirm. The allocation rule closest to current practice, building
-on existing AI strength, delivers essentially no equity-weighted benefit, because the leading
-countries have little agricultural exposure. Rules that favour the poorest and most agricultural
-countries have higher, though imprecise, value. Inequality aversion changes the recommended
-allocation only when it is high; at that point Viet Nam and four other ASEAN members enter the
-priority set. In simulations, EW-DRPL has less than one-third of the regret of the interaction
-approach, and equity weighting reduces regret by 36--43 per cent when the planner is strongly
-inequality averse.
+Heat damages yields: a 1$^{\circ}$C hotter-than-trend hottest month lowers cereal-yield growth
+by 3.6 percentage points. Countries with climate-AI capability, however, show no detectably
+smaller losses. The average resilience effect is 1.0 points per $^{\circ}$C with a split-adjusted
+standard error of 2.1, an interval that includes both no effect and a complete offset. A standard
+interaction regression on agricultural value added would suggest a marginally significant
+resilience dividend, which the doubly robust estimates do not confirm. Allocation rules learned from
+these imprecise estimates are unstable across specifications and do no better than simply targeting
+the poorest or most agricultural countries. Allocating capacity to the countries with the most
+climate-AI research yields almost no equity-weighted benefit, because those countries have little
+agricultural exposure. In simulations, EW-DRPL has 30 to 71 per cent lower regret than the
+interaction approach, and equity weighting reduces regret by 35 to 43 per cent when the planner is
+strongly inequality averse. Taken together, the method works as designed where the signal is
+adequate, and the application shows that national research indicators do not provide one.
 
 The paper contributes to three literatures. For the economics of AI and climate change, it moves
 from technical potential and single-country carbon studies \citep{liu2022,chen2022,dong2024} to
@@ -74,7 +74,8 @@ economies. For climate econometrics, it extends the analysis of heterogeneous cl
 changes the damages. For the econometrics of treatment choice, it extends equality-minded policy
 learning \citep{kitagawa2021,athey2021} to a setting in which the ``treatment'' moderates the effect
 of an exogenous shock rather than being randomly assigned itself. It provides an orthogonal score
-and a regret bound for that case, together with an implementation in open-source code.
+and the conditions for vanishing regret in that case, together with an implementation in
+open-source code.
 
 Section~\ref{sec:lit} reviews the related literature. Section~\ref{sec:method} presents the method,
 Section~\ref{sec:mc} the Monte Carlo evidence and Section~\ref{sec:data} the data.
