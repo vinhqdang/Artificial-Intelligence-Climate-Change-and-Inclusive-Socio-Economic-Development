@@ -1,0 +1,72 @@
+\section{Monte Carlo evidence}\label{sec:mc}
+
+Before turning to the data, we examine how EW-DRPL performs at sample sizes typical of
+cross-country work, where the asymptotics behind Proposition~\ref{prop:regret} may be a poor guide.
+
+\paragraph{Design.} Each simulated country has six correlated characteristics that mimic log income,
+inequality, internet access, agricultural share, baseline temperature and knowledge sovereignty.
+It is observed in $J=4$ spells, each with ten deciles. Capability is assigned with probability
+$\mathrm{logit}^{-1}(1.5\,\text{income}+0.5\,\text{internet})$, so it is strongly confounded with
+development, as in the data. Shocks are normal with a variance that rises with the agricultural
+share. Shock sensitivity is
+$\beta_d=-(1+0.5\,\text{agri}-0.1d)+T\,\rho_d(X)$, with resilience effect
+$\rho_d(X)=0.8(1-d/10)\,\mathbf 1\{\text{internet}>0\}$. Capability therefore protects the poorer
+deciles more, and only in connected countries. Income levels depend non-linearly on the
+covariates and on $T$, so capability is also correlated with growth itself. Decile incomes are
+log-normal with a spread that increases with inequality. We draw $N=150$ and $N=500$ countries,
+set the budget at $k=0.3$ and run 200 replications. For every replication we compute the best
+depth-2 tree under the true benefits, the oracle, and measure each method's regret against it
+under the $\epsilon$-weighted welfare criterion.
+
+\paragraph{Comparators.} EW-DRPL learns the tree from the equity-weighted orthogonal scores. The
+utilitarian rule learns it from $\epsilon=0$ scores and is evaluated under $\epsilon$. The plug-in
+rule uses $\hat m_{d,1}-\hat m_{d,0}$ without the doubly robust correction. The IPW-only rule drops
+the outcome model. The raw-score rule uses the non-orthogonalised slope signal $\psi_d$ in place of
+$\psi^*_d$. The naive rule ranks countries by the fitted interaction effects from a pooled
+regression of $Y$ on $S$, $S\times T$ and $S\times T\times Z$ with decile fixed effects, the
+standard specification in the applied literature.
+
+\begin{table}[t]
+\centering
+\caption{Monte Carlo results}\label{tab:mc}
+\scriptsize
+\resizebox{\textwidth}{!}{\input{../results/montecarlo/mc_table.tex}}
+\begin{minipage}{\textwidth}\footnotesize\smallskip
+\emph{Notes:} 200 replications; Monte Carlo standard errors in parentheses. Regret is the
+difference between the welfare of the oracle depth-2 tree and that of the learned rule, both
+evaluated with the true benefits under the indicated inequality aversion $\epsilon$. Budget
+$k=0.3$. ``crossfit'' learns the tree on four country folds and applies it to the fifth.
+Propensity scores are trimmed to $[0.1,0.9]$.
+\end{minipage}
+\end{table}
+
+\paragraph{Results.} Table~\ref{tab:mc} reports the results. Four findings stand out.
+
+First, the standard interaction regression performs poorly as a targeting device. Its regret is
+three times that of EW-DRPL at $N=500$ under $\epsilon=2$ (0.166 against 0.048). It recovers only
+about a third of the countries the oracle would treat, and its implied average resilience effect is
+biased upward by about 0.30, roughly 0.47 against a true average of 0.17. The bias arises because a
+pooled interaction model cannot separate capability from the characteristics it is correlated
+with.
+
+Second, equity weighting matters when the planner is inequality averse. At $\epsilon=2$ the
+utilitarian rule's regret is 0.104 at $N=150$ and 0.084 at $N=500$, against 0.067 and 0.048 for
+EW-DRPL, a reduction of 36--43 per cent. At $\epsilon=0$ the two coincide by construction.
+
+Third, orthogonalising the slope signal pays off. Replacing $\psi^*_d$ by the raw Robinson signal
+raises regret at $N=500$ by 0.019 (at $\epsilon=0$) to 0.033 (at $\epsilon=2$), and raises the RMSE
+of the average resilience effect from 0.065 to 0.082. Dropping the outcome model (IPW-only) is worse
+still.
+
+Fourth, small samples carry a variance cost that the asymptotic theory hides. At $N=150$ the
+orthogonal doubly robust average effect is nearly unbiased ($-0.012$) but has the largest RMSE
+(0.56), because the correction terms divide by estimated propensities and shock variances. The
+plug-in rule, which omits those corrections, has lower regret at $N=150$ and similar regret at
+$N=500$. It has no robustness guarantee, however, and its average effect is biased when the slope
+model is misspecified. We report both in the application. Trimming the propensity score to
+$[0.1,0.9]$ rather than $[0.05,0.95]$ cuts the RMSE of the doubly robust average effect at $N=150$
+from 1.08 to 0.56 and leaves regret essentially unchanged (Appendix
+Table~\ref{tab:mc_trim}). We therefore use $[0.1,0.9]$ throughout. The practical lesson for
+cross-country applications with around 120 countries is that point estimates of average effects
+will be noisy even when the targeting rule is informative, and that overlap between countries with
+and without capability is the binding constraint.
