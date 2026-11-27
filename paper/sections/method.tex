@@ -15,10 +15,13 @@ capacity in a limited share $k$ of countries. Capacity means the research groups
 infrastructure and skilled staff needed to develop and run AI-based adaptation services such as
 early warning, agro-advisory and disaster-risk targeting. The planner chooses a rule
 $\pi(Z_i)\in\{0,1\}$ based on observable country characteristics $Z_i$, and cares about how much
-capacity reduces the income losses that hot years inflict on each part of the income distribution.
+capacity reduces the losses that hot years inflict on each part of the income distribution.
 
-Let $i$ index countries, $d=1,\dots,10$ income deciles and $j$ observation periods (survey spells).
-$Y_{idj}$ is the annualised growth of the mean income of decile $d$, $S_{ij}$ is a temperature shock,
+Let $i$ index countries, $d=1,\dots,10$ income deciles and $j$ observation periods (years or
+survey spells). $Y_{idj}$ is the outcome relevant to decile $d$: the growth of its mean income when
+distributional data are available, or the growth of a sectoral quantity on which its income
+depends, such as cereal yields, in which case $Y_{idj}=Y_{ij}$ for all $d$. $S_{ij}$ is a
+temperature shock,
 $T_{ij}\in\{0,1\}$ indicates climate-AI capability, and $X_{ij}$ is a vector of country
 characteristics. Suppressing indices, the outcome equation for decile $d$ is
 \begin{equation}\label{eq:model}
@@ -100,13 +103,18 @@ mean, and $\epsilon\geq0$ the planner's aversion to inequality. The weights are 
 population-weighted mean of one, so $\epsilon=0$ reproduces the utilitarian criterion. The
 equity-weighted benefit of building capacity in country $i$ is
 \begin{equation}\label{eq:benefit}
-B_i(\epsilon) = \bar s_i \sum_{d=1}^{10} p_d\,\omega_{id}(\epsilon)\,\bar\Gamma_{id},
+B_i(\epsilon) = \bar s_i \sum_{d=1}^{10} p_d\,\omega_{id}(\epsilon)\,x_{id}\,\bar\Gamma_{id},
 \end{equation}
-where $\bar\Gamma_{id}$ averages the scores over country $i$'s spells, $p_d=0.1$ is each decile's
-population share, and $\bar s_i$ is the country's typical shock size (the standard deviation of its
-de-trended temperature). Because $B_i(\epsilon)$ is a fixed linear combination of orthogonal scores,
-it is itself an orthogonal score for the equity-weighted benefit
-$b_i(\epsilon)=\bar s_i\sum_d p_d\,\omega_{id}(\epsilon)\,\rho_d(X_i)$.
+where $\bar\Gamma_{id}$ averages the scores over country $i$'s observation periods, $p_d=0.1$ is
+each decile's population share, $\bar s_i$ is the country's typical shock size (the standard
+deviation of its de-trended temperature), and $x_{id}\in[0,1]$ is the share of decile $d$ whose
+income is exposed to the outcome. Two cases matter. When the outcome is decile income growth
+itself, $x_{id}=1$ and $\Gamma_{id}$ differs across deciles. When the outcome is a sectoral quantity
+observed only at the country level, such as crop yields, $\Gamma_{id}=\Gamma_i$ for every decile, and
+the distributional content enters through the exposure $x_{id}$: the share of each decile that earns
+its living from the sector. Because $B_i(\epsilon)$ is a fixed linear combination of orthogonal
+scores, it is itself an orthogonal score for the equity-weighted benefit
+$b_i(\epsilon)=\bar s_i\sum_d p_d\,\omega_{id}(\epsilon)\,x_{id}\,\rho_d(X_i)$.
 
 \paragraph{Step 5: policy learning.} The planner's rule is chosen from $\Pi$, the class of depth-2
 decision trees on a short list of interpretable characteristics $Z$, by solving
