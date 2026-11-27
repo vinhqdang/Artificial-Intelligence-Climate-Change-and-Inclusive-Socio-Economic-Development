@@ -112,6 +112,9 @@ def main() -> None:
     n_big = int(big.sum())
     cy["dly"] = dly.where(~big)
     cy["agri_growth_v"] = cy["agri_growth"]
+    # one-year lags of time-varying controls (pre-determined regressors); readiness is already t-1 in the build
+    for v in ["ln_gdppc", "internet", "agri_share", "urban", "ln_pop", "ln_fert"]:
+        cy[v + "_l1"] = cy.groupby("iso3")[v].shift(1)
 
     # temperature shocks
     tm = hot_shock(monthly_tmax())
@@ -144,7 +147,7 @@ def main() -> None:
     out["T_res_t"] = keep_years["T_res_t"]
     out_cols = ["iso3", "country", "region", "emde", "year", "dly", "cereal_yield", "agri_growth_v", "gdppc_growth",
                 "hotm", "tmax", "hotm_sd_i", "shock", "shock_sd_i", "precip_shock", "base_temp",
-                "T_res", "T_stock", "r_inc", "ln_kpc_lag", "ln_gdppc", "gini", "internet", "agri_share", "urban",
+                "T_res", "T_stock", "r_inc", "ln_kpc_lag", "ln_gdppc", "ln_gdppc_l1", "internet_l1", "agri_share_l1", "urban_l1", "ln_pop_l1", "ln_fert_l1", "gini", "internet", "agri_share", "urban",
                 "ln_pop", "pop", "pop_2023", "readiness", "ln_ai_pc_lag", "sovereignty", "sov_z", "agri_empl",
                 "ln_fert", "fert", "ln_elec_pc", "ln_co2pc", "ren_share", "T_res_t"] + \
                [c for c in cy.columns if c.startswith("y_dec")] + ["pip_latest_year"]

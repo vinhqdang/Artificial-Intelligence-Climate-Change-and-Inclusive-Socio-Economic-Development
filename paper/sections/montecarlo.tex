@@ -40,33 +40,39 @@ Propensity scores are trimmed to $[0.1,0.9]$.
 \end{minipage}
 \end{table}
 
-\paragraph{Results.} Table~\ref{tab:mc} reports the results. Four findings stand out.
+\paragraph{Results.} Table~\ref{tab:mc} and Appendix Figure~\ref{fig:regret} report the results.
+Four findings stand out.
 
-First, the standard interaction regression performs poorly as a targeting device. Its regret is
-three times that of EW-DRPL at $N=500$ under $\epsilon=2$ (0.166 against 0.048). It recovers only
-about a third of the countries the oracle would treat, and its implied average resilience effect is
-biased upward by about 0.30, roughly 0.47 against a true average of 0.17. The bias arises because a
-pooled interaction model cannot separate capability from the characteristics it is correlated
-with.
+First, the standard interaction regression is a poor targeting device. Its regret exceeds that of
+EW-DRPL in every cell of the design, by between 30 per cent ($N=150$, $\epsilon=0$) and 71 per cent
+($N=500$, $\epsilon=2$). At $\epsilon=0$ it recovers only about a tenth of the countries the oracle
+would treat, fewer than random allocation would. Its implied average resilience effect is biased
+upward by about 0.30, against a true average of about 0.18, because a pooled interaction model
+cannot separate capability from the characteristics it is correlated with.
 
-Second, equity weighting matters when the planner is inequality averse. At $\epsilon=2$ the
-utilitarian rule's regret is 0.104 at $N=150$ and 0.084 at $N=500$, against 0.067 and 0.048 for
-EW-DRPL, a reduction of 36--43 per cent. At $\epsilon=0$ the two coincide by construction.
+Second, equity weighting matters when the planner is strongly inequality averse. At $\epsilon=2$
+the utilitarian rule's regret is 0.104 at $N=150$ and 0.084 at $N=500$, against 0.067 and 0.048 for
+EW-DRPL, reductions of 35 and 43 per cent. At $\epsilon=1$ the reduction is smaller (9 and 15 per
+cent), and at $\epsilon=0$ the two rules coincide by construction.
 
-Third, orthogonalising the slope signal pays off. Replacing $\psi^*_d$ by the raw Robinson signal
-raises regret at $N=500$ by 0.019 (at $\epsilon=0$) to 0.033 (at $\epsilon=2$), and raises the RMSE
-of the average resilience effect from 0.065 to 0.082. Dropping the outcome model (IPW-only) is worse
-still.
+Third, orthogonalisation improves targeting and, in larger samples, estimation. Replacing
+$\psi^*_d$ by the raw Robinson signal raises regret at $N=500$ by 0.019 to 0.033 and the RMSE of
+the average resilience effect from 0.065 to 0.082. At $N=150$, however, the orthogonal score has
+the larger RMSE (0.56 against 0.36), because the correction terms divide by estimated propensities
+and shock variances. Dropping the outcome model (IPW-only) raises regret in every cell.
 
-Fourth, small samples carry a variance cost that the asymptotic theory hides. At $N=150$ the
-orthogonal doubly robust average effect is nearly unbiased ($-0.012$) but has the largest RMSE
-(0.56), because the correction terms divide by estimated propensities and shock variances. The
-plug-in rule, which omits those corrections, has lower regret at $N=150$ and similar regret at
-$N=500$. It has no robustness guarantee, however, and its average effect is biased when the slope
-model is misspecified. We report both in the application. Trimming the propensity score to
-$[0.1,0.9]$ rather than $[0.05,0.95]$ cuts the RMSE of the doubly robust average effect at $N=150$
-from 1.08 to 0.56 and leaves regret essentially unchanged (Appendix
-Table~\ref{tab:mc_trim}). We therefore use $[0.1,0.9]$ throughout. The practical lesson for
-cross-country applications with around 120 countries is that point estimates of average effects
-will be noisy even when the targeting rule is informative, and that overlap between countries with
-and without capability is the binding constraint.
+Fourth, the doubly robust correction does not improve targeting over a well-specified plug-in rule
+in this design. The plug-in rule, which ranks countries by $\hat m_{d,1}-\hat m_{d,0}$, has lower
+regret at $N=150$, the same regret at $N=500$, and a lower RMSE for the average effect at $N=150$ (0.33 against 0.56). Its
+advantage is variance: it omits the inverse-weighted corrections. The doubly robust rule is
+insurance against misspecification of the slope model, which our design does not impose. We
+therefore report both in the application. Clipping the propensity score at $[0.1,0.9]$ rather than
+$[0.05,0.95]$ cuts the RMSE of the doubly robust average effect at $N=150$ from 1.08 to 0.56 and
+leaves regret essentially unchanged (Appendix Table~\ref{tab:mc_trim}).
+
+The design is favourable to the estimator in several respects. Shocks are normal and independent
+across countries, the response is linear in the shock, capability is redrawn for every spell, and
+exposure and shock sizes are known. The application departs from each of these. The practical
+lesson for cross-country work with around 150 countries is that average effects will be estimated
+imprecisely even when targeting rules are informative, and that limited overlap between countries
+with and without capability is the binding constraint.
