@@ -2,18 +2,18 @@
 \centering
 \caption{Cost module: DML partially linear estimates of electricity and CO2 per capita on climate-AI capability.}
 \label{tab:cost}
-\begin{tabular}{lcccc}
+\begin{tabular}{lcccccc}
 \toprule
- & elec on K-stock & CO2 on K-stock & elec on AI pc & CO2 on AI pc \\
+ & elec on K-stock & CO2 on K-stock & elec on AI pc & CO2 on AI pc & elec on income residual & CO2 on income residual \\
 \midrule
-treatment coefficient & -0.017 (0.109) & 0.041 (0.106) & 0.053 (0.062) & 0.026 (0.061) \\
-p-value & 0.873 & 0.697 & 0.389 & 0.671 \\
-BLP slope on std. renewable share & 0.103 (0.113) & 0.100 (0.101) & -0.007 (0.060) & 0.031 (0.054) \\
-orthogonal score, low renewable share & -0.148 (0.162) & -0.032 (0.171) & 0.031 (0.085) & -0.010 (0.103) \\
-difference, high minus low renewable share & 0.261 (0.200) & 0.146 (0.202) & 0.044 (0.099) & 0.072 (0.116) \\
-country-years & 3170 & 3170 & 3170 & 3170 \\
-countries & 148 & 148 & 148 & 148 \\
+treatment coefficient & -0.015 (0.112) & 0.070 (0.060) & -0.046 (0.112) & 0.061 (0.099) & 0.028 (0.056) & 0.054 (0.099) \\
+p-value & 0.894 & 0.243 & 0.679 & 0.538 & 0.613 & 0.587 \\
+BLP slope on std. renewable share & 0.131 (0.121) & 0.045 (0.059) & 0.211 (0.119) & 0.087 (0.089) & 0.054 (0.052) & 0.143 (0.094) \\
+orthogonal score, low renewable share & -0.139 (0.160) & 0.010 (0.087) & -0.258 (0.163) & 0.023 (0.168) & -0.016 (0.097) & -0.045 (0.171) \\
+difference, high minus low renewable share & 0.247 (0.202) & 0.119 (0.098) & 0.423 (0.204) & 0.075 (0.186) & 0.088 (0.108) & 0.196 (0.189) \\
+country-years & 3192 & 3192 & 3192 & 3192 & 3192 & 3192 \\
+countries & 149 & 149 & 149 & 149 & 149 & 149 \\
 \bottomrule
 \end{tabular}
-\par\smallskip\footnotesize Columns: outcome on treatment (K-stock = ln(1 + k\_pc lagged); AI pc = ln(1 + ai\_pc lagged)). Cross-fitted gradient boosting, 5 country folds (seed 42), Mundlak country means of all controls. SE clustered by country. Renewable share split at its median.
+\par\smallskip\footnotesize K-stock = ln(1 + k\_pc lagged); AI pc = ln(1 + ai\_pc lagged); income residual = r\_it (continuous, capability beyond income). Cross-fitted gradient boosting, 5 country folds (seed 42), Mundlak country means of all controls. SE clustered by country. Renewable share split at its median.
 \end{table}
